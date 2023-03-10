@@ -1,13 +1,13 @@
-<ion-app>
+<ion-content [class]="isDarkMode ? 'dark' : ''">
   <ion-menu contentId="main-content">
-    <ion-header>
+    <ion-header [class]="isDarkMode ? 'dark' : ''">
       <ion-toolbar color="primary">
         <ion-title>Menu Content</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content>Fullname</ion-content>
     <ion-content>
       <ion-list>
+        <ion-label>Fullname</ion-label>
         <ion-item routerLink="[/login]">
           <ion-icon name="person-circle" slot="start"></ion-icon>
           <ion-label>Configuración de la cuenta</ion-label>
@@ -27,8 +27,6 @@
 
       </ion-list>
     </ion-content>
-
-
   </ion-menu>
 
 
@@ -38,9 +36,12 @@
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
       <ion-title>SDNotes</ion-title>
+      <ion-icon slot="end" name="moon-sharp"></ion-icon>
+      <ion-toggle slot="end" [(ngModel)]="isDarkMode" (ionChange)="toggleDarkMode()"></ion-toggle>
     </ion-toolbar>
   </ion-header>
 
+  
 
     <ion-card class="card-no-border">
       <ion-card-content>
@@ -93,5 +94,4 @@
       </ion-fab>
 
 
-
-</ion-app>
+    </ion-content>

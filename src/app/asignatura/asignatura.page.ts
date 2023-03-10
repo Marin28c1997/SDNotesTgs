@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Platform } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-asignatura',
@@ -7,6 +9,16 @@ import { Component } from '@angular/core';
 })
 export class AsignaturaPage {
 
-  constructor() {}
+  constructor(private platform: Platform) {
+    this.initializeApp();
+  }
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.toggle('dark');
+      }
+    });
+  }
 
 }

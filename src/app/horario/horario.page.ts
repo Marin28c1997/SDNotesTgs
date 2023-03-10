@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-horario',
@@ -7,14 +8,16 @@ import { Component } from '@angular/core';
 })
 export class HorarioPage {
 
-  schedule = [
-    { day: 'Lunes',  class: 'Matemáticas' },
-    { day: 'Martes',  class: 'Historia' },
-    { day: 'Miércoles',  class: 'Inglés' },
-    { day: 'Jueves',  class: 'Ciencias' },
-    { day: 'Viernes',  class: 'Educación Física' }
-  ];
+  constructor(private platform: Platform) {
+    this.initializeApp();
+  }
 
-  constructor() { }
+  initializeApp() {
+    this.platform.ready().then(() => {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.toggle('dark');
+      }
+    });
+  }
 
 }

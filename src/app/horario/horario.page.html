@@ -1,14 +1,13 @@
-
-<ion-app>
+<ion-content [class]="isDarkMode ? 'dark' : ''">
   <ion-menu contentId="main-content">
-    <ion-header>
+    <ion-header [class]="isDarkMode ? 'dark' : ''">
       <ion-toolbar color="primary">
         <ion-title>Menu Content</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content>Fullname</ion-content>
     <ion-content>
       <ion-list>
+        <ion-label>Fullname</ion-label>
         <ion-item routerLink="[/login]">
           <ion-icon name="person-circle" slot="start"></ion-icon>
           <ion-label>Configuración de la cuenta</ion-label>
@@ -28,8 +27,6 @@
 
       </ion-list>
     </ion-content>
-
-
   </ion-menu>
 
 
@@ -39,25 +36,10 @@
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
       <ion-title>SDNotes</ion-title>
+      <ion-icon slot="end" name="moon-sharp"></ion-icon>
+      <ion-toggle slot="end" [(ngModel)]="isDarkMode" (ionChange)="toggleDarkMode()"></ion-toggle>
     </ion-toolbar>
   </ion-header>
-
-  <ion-content style="margin-top: 50%; border-radius: 5px; border: 2px solid #E6413A;" >
-    <ion-calendar [(ngModel)]="date"
-              [disableWeeks]="[0,6]"
-              [showMonthPicker]="false"
-              [showToggleButtons]="false"
-              [showMonthPicker]="false"
-              [showWeekNumbers]="false"
-              [showEvents]="false"
-              [weekdayNames]="['L', 'M', 'X', 'J', 'V']"
-              [scrollToCurrent]="true"
-              [options]="options"
-              [markedDates]="markedDates"
-              [markedDays]="markedDays"
-              (onSelect)="onSelect($event)"
-              (onCurrentDateChanged)="onCurrentDateChanged($event)">
-</ion-calendar>
 
 <ion-grid>
   <ion-row>
@@ -79,4 +61,4 @@
     
   </ion-content>
   
-</ion-app>
+

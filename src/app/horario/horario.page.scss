@@ -8,3 +8,27 @@ ion-menu::part(container) {
 
   box-shadow: 4px 0px 16px rgba(230,	65,	58);
 }
+
+  /* Colores para el modo oscuro */
+  ion-content.dark {
+    --ion-color-primary: #222;
+    --ion-color-secondary: #333;
+    --ion-color-tertiary: #444;
+    --ion-color-success: #28a745;
+    --ion-color-warning: #ffc107;
+    --ion-color-danger: #dc3545;
+  }
+  
+  
+  ion-content.dark {
+    --ion-color-base: #222;
+    --ion-color-label: #fff;
+    --ion-background-color: #333;
+  
+  }
+  
+  .dark ion-label, .dark ion-content, .dark h2, .dark ion-title, .dark ion-icon,
+  .dark ion-col{
+    color: #fff;
+  }
+  
