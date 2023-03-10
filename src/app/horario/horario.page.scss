@@ -1,0 +1,56 @@
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columnas para cada día de la semana */
+    grid-template-rows: 30px repeat(6, 1fr); /* 7 filas (1 para los días de la semana y 6 para las clases) */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .weekdays {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f1f1f1;
+    font-weight: bold;
+    padding: 5px;
+  }
+  
+  .weekday {
+    text-align: center;
+  }
+  
+  .classes {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+  
+  .class {
+    background-color: #fff;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .monday {
+    grid-row-start: 2;
+  }
+  
+  .tuesday {
+    grid-row-start: 3;
+  }
+  
+  .wednesday {
+    grid-row-start: 4;
+  }
+  
+  .thursday {
+    grid-row-start: 5;
+  }
+  
+  .friday {
+    grid-row-start: 6;
+  }
+  

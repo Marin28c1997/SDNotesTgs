@@ -1,0 +1,99 @@
+
+ion-card {
+  --color: #E6413A;
+  width: 60%;
+  margin: auto;
+  margin-top: 1%;
+}
+
+ion-card-title {
+  --color: #52ffe4;
+  text-align: center;
+}
+
+ion-content{
+    margin: 50 px auto;
+    align-items: center;
+}
+
+/* iOS places the subtitle above the title */
+ion-card-header.ios {
+  display: flex;
+  flex-flow: column-reverse;
+}
+
+ion-img {
+  width: 50px;
+  height: 50px;
+}
+
+.text{
+  text-align: center;
+  margin: 1%;
+}
+
+.text1{
+  text-align: center;
+}
+
+
+.inp{
+  color: #E6413A;
+  width: 50%;
+  height: 7%;
+  margin: auto;
+  border-color: #E6413A;
+  border-width: 8px;
+  margin-top: 1%;
+  border: 1px solid rgb(159, 159, 159);
+  border-radius: 5px;
+  border-bottom: 1px solid #E6413A;
+  font-size: 20px;
+}
+
+.ic{
+  margin-top: 10px;
+  color: #E6413A;
+}
+
+
+
+.olvi{
+  background: transparent;
+  width: 30%;
+  height: 9%;
+  margin: auto;
+  margin-top: 5%;
+  background:transparent; 
+  --border-color: transparent;
+ 
+}
+
+.iniciar{
+  --background:#E6413A ;
+  color:white;
+  font-size: 20px;
+  margin: auto;
+  height: 60px;
+}
+
+.google {
+  width: 90%;
+  height: 90%;
+}
+
+.goo{
+  color:gray;
+  font-size: 20px;
+  margin: auto;
+  height: 40px; 
+ background:transparent; 
+}
+
+.registrar{
+  background: transparent;
+  width: 10%;
+  margin: auto;
+  margin-top: 2%;
+  --border-color: transparent;
+}
