@@ -8,12 +8,12 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'inicio',
-        loadChildren: () => import('../inicio/inicio.module').then(m => m.InicioPageModule)
-      },
-      {
         path: 'asignatura',
         loadChildren: () => import('../asignatura/asignatura.module').then(m => m.AsignaturaPageModule)
+      },
+      {
+        path: 'inicio',
+        loadChildren: () => import('../inicio/inicio.module').then(m => m.InicioPageModule)
       },
       {
         path: 'horario',
@@ -21,14 +21,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/inicio',
+        redirectTo: '/tabs/asignatura',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/inicio',
+    redirectTo: '/tabs/asignatura',
     pathMatch: 'full'
   }
 ];

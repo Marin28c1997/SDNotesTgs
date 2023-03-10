@@ -1,16 +1,22 @@
-body{
-  --background:#E6413A;
- }
-ion-card {
-  --color: #E6413A;
-  width: 60%;
-  margin: auto;
-  margin-top: 1%;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-ion-card-title {
-  --color: #52ffe4;
-  text-align: center;
+ion-content {
+  max-width: 768px; /* Adjust this to your desired maximum width */
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+ion-card {
+  --color: #E6413A;
+  width: 50%;
+  margin: auto;
+  margin-top: 1%;
 }
 
 
@@ -21,93 +27,82 @@ ion-card-header.ios {
 }
 
 ion-img {
-  width: 180px;
-  height: 100px;
+  width: 20%;
+  height: 10%;
   margin: auto;
-  margin-top: 1%;
+  margin-top: 8%;
 }
 
-.text{
-  text-align: center;
-  margin: 1%;
+ion-item {
+  --border-width: 0;
+  --border-style: none;
 }
 
-.text1{
+.text, .text1{
   text-align: center;
+  margin: 30%;
 }
 
 
 .inp{
   color: #E6413A;
-  width: 50%;
-  height: 7%;
+  width: 85%;
+  height: 8.7%;
   margin: auto;
   border-color: #E6413A;
   border-width: 8px;
-  margin-top: 1%;
+  margin-top: 2%;
   border: 1px solid rgb(159, 159, 159);
   border-radius: 5px;
   border-bottom: 1px solid #E6413A;
-  font-size: 20px;
+  font-size: 120%;
+  margin-bottom: 8%;
 }
 
 .ic{
-  margin-top: 10px;
+  margin-top: 2%;
   color: #E6413A;
-}
-
-ion-icon{
-  margin: 5px;
 }
 
 .btnOlv{
   --background: none;
   color:#E6413A;
   text-decoration: underline;
-  font-size: 15px;
-  margin-top: -8px;
-  margin-left: -6px
-}
-
-.olvi{
-  background: transparent;
-  width: 30%;
-  height: 9%;
-  margin: auto;
-  margin-bottom: 1%;
-  background:transparent; 
-  --border-color: transparent;
- 
+  font-size: 90%;
+  margin-top: -2%;
+  margin-bottom: 2%;
 }
 
 .iniciar{
   --background:#E6413A ;
   color:white;
-  font-size: 20px;
+  font-size: 100%;
   margin: auto;
-  height: 60px;
+  height: 100%;
 }
 
 .google {
-  width: 90%;
-  height: 90%;
-  padding: 8px;
+  height: 100%;
+  margin: auto;
+  padding-right: 5px;
 }
 
 .goo{
   color:gray;
   font-size: 20px;
   margin: auto;
-  height: 40px; 
- background:transparent; 
+  background:transparent; 
 }
 
-.registro{ 
-  background:transparent;
-  width: 45%;
-  height: 10%;
+.registro { 
   margin: auto;
-  text-align: center;
-  margin-top: -1px;
-  --border-color: transparent;
+  margin-top: 2%;
+}
+
+.btnOlvs{
+  --background: none;
+  color:#E6413A;
+  text-decoration: underline;
+  margin-top: -4%;
+  text-align: center; 
 }

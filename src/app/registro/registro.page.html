@@ -13,9 +13,8 @@
 
 <body>
   <ion-content>
-
-    <ion-item class="olvi">
-      <ion-button (click)="loginGoogles()" class="goo" fill="clear"> <ion-img  class="google" src="assets/icon/google.png " alt="logo" > </ion-img> Sign in with Google </ion-button>
+    <ion-item >
+      <ion-button class="olvi" (click)="loginGoogles()" class="goo" fill="clear"> <ion-img  class="google" src="assets/icon/google.png " alt="logo" > </ion-img> Sign in with Google </ion-button>
     </ion-item>
     
  
@@ -53,8 +52,8 @@
     <ion-icon [name]="passwordToggleIcon" slot="end" size="large" class="ic" (click)="togglePassword()"></ion-icon>
   </ion-item>
 
-  <ion-item class="registrar">
-  <ion-button [routerLink]="['/tabs']">Registrarse</ion-button>
+  <ion-item >
+  <ion-button class="registrar" [routerLink]="['/tabs']">Registrarse</ion-button>
    
   </ion-item>
 

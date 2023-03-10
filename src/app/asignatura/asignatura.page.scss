@@ -1,21 +1,22 @@
 ion-menu::part(backdrop) {
-    background-color: rgba(230,	65,	58);
-  
-  }
-  
-  ion-menu::part(container) {
-    border-radius: 0 20px 20px 0;
-  
-    box-shadow: 4px 0px 16px rgba(230,	65,	58);
-  }
+  background-color: rgba(230, 65, 58);
+}
 
-  
-  /* iOS places the subtitle above the title */
-  ion-card-header.ios {
-    display: flex;
-    flex-flow: column-reverse;
-  }
-  
-  ion-card {
-    margin-top: -90px;
-  }
+ion-menu::part(container) {
+  border-radius: 0 20px 20px 0;
+
+  box-shadow: 4px 0px 16px rgba(230, 65, 58);
+}
+
+/* iOS places the subtitle above the title */
+ion-card-header.ios {
+  display: flex;
+  flex-flow: column-reverse;
+}
+
+ion-card {
+  height: 100%;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
