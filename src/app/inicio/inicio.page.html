@@ -48,59 +48,35 @@
     <div>
       <h2 style="text-align: center;color: #E6413A;">Calculo Rápido</h2>
       <ion-grid [fixed]="true">
-        <ion-row>
+        <ion-row *ngFor="let nota of notas; let i = index;">
           <ion-col size="6">
-
             Notas
-            <ion-input placeholder="Ingrese Nota" class="custom">
+            <ion-input placeholder="Ingrese Nota" class="custom" [(ngModel)]="nota.nota">
               <ion-icon name="create-outline"></ion-icon>
             </ion-input>
           </ion-col>
           <ion-col size="6">
             Porcentaje%
-            <ion-input placeholder="Ingrese porcentaje" class="custom">
-              <ion-icon name="calculator-outline"></ion-icon>
-            </ion-input>
-          </ion-col>
-          <ion-col size="6">
-
-            Notas
-            <ion-input placeholder="Ingrese Nota" class="custom">
-              <ion-icon name="create-outline"></ion-icon>
-            </ion-input>
-          </ion-col>
-          <ion-col size="6">
-            Porcentaje%
-            <ion-input placeholder="Ingrese porcentaje" class="custom">
-              <ion-icon name="calculator-outline"></ion-icon>
-            </ion-input>
-          </ion-col>
-          <ion-col size="6">
-
-            Notas
-            <ion-input placeholder="Ingrese Nota" class="custom">
-              <ion-icon name="create-outline"></ion-icon>
-            </ion-input>
-          </ion-col>
-          <ion-col size="6">
-            Porcentaje%
-            <ion-input placeholder="Ingrese porcentaje" class="custom">
+            <ion-input placeholder="Ingrese porcentaje" class="custom" [(ngModel)]="nota.porcentaje">
               <ion-icon name="calculator-outline"></ion-icon>
             </ion-input>
           </ion-col>
         </ion-row>
         <ion-item>
-          <ion-label>Le falta para pasar:</ion-label>
-          <ion-label>0,0</ion-label>
+          <ion-label>Nota Actual:</ion-label>
+          <ion-label>{{sumas}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Te falta para pasar:</ion-label>
+          <ion-label>{{pasar}}</ion-label>
         </ion-item>
       </ion-grid>
 <div style="text-align: center;">
-      <ion-button >Agregar Nota</ion-button>
+      <ion-button (click)="agregarNota()">Agregar Nota</ion-button>
       <br>
-      <ion-button >Calcular Nota</ion-button>
+      <ion-button (click)="calcularNota()">Calcular Nota</ion-button>
     </div>
   </div>
-
 
   </ion-content>
 
