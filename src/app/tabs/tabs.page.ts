@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-tabs',
@@ -6,7 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
+  constructor(private platform: Platform) {
+    this.initializeApp();
+  }
 
-  constructor() {}
-
+  initializeApp() {
+    this.platform.ready().then(() => {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.toggle('dark');
+      }
+    });
+  }
 }

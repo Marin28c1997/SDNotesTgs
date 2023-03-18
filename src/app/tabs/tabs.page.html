@@ -1,4 +1,46 @@
-<ion-app>
+<ion-content [class]="isDarkMode ? 'dark' : ''">
+  <ion-menu contentId="main-content">
+    <ion-header [class]="isDarkMode ? 'dark' : ''">
+      <ion-toolbar color="primary">
+        <ion-title>Menu Content</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-label>Fullname</ion-label>
+        <ion-button routerLink="/agregar">
+          <ion-icon name="person-circle" slot="start"></ion-icon>
+          <ion-label>Configuración de la cuenta</ion-label>
+        </ion-button>
+        <ion-button routerLink="/login">
+          <ion-icon name="share-social" slot="start"></ion-icon>
+          <ion-label>Compartir</ion-label>
+        </ion-button>
+        <ion-button routerLink="/registro">
+          <ion-icon name="information-circle" slot="start"></ion-icon>
+          <ion-label>Acerca de</ion-label>
+        </ion-button>
+        <ion-button routerLink="/login">
+          <ion-icon name="exit" slot="start"></ion-icon>
+          <ion-label>Salir</ion-label>
+        </ion-button>
+
+
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+
+  <ion-header id="main-content" >
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title color="primary">SDNotes</ion-title>
+      <ion-icon slot="end" name="moon-sharp" color="primary"></ion-icon>
+      <ion-toggle slot="end" [(ngModel)]="isDarkMode" (ionChange)="toggleDarkMode()"></ion-toggle>
+    </ion-toolbar>
+  </ion-header>
 
 
 
@@ -22,4 +64,4 @@
       
     </ion-tab-bar>
   </ion-tabs>
-</ion-app>
+</ion-content>
