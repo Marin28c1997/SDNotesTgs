@@ -1,23 +1,14 @@
 <ion-content>
-
-<ion-grid>
-  <ion-row>
-    <ion-col class="day-label">Lunes</ion-col>
-    <ion-col class="day-label">Martes</ion-col>
-    <ion-col class="day-label">Miércoles</ion-col>
-    <ion-col class="day-label">Jueves</ion-col>
-    <ion-col class="day-label">Viernes</ion-col>
-    <ion-col class="day-label">Sábado</ion-col>
-  </ion-row>
-  <ion-row *ngFor="let row of calendarRows">
-    <ion-col *ngFor="let date of row" [ngClass]="{'today': isToday(date)}">
-      <div class="date">{{date.getDate()}}</div>
-      <div class="class">{{getClassForDate(date)}}</div>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-
-    
-  </ion-content>
+  <ion-grid class="my-content ion-text-center ion-justify-content-center ion-align-items-center">
+    <ion-row>
+      <ion-col size-md="2" size-lg="2">Lunes</ion-col>
+      <ion-col size-md="2" size-lg="2">Martes</ion-col>
+      <ion-col size-md="2" size-lg="2">Miércoles</ion-col>
+      <ion-col size-md="2" size-lg="2">Jueves</ion-col>
+      <ion-col size-md="2" size-lg="2">Viernes</ion-col>
+      <ion-col size-md="2" size-lg="2">Sábado</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
   
 

@@ -42,3 +42,30 @@ ion-card {
     border-radius: 8px;
     background: rgb(142, 223, 142);
   }
+
+    // para dispositivos móviles
+@media only screen and (max-width: 767px) {
+  .my-content {
+    margin-top: 14%; // ajuste según sea necesario
+    background: #E6413A; 
+    border-radius: 5px; 
+  }
+}
+
+// para tabletas
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .my-content {
+    margin-top: 7%; // ajuste según sea necesario
+    background: #E6413A; 
+    border-radius: 5px;
+  }
+}
+
+// para pantallas más grandes (PC)
+@media only screen and (min-width: 992px) {
+  .my-content {
+    margin-top: 7%; // ajuste según sea necesario
+    background: #E6413A; 
+    border-radius: 5px;
+  }
+}

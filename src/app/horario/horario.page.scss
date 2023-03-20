@@ -1,4 +1,41 @@
 
-ion-grid{
-  margin-top: 12%;
+// para dispositivos móviles
+@media only screen and (max-width: 767px) {
+  .my-content {
+    margin-top: 12.3%; // ajuste según sea necesario
+  }
+}
+
+// para tabletas
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .my-content {
+    margin-top: 6%; // ajuste según sea necesario
+  }
+}
+
+// para pantallas más grandes (PC)
+@media only screen and (min-width: 992px) {
+  .my-content {
+    margin-top: 5.5%; // ajuste según sea necesario
+  }
+}
+
+
+@media (max-width: 767px) { /* Pantallas pequeñas */
+  .my-content ion-col {
+    font-size: 12px;
+    padding: 10px 5px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) { /* Pantallas medianas */
+  .my-content ion-col {
+    font-size: 16px;
+    padding: 15px 10px;
+  }
+}
+@media (min-width: 1024px) { /* Pantallas grandes */
+  .my-content ion-col {
+    font-size: 20px;
+    padding: 20px 15px;
+  }
 }
