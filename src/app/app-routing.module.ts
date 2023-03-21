@@ -26,7 +26,7 @@ const routes: Routes = [
   {
     path: 'agregar',
     loadChildren: () => import('./agregar/agregar.module').then( m => m.AgregarPageModule)
-  }
+  },
 
 ];
 

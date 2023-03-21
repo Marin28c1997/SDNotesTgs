@@ -19,24 +19,24 @@
         </ion-card-title>
         <ion-card-subtitle><ion-item fill="outline">
             <ion-label position="floating" color="primary"><ion-icon name="book"></ion-icon> Información de la asignatura</ion-label>
-            <ion-input placeholder="Asignatura"></ion-input>
+            <ion-input [(ngModel)]="name" placeholder="Asignatura"></ion-input>
           </ion-item></ion-card-subtitle>
         <ion-card-subtitle><ion-item fill="outline">
             <ion-label position="floating" color="primary"><ion-icon name="person-circle"></ion-icon> Nombre del profesor</ion-label>
-            <ion-input placeholder="Profesor"></ion-input>
+            <ion-input [(ngModel)]="teacher" placeholder="Profesor"></ion-input>
           </ion-item></ion-card-subtitle>
         <ion-card-subtitle><ion-item fill="outline">
             <ion-label position="floating" color="primary"><ion-icon name="home"></ion-icon> Salón de clase</ion-label>
-            <ion-input placeholder="Salón"></ion-input>
+            <ion-input [(ngModel)]="salon" placeholder="Salón"></ion-input>
           </ion-item></ion-card-subtitle>
         <ion-card-subtitle><ion-item fill="outline">
             <ion-label position="floating" color="primary"><ion-icon name="location"></ion-icon> Sede</ion-label>
-            <ion-input placeholder="Villa, Príncipe o Victoria"></ion-input>
+            <ion-input [(ngModel)]="lugar" placeholder="Villa, Príncipe o Victoria"></ion-input>
           </ion-item></ion-card-subtitle>
       
       <ion-card-subtitle><ion-item fill="outline">
           <ion-label position="floating" color="primary"><ion-icon name="time"></ion-icon> Créditos</ion-label>
-          <ion-input placeholder="Créditos/Intensidad horaria"></ion-input>
+          <ion-input [(ngModel)]="credits" placeholder="Créditos/Intensidad horaria"></ion-input>
         </ion-item></ion-card-subtitle>
       </ion-card-header>
     </ion-card>
@@ -74,9 +74,9 @@
 
 </body>
 
-<ion-toolbar color="primary" class="my-content" >
+<ion-toolbar color="primary" class="my-content">
   
-  <div class="wrapper" slot="end" routerLink="[/asignatura]">
+  <div class="wrapper" slot="end" (click)="guardarAsig()">
     <div class="ion-activatable ripple-parent rounded-rectangle">
       <ion-icon name="save" style="color: rgb(2, 42, 2);"></ion-icon>
       <ion-ripple-effect></ion-ripple-effect>

@@ -6,6 +6,7 @@ import { finalize } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class FirestorageService {
+  [x: string]: any;
 
   constructor(public storage: AngularFireStorage) { }
 

@@ -7,28 +7,25 @@ import {
 } from '@angular/forms';
 import { async } from '@firebase/util';
 import { AlertController, NavController } from '@ionic/angular';
-import { User } from '../models';
 import { FirebaseauthService } from '../services/firebaseauth.service';
 import { FirestorageService } from '../services/firestorage.service';
 import { FirestoreService } from '../services/firestore.service';
+
+
+import { User } from './models';
 
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
   styleUrls: ['./registro.page.scss'],
 })
-export class RegistroPage implements OnInit {
-  login: User = {
-    uid: '',
-    nombre: '',
-    email: '',
-    password: '',
-    confirpassword: '',
-    usuario: '',
-  };
-  formularioRegistro: FormGroup;
+export class RegistroPage{
+  name:string;
+  age:number
 
+  formularioRegistro: FormGroup;
   uid = '';
+
 
   constructor(
     public fb: FormBuilder,
@@ -36,58 +33,57 @@ export class RegistroPage implements OnInit {
     public navegacion: NavController,
     public firebaseauthService: FirebaseauthService,
     public firestorageService: FirestorageService,
-    public firestoreService: FirestoreService
+    public firestoreService: FirestoreService,
   ) {
     this.firebaseauthService.stateAuth().subscribe(res => {
       if (res !== null) {
         this.uid = res.uid;
-        this.getUserInfo(this.uid);
+        // this.getUserInfo(this.uid);
       }
     });
   }
 
-  async ngOnInit() {
-    const uid = await this.firebaseauthService.getUid();
-    console.log(uid);
-  }
+  // async ngOnInit() {
+  //   const uid = await this.firebaseauthService.getUid();
+  //   console.log(uid);
+  // }
 
 
-  async registrarse() {
-    const credenciales = {
-      email: this.login.email,
-      password: this.login.password,
-    };
+  // async registrarse() {
+  //   const credenciales = {
+  //     Email: this.newUser.Email,
+  //     Password: this.newUser.Password,
+  //   };
 
-    const res = await this.firebaseauthService
-      .registrar(credenciales.email, credenciales.password)
-      .catch((err) => {
-        console.log('error ->', err);
-      });
-    const uid = await this.firebaseauthService.getUid();
-    this.login.uid = uid;
-    this.guardarUser();
-    this.navegacion.navigateRoot('inicio');
-  }
+  //   const res = await this.firebaseauthService
+  //     .registrar(credenciales.Email, credenciales.Password)
+  //     .catch((err) => {
+  //       console.log('error ->', err);
+  //     });
+  //   const uid = await this.firebaseauthService.getUid();
+  //   this.uid = uid;
+  //   this.guardarUser();
+  // }
 
-  async guardarUser() {
-    const path = 'Usuarios';
-    const name = this.login.nombre;
-    this.firestoreService
-      .creatDoc(this.login, path, this.login.uid)
-      .then((res) => {
-        console.log('guardado');
-      })
-      .catch((error) => { });
-  }
+  // async guardarUser() {
+  //   const path = '/User';
+  //   const name = this.newUser.Username;
+  //   this.firestoreService
+  //     .creatDoc(this.newUser, path, this.uid)
+  //     .then((res) => {
+  //       console.log('guardado');
+  //     })
+  //     .catch((error) => { });
+  // }
 
 
-  getUserInfo(uid: string) {
-    const path = 'Usuarios';
-    this.firestoreService.getDoc<User>(path, uid).subscribe(res => {
-      this.login = res;
-    });
+  // getUserInfo(uid: string) {
+  //   const path = 'User';
+  //   this.firestoreService.getDoc<User>(path, uid).subscribe(res => {
+  //     this.newUser = res;
+  //   });
 
-  }
+  // }
 
   showPassword = false;
   passwordToggleIcon = 'eye';
@@ -100,6 +96,13 @@ export class RegistroPage implements OnInit {
     } else {
       this.passwordToggleIcon = 'eye';
     }
+  }
+
+  
+  guardar() {
+  
+    this.name = '';
+    this.age = null;
   }
 
 }
