@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FirestorageService } from '../services/firestorage.service';
+import { FirestoreService } from '../services/firestore.service';
 
 @Component({
   selector: 'app-agregar',
@@ -12,7 +12,7 @@ export class AgregarPage implements OnInit {
   salon: number;
   lugar: string;
   credits: number;
-  constructor(public firestorageService: FirestorageService) {}
+  constructor(public firestorageService: FirestoreService) {}
 
   ngOnInit() {}
 
@@ -25,8 +25,10 @@ export class AgregarPage implements OnInit {
       lugar: this.lugar,
       credits: this.credits,
     };
-     const path = 'Prueba';
-     const id = '011';
+     const path = '/Subjects';
+     const id = '50';
     this.firestorageService.creatDoc(data, path,id)
+
+    
   }
 }
