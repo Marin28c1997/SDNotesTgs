@@ -8,7 +8,6 @@ import { Component } from '@angular/core';
 export class InicioPage {
 
   notas = [
-    { nota: "", porcentaje: "" },
     { nota: "", porcentaje: "" }
   ]; // Inicializamos la matriz de notas con un objeto vacío
 

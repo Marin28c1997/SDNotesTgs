@@ -19,25 +19,30 @@
         </ion-card-title>
         <ion-card-subtitle><ion-item fill="outline">
             <ion-label position="floating" color="primary"><ion-icon name="book"></ion-icon> Información de la asignatura</ion-label>
-            <ion-input [(ngModel)]="name" placeholder="Asignatura"></ion-input>
+            <ion-input [(ngModel)]="newSubjects.Name" placeholder="Asignatura"></ion-input>
           </ion-item></ion-card-subtitle>
         <ion-card-subtitle><ion-item fill="outline">
             <ion-label position="floating" color="primary"><ion-icon name="person-circle"></ion-icon> Nombre del profesor</ion-label>
-            <ion-input [(ngModel)]="teacher" placeholder="Profesor"></ion-input>
+            <ion-input [(ngModel)]="newSubjects.Teacher" placeholder="Profesor"></ion-input>
           </ion-item></ion-card-subtitle>
         <ion-card-subtitle><ion-item fill="outline">
             <ion-label position="floating" color="primary"><ion-icon name="home"></ion-icon> Salón de clase</ion-label>
-            <ion-input [(ngModel)]="salon" placeholder="Salón"></ion-input>
+            <ion-input [(ngModel)]="newSubjects.Room" placeholder="Salón"></ion-input>
           </ion-item></ion-card-subtitle>
         <ion-card-subtitle><ion-item fill="outline">
             <ion-label position="floating" color="primary"><ion-icon name="location"></ion-icon> Sede</ion-label>
-            <ion-input [(ngModel)]="lugar" placeholder="Villa, Príncipe o Victoria"></ion-input>
+            <ion-select placeholder="Selecciona una sede" [(ngModel)]="newSubjects.Central">
+              <ion-select-option value="Villa">Villa</ion-select-option>
+              <ion-select-option value="Príncipe">Príncipe</ion-select-option>
+              <ion-select-option value="Victoria">Victoria</ion-select-option>
+            </ion-select>
           </ion-item></ion-card-subtitle>
       
       <ion-card-subtitle><ion-item fill="outline">
           <ion-label position="floating" color="primary"><ion-icon name="time"></ion-icon> Créditos</ion-label>
-          <ion-input [(ngModel)]="credits" placeholder="Créditos/Intensidad horaria"></ion-input>
+          <ion-input [(ngModel)]="newSubjects.Credits" placeholder="Créditos/Intensidad horaria"></ion-input>
         </ion-item></ion-card-subtitle>
+
       </ion-card-header>
     </ion-card>
 
@@ -45,27 +50,23 @@
       <ion-card-header>
         <ion-card-title color="primary"><ion-icon name="medical"></ion-icon> Notas</ion-card-title>
         <ion-grid [fixed]="true">
-          <ion-row>
+          <ion-row *ngFor="let nota of notas; let i = index;">
             <ion-col size="6">
-  
-              <h3>Nota</h3>
-              <ion-item fill="outline">
-                <ion-label position="floating" color="primary"><ion-icon name="create"></ion-icon> Nota</ion-label>
-                <ion-input placeholder="Nota"></ion-input>
-              </ion-item>
+             Notas
+              <ion-input placeholder="Ingrese Nota" class="custom" [(ngModel)]="nota.nota" [(ngModel)]="newSubjects.Notes.Note">
+                <ion-icon name="create-outline"></ion-icon>
+              </ion-input>
             </ion-col>
             <ion-col size="6">
-              <h3>Porcentaje</h3>
-              <ion-item fill="outline">
-                <ion-label position="floating" color="primary"><ion-icon name="calculator"></ion-icon> %</ion-label>
-                <ion-input placeholder="%"></ion-input>
-              </ion-item>
+              Porcentaje %
+              <ion-input placeholder="Ingrese porcentaje" class="custom" [(ngModel)]="nota.porcentaje" [(ngModel)]="newSubjects.Notes.Porcent">
+                <ion-icon name="calculator-outline"></ion-icon>
+              </ion-input>
             </ion-col>
-        
           </ion-row>
-        </ion-grid>  
+        </ion-grid>
         <div style="text-align: center;">
-          <ion-button> + Agregar Nota</ion-button>
+          <ion-button (click)="agregarNota()">Agregar Nota</ion-button>
         </div>
       </ion-card-header>
     </ion-card>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FirestoreService } from '../services/firestore.service';
+import { Subjects } from '../models';
 
 @Component({
   selector: 'app-agregar',
@@ -7,27 +8,38 @@ import { FirestoreService } from '../services/firestore.service';
   styleUrls: ['./agregar.page.scss'],
 })
 export class AgregarPage implements OnInit {
-  name: string;
-  teacher: string;
-  salon: number;
-  lugar: string;
-  credits: number;
+
+  
+  notas = [
+    { nota: "", porcentaje: "" }
+  ];
+
+  agregarNota() {
+    this.notas.push({ nota: "", porcentaje: "" });
+  }
+
+  newSubjects : Subjects = {
+    Central: '',
+    Credits: null,
+    Name: '',
+    Notes:{
+      Note: null,
+      Porcent: null
+    },
+    Room: null,
+    Teacher: '',
+  };
+
+  private path = '/Subjects';
+
+
   constructor(public firestorageService: FirestoreService) {}
 
   ngOnInit() {}
 
   guardarAsig() {
-   
-    const data = {
-      name: this.name,
-      teacher: this.teacher,
-      salon: this.salon,
-      lugar: this.lugar,
-      credits: this.credits,
-    };
-     const path = '/Subjects';
-     const id = '50';
-    this.firestorageService.creatDoc(data, path,id)
+     const id = this.firestorageService.getId();
+    this.firestorageService.creatDoc(this.newSubjects, this.path,id)
 
     
   }
