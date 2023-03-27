@@ -1,57 +1,56 @@
+<ion-content>
+  <div class="my-content">
+    <ion-img src="assets/icon/logo.png" alt="logo"></ion-img>
 
-<body>
-  <ion-content>
-
-    <ion-img  src="assets/icon/logo.png" alt="logo"></ion-img>
-    
     <ion-label class="text">
       <h1><b> Studen Daily Notes</b></h1>
     </ion-label>
     <ion-label class="text1">
       <h2>¡Bienvenidos!</h2>
     </ion-label>
-  
-    <ion-item class="inp">
-    <ion-label class="normal" position="floating">
-      Usuario:
+
+    <ion-item fill="outline" class="inp">
+      <ion-label position="floating">Usuario</ion-label>
+      <ion-input [(ngModel)]="email" placeholder="Correo electrónico">
+        <ion-icon name="mail"></ion-icon>
+      </ion-input>
+    </ion-item>
+    <ion-item fill="outline" class="inp">
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input [(ngModel)]="password" class="normal" [type]="showPassword ? 'text' : 'password'"
+        inputmode="password" placeholder="Contraseña">
+        <ion-icon name="lock-closed"></ion-icon>
+      </ion-input>
+      <ion-icon [name]="passwordToggleIcon" slot="end" size="large" class="ic" (click)="togglePassword()"></ion-icon>
+
+    </ion-item>
+
+    <ion-item>
+      <ion-button class="btnOlv" fill="clear" [routerLink]="['/contrasena']">Olvidé contraseña</ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-button (click)="iniciarSesion()" class="iniciar">Iniciar sesion</ion-button>
+    </ion-item>
+    <ion-label class="text1">
+      <h2>O conectate usando</h2>
     </ion-label>
-    <ion-input [(ngModel)]=" login.usuario" class="normal" type=" text" inputmode=" text" placeholder=" Usuario o correo electrónico"> <ion-icon name="mail"> </ion-icon> </ion-input>
-  </ion-item>
-
-  <ion-item class="inp">
-    <ion-label class="normal" position="floating">
-      Contraseña:
-    </ion-label>
-    <ion-input [(ngModel)]="login.email" class="normal" [type]="showPassword ? 'text' : 'password'" inputmode="password" placeholder="Contraseña"><ion-icon name="lock-closed"></ion-icon> </ion-input>
-    <ion-icon [name]="passwordToggleIcon" slot="end" size="large" class="ic" (click)="togglePassword()"></ion-icon>
-  </ion-item>
-
-<ion-item>
-  <ion-button class="btnOlv"  fill="clear" slot="end">Olvidé contraseña</ion-button>
-</ion-item>
-
-<ion-item>
-  <ion-button [routerLink]="['/tabs']" class="iniciar">Iniciar sesion</ion-button>
-</ion-item>
-<ion-label class="text1">
-  <h2>O conectate usando</h2>
-</ion-label>
-<ion-item>
-  <ion-button (click)="loginGoogles()" class="goo" fill="clear"> <ion-img  class="google" src="assets/icon/google.png " alt="logo" > </ion-img> Sign in with Google </ion-button>
-</ion-item>
+    <ion-item>
+      <ion-button (click)="loginGoogles()" class="goo" fill="clear">
+        <ion-img class="google" src="assets/icon/google.png " alt="logo"> </ion-img> Sign in with Google
+      </ion-button>
+    </ion-item>
 
 
-<ion-item >
-  <label class="registro">Aún no tiene cuenta<ion-button [routerLink]="['/registro']" fill="clear" class="btnOlvs">Registrarse</ion-button> </label>
- 
-</ion-item>
+    <ion-item>
+      <label class="registro">¿Aún no tiene cuenta?<ion-button [routerLink]="['/registro']" fill="clear"
+          class="btnOlvs">
+          Registrarse</ion-button> </label>
+
+    </ion-item>
 
 
 
 
-
-  </ion-content>
-
-  
-</body>
-  
+  </div>
+</ion-content>

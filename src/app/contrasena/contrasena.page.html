@@ -1,0 +1,23 @@
+<ion-content>
+  <div class="my-content">
+    <ion-img src="assets/icon/logo.png" alt="logo"></ion-img>
+
+    <ion-label class="text">
+      <h1><b> Recuperar Contraseña</b></h1>
+    </ion-label>
+
+    <ion-item fill="outline" class="inp">
+      <ion-label position="floating"> Correo</ion-label>
+      <ion-input  placeholder="Correo electrónico" >
+        <ion-icon name="mail"></ion-icon> 
+      </ion-input>
+    </ion-item>
+
+<!-- [(ngModel)]="login.email" -->
+
+    <ion-item>
+      <ion-button [routerLink]="['/tabs']" class="iniciar">Enviar mensaje</ion-button>
+    </ion-item>
+
+  </div>
+</ion-content>

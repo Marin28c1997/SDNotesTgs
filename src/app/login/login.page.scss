@@ -1,22 +1,9 @@
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 ion-content {
   width: 100%;
   height: 100%;
   overflow-y: auto;
 }
-
-ion-card {
-  --color: #E6413A;
-  width: 50%;
-  margin: auto;
-  margin-top: 1%;
-}
-
 
 /* iOS places the subtitle above the title */
 ion-card-header.ios {
@@ -25,10 +12,10 @@ ion-card-header.ios {
 }
 
 ion-img {
-  width: 20%;
+  width: 10%;
   height: 10%;
   margin: auto;
-  margin-top: 1%;
+  margin-top: 0.5%;
 }
 
 ion-item {
@@ -38,27 +25,25 @@ ion-item {
 
 .text, .text1{
   text-align: center;
-  margin: 30%;
 }
 
 
 .inp{
   color: #E6413A;
   width: 85%;
-  height: 8.7%;
+  height: 45%;
   margin: auto;
   border-color: #E6413A;
   border-width: 8px;
-  margin-top: 2%;
   border: 1px solid rgb(159, 159, 159);
   border-radius: 5px;
   border-bottom: 1px solid #E6413A;
-  font-size: 120%;
+  font-size: 100%;
   margin-bottom:1%;
 }
 
 .ic{
-  margin-top: 2%;
+  margin-top: 1.5%;
   color: #E6413A;
 }
 
@@ -66,8 +51,8 @@ ion-item {
   --background: none;
   color:#E6413A;
   text-decoration: underline;
-  font-size: 90%;
-  margin-bottom: 2%;
+  font-size: 80%;
+  margin-left: 77%;
 }
 
 .iniciar{
@@ -75,7 +60,7 @@ ion-item {
   color:white;
   font-size: 100%;
   margin: auto;
-  height: 100%;
+  height: 60%;
 }
 
 .google {
@@ -86,14 +71,13 @@ ion-item {
 
 .goo{
   color:gray;
-  font-size: 20px;
+  font-size: 15px;
   margin: auto;
   background:transparent; 
 }
 
 .registro { 
   margin: auto;
-  margin-top: 2%;
 }
 
 .btnOlvs{
@@ -102,4 +86,42 @@ ion-item {
   text-decoration: underline;
   margin-top: -4%;
   text-align: center; 
+}
+
+  // para dispositivos móviles
+@media only screen and (max-width: 767px) {
+  .ic{
+    margin-top: 8%;
+    color: #E6413A;
+  }
+  .btnOlv{
+    --background: none;
+    color:#E6413A;
+    text-decoration: underline;
+    font-size: 80%;
+    margin-left: 56%;
+  }
+  
+}
+
+// para tabletas
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .ic{
+    margin-top: 4%;
+    color: #E6413A;
+  }
+  .btnOlv{
+    --background: none;
+    color:#E6413A;
+    text-decoration: underline;
+    font-size: 80%;
+    margin-left: 77%;
+  }
+}
+
+// para pantallas más grandes (PC)
+@media only screen and (min-width: 992px) {
+  .my-content {
+    border-radius: 5px;
+  }
 }

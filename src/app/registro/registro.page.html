@@ -1,4 +1,4 @@
-<!-- <ion-header>
+<ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button>
@@ -11,7 +11,7 @@
 </ion-header>
 
 
-<body>
+
   <ion-content>
     <ion-item >
       <ion-button class="olvi" (click)="loginGoogles()" class="goo" fill="clear"> <ion-img  class="google" src="assets/icon/google.png " alt="logo" > </ion-img> Sign in with Google </ion-button>
@@ -26,53 +26,40 @@
     <ion-label class="normal" position="floating">
       Nombre de usuario:
     </ion-label>
-    <ion-input class="normal" type=" text" [(ngModel)]="newUser.Username" inputmode=" text" placeholder=" Usuario o correo electrónico"> <ion-icon name="mail"></ion-icon></ion-input>
+    <ion-input [(ngModel)]="login.usuario"  class="normal" type=" text"  inputmode=" text" placeholder=" Usuario o correo electrónico"> <ion-icon name="mail"></ion-icon></ion-input>
   </ion-item>
 
   <ion-item class="inp">
     <ion-label class="normal" position="floating">
       Correo Electrónico:
     </ion-label>
-    <ion-input class="normal" type=" text" inputmode=" text" [(ngModel)]="newUser.Email" placeholder=" Correo electrónico"> <ion-icon name="mail"></ion-icon></ion-input>
+    <ion-input [(ngModel)]="login.email" class="normal" type="email" inputmode=" text"  placeholder=" Correo electrónico"> <ion-icon name="mail"></ion-icon></ion-input>
   </ion-item>
 
   <ion-item class="inp">
     <ion-label class="normal" position="floating">
       Contraseña:
     </ion-label>
-    <ion-input [(ngModel)]="newUser.email" class="normal" [type]="showPassword ? 'text' : 'password'" inputmode="password" placeholder="Contraseña"><ion-icon name="lock-closed"></ion-icon> </ion-input>
+    <ion-input [(ngModel)]="login.password" class="normal" [type]="showPassword ? 'text' : 'password'" inputmode="password" placeholder="Contraseña"><ion-icon name="lock-closed"></ion-icon> </ion-input>
     <ion-icon [name]="passwordToggleIcon" slot="end" size="large" class="ic" (click)="togglePassword()"
-    [(ngModel)]="newUser.password"></ion-icon>
+    ></ion-icon>
   </ion-item>
 
   <ion-item class="inp">
     <ion-label class="normal" position="floating">
       Confirmar contraseña:
     </ion-label>
-    <ion-input [(ngModel)]="newUser.email" class="normal" [type]="showPassword ? 'text' : 'password'" inputmode="password" placeholder="Confirmar contraseña"><ion-icon name="lock-closed"></ion-icon> </ion-input>
+    <ion-input [(ngModel)]="login.confirpassword" class="normal" [type]="showPassword ? 'text' : 'password'" inputmode="password" placeholder="Confirmar contraseña"><ion-icon name="lock-closed"></ion-icon> </ion-input>
     <ion-icon [name]="passwordToggleIcon" slot="end" size="large" class="ic" (click)="togglePassword()"></ion-icon>
   </ion-item>
 
   <ion-item >
-  <ion-button class="registrar" (click)="guardarUser()">Registrarse</ion-button>
+  <ion-button class="registrar" (click)="registrarse()">Registrarse</ion-button>
    
   </ion-item>
 
   </ion-content>  
+
   
-</body>
-   -->
 
 
-   <ion-item>
-    <ion-label position="floating">Nombre</ion-label>
-    <ion-input [(ngModel)]="nombre"></ion-input>
-  </ion-item>
-  
-  <ion-item>
-    <ion-label position="floating">Edad</ion-label>
-    <ion-input [(ngModel)]="edad"></ion-input>
-  </ion-item>
-  
-  <button ion-button (click)="guardar()">Guardar</button>
-  

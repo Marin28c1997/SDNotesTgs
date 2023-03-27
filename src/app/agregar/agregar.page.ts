@@ -40,7 +40,6 @@ export class AgregarPage implements OnInit {
   guardarAsig() {
      const id = this.firestorageService.getId();
     this.firestorageService.creatDoc(this.newSubjects, this.path,id)
-
-    
   }
+  
 }

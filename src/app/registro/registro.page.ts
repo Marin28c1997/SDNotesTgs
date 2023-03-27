@@ -7,24 +7,29 @@ import {
 } from '@angular/forms';
 import { async } from '@firebase/util';
 import { AlertController, NavController } from '@ionic/angular';
+import { User } from '../models';
 import { FirebaseauthService } from '../services/firebaseauth.service';
-import { FirestorageService } from '../services/firestorage.service';
 import { FirestoreService } from '../services/firestore.service';
+import Swal from 'sweetalert2';
 
-
-import { User } from './models';
 
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
   styleUrls: ['./registro.page.scss'],
 })
-export class RegistroPage{
-  name:string;
-  age:number
+export class RegistroPage implements OnInit {
 
-  formularioRegistro: FormGroup;
-  uid = '';
+  login : User = {
+    uid: '',
+    email: '',
+    password: '',
+    confirpassword: '',
+    usuario: '',
+  };
+
+  private path = '/Users';
+  // uid = '';
 
 
   constructor(
@@ -32,58 +37,112 @@ export class RegistroPage{
     public alertController: AlertController,
     public navegacion: NavController,
     public firebaseauthService: FirebaseauthService,
-    public firestorageService: FirestorageService,
     public firestoreService: FirestoreService,
   ) {
-    this.firebaseauthService.stateAuth().subscribe(res => {
-      if (res !== null) {
-        this.uid = res.uid;
-        // this.getUserInfo(this.uid);
-      }
-    });
+   
   }
 
-  // async ngOnInit() {
-  //   const uid = await this.firebaseauthService.getUid();
-  //   console.log(uid);
-  // }
+  async ngOnInit() {
+    
+    const uid = await this.firebaseauthService.getUid();
+    console.log(uid);
+  }
 
 
-  // async registrarse() {
-  //   const credenciales = {
-  //     Email: this.newUser.Email,
-  //     Password: this.newUser.Password,
-  //   };
+  async registrarse() {
+    const credenciales = {
+      email: this.login.email,
+      password: this.login.password,
+    };
 
-  //   const res = await this.firebaseauthService
-  //     .registrar(credenciales.Email, credenciales.Password)
-  //     .catch((err) => {
-  //       console.log('error ->', err);
-  //     });
-  //   const uid = await this.firebaseauthService.getUid();
-  //   this.uid = uid;
-  //   this.guardarUser();
-  // }
+    if ((this.login.email && this.login.password && this.login.usuario && this.login.confirpassword
+    )=== '') {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Debe llenar todos los campos',
+        buttons: ['OK']
+      });
+      await alert.present();
+      return;
+    }
 
-  // async guardarUser() {
-  //   const path = '/User';
-  //   const name = this.newUser.Username;
-  //   this.firestoreService
-  //     .creatDoc(this.newUser, path, this.uid)
-  //     .then((res) => {
-  //       console.log('guardado');
-  //     })
-  //     .catch((error) => { });
-  // }
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(credenciales.email)) {
+      const alert = await this.alertController.create({
+        header: 'Error de correo',
+        message: 'Ingrese un correo electrónico válido',
+        buttons: ['OK']
+      });
+      await alert.present();
+      return;
+    }
+    
+    if (credenciales.password.length < 6) {
+      const alert = await this.alertController.create({
+        header: 'Error de contraseña',
+        message: 'La contraseña debe ser mayor a 6 caracteres',
+        buttons: ['OK']
+      });
+      await alert.present();
+      return;
+    }
+
+      if (this.login.password 
+      !== this.login.confirpassword) {
+        const alert = await this.alertController.create({
+          header: 'Error',
+          message: 'Las contraseñas no coinciden',
+          buttons: ['OK']
+        });
+        await alert.present();
+        return;
+      }
 
 
-  // getUserInfo(uid: string) {
-  //   const path = 'User';
-  //   this.firestoreService.getDoc<User>(path, uid).subscribe(res => {
-  //     this.newUser = res;
-  //   });
+    const res = await this.firebaseauthService
+      .registrar(credenciales.email, credenciales.password)
+      .catch((err) => {
+      alert('Hubo un error al crear el usuario');   
+       console.log('error ->', err);
+      });
+    const uid = await this.firebaseauthService.getUid();
+    // this.uid = uid;
+    this.login.uid = uid;
+    this.guardarUser();
 
-  // }
+    const alerts = await this.alertController.create({
+      header: 'Felicidades',
+      message: 'Usuario creado exitosamente',
+      buttons: ['OK']
+    });
+    await alerts.present();
+    this.login.uid= '';
+    this.login.email= '';
+    this.login.password= '';
+    this.login.confirpassword= '';
+    this.login.usuario= '';
+  }
+
+  async guardarUser() {
+    const path = 'Users';
+    const uid = await this.firebaseauthService.getUid();
+    // this.uid = uid;
+    this.firestoreService.creatDoc(this.login, path, this.login.uid)
+      // .creatDoc(this.login, path, this.uid)
+      .then((res) => {
+        console.log('guardado');
+      })
+      .catch((error) => { });
+  }
+
+
+  getUserInfo(uid: string) {
+    const path = 'Users';
+    this.firestoreService.getDoc<User>(path, uid).subscribe(res => {
+      this.login = res;
+    });
+
+  }
 
   showPassword = false;
   passwordToggleIcon = 'eye';
@@ -97,12 +156,4 @@ export class RegistroPage{
       this.passwordToggleIcon = 'eye';
     }
   }
-
-  
-  guardar() {
-  
-    this.name = '';
-    this.age = null;
-  }
-
 }

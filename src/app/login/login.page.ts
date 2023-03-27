@@ -19,21 +19,15 @@ import { FirebaseauthService } from '../services/firebaseauth.service';
 export class LoginPage implements OnInit {
   formularioLogin: FormGroup;
 
-  login: User = {
-    uid: '',
-    email: '',
-    nombre:'',
-    confirpassword:'',
-    password: '',
-    usuario: '',
-  };
+  email: string;
+  password: string;
 
-  name;
-  email;
 
   newFile: any;
   constructor( private afAuth: AngularFireAuth, private   firebaseauthService: FirebaseauthService,
-    public navegacion: NavController, ) {}
+    public navegacion: NavController, public alertController:AlertController) {
+      
+    }
 
   ngOnInit() {}
 
@@ -41,13 +35,18 @@ export class LoginPage implements OnInit {
 
   async loginGoogles() {
     try{
-      this.firebaseauthService.loginGoogle();
+      await this.firebaseauthService.loginGoogle();
+      this.navegacion.navigateRoot('tabs');
     }catch(error){
-      console.log(error);
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'No se pudo iniciar sesión con Google',
+        buttons: ['OK']
+      });
+      await alert.present();
     }
-
-    this.navegacion.navigateRoot('inicio');
  }
+
 
  showPassword = false;
  passwordToggleIcon='eye';
@@ -61,4 +60,34 @@ export class LoginPage implements OnInit {
     this.passwordToggleIcon = 'eye';
   }
  }
+
+ async iniciarSesion() {
+  if (!this.email || !this.password) {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: 'El correo y la contraseña son obligatorios.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  } else {
+    const loggedIn = await this.firebaseauthService.login(this.email, this.password);
+    if (loggedIn) {
+      this.navegacion.navigateRoot('tabs');
+    } else {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'Usuario no registrado.',
+        buttons: ['OK']
+
+        
+      }
+      );
+      await alert.present();
+    }
+    this.email= '';
+    this.password= '';
+  }
+}
+
 }
