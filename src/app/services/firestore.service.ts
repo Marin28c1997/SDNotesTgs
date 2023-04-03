@@ -33,8 +33,9 @@ export class FirestoreService {
   }
 
   // eslint-disable-next-line @typescript-eslint/naming-convention
-  getCollection<tipo>(path: string) {
-    const collection = this.database.collection<tipo>(path);
+  getCollection<tipo>(path: string, queryFn?: any) {
+    const collection = this.database.collection<tipo>(path, queryFn);
     return collection.valueChanges();
-  }
+}
+
 }

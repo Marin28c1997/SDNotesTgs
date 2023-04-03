@@ -23,7 +23,6 @@ export class LoginPage implements OnInit {
   password: string;
 
 
-  newFile: any;
   constructor( private afAuth: AngularFireAuth, private   firebaseauthService: FirebaseauthService,
     public navegacion: NavController, public alertController:AlertController) {
       
@@ -33,20 +32,39 @@ export class LoginPage implements OnInit {
 
 
 
-  async loginGoogles() {
-    try{
-      await this.firebaseauthService.loginGoogle();
+async loginGoogles() {
+  try{
+    await this.firebaseauthService.loginGoogle();
+    
+    // Obtiene la instancia de FirebaseAuth
+    const auth = this.afAuth;
+    
+    // Obtiene información sobre el usuario actualmente autenticado
+    const currentUser = auth.currentUser;
+    
+    // Verifica si el usuario está autenticado y si su correo electrónico termina en "correounivalle.edu.co"
+    if (currentUser && (await currentUser).email.endsWith('correounivalle.edu.co')) {
       this.navegacion.navigateRoot('tabs');
-    }catch(error){
+    } else {
+      await this.firebaseauthService.logout();
       const alert = await this.alertController.create({
         header: 'Error',
-        message: 'No se pudo iniciar sesión con Google',
+        message: 'Solo se permiten usuarios con correo de correounivalle.edu.co',
         buttons: ['OK']
       });
       await alert.present();
     }
- }
+  } catch(error) {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: 'No se pudo iniciar sesión con Google',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+}
 
+ 
 
  showPassword = false;
  passwordToggleIcon='eye';
