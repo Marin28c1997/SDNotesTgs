@@ -1,13 +1,15 @@
 <ion-content>
   <ion-grid class="my-content ion-text-center ion-justify-content-center ion-align-items-center">
-    <ion-row>
-      <ion-col size-md="2" size-lg="2">Lunes</ion-col>
-      <ion-col size-md="2" size-lg="2">Martes</ion-col>
-      <ion-col size-md="2" size-lg="2">Miércoles</ion-col>
-      <ion-col size-md="2" size-lg="2">Jueves</ion-col>
-      <ion-col size-md="2" size-lg="2">Viernes</ion-col>
-      <ion-col size-md="2" size-lg="2">Sábado</ion-col>
-    </ion-row>
+    <div class="ion-padding">
+      <ion-calendar [(ngModel)]="dateMulti"
+          [options]="optionsMulti"
+          [type]="type"
+          [format]="'YYYY-MM-DD'">
+      </ion-calendar>      
+    </div>
+    <ion-item>
+      <ion-button (click)="AgregarFecha()" class="iniciar">Agregar fecha</ion-button>
+    </ion-item>
   </ion-grid>
 </ion-content>
   
