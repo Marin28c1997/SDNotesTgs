@@ -66,11 +66,11 @@ export class RegistroPage implements OnInit {
       return;
     }
 
-    const emailRegex = /\S+@\S+\.\S+/;
+    const emailRegex = /\S+@correounivalle\.edu\.co/;
     if (!emailRegex.test(credenciales.email)) {
       const alert = await this.alertController.create({
         header: 'Error de correo',
-        message: 'Ingrese un correo electrónico válido',
+        message: 'Ingrese un correo electrónico válido de correounivalle.edu.co',
         buttons: ['OK']
       });
       await alert.present();
