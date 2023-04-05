@@ -9,7 +9,9 @@ import 'firebase/compat/database';
   providedIn: 'root',
 })
 export class FirebaseauthService {
-  constructor(public auth: AngularFireAuth) {}
+  constructor(public auth: AngularFireAuth) {
+    this.getUid()
+  }
 
   async login(email: string, password: string) {
     try {
@@ -21,9 +23,15 @@ export class FirebaseauthService {
     }
   }
 
-  logout() {
-    return this.auth.signOut();
+ async logout(): Promise<boolean> {
+  try {
+    await this.auth.signOut();
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
   }
+}
 
   async registrar(email: string, password: string) {
     try {

@@ -18,11 +18,11 @@
         <ion-card-title color="primary"><ion-icon name="information-circle"></ion-icon> Información general
         </ion-card-title>
         <ion-card-subtitle><ion-item fill="outline">
-            <ion-label position="floating" color="primary"><ion-icon name="book"></ion-icon> Nombre de la asignatura</ion-label>
-            <ion-input [(ngModel)]="newSubjects.Name" placeholder="Asignatura"></ion-input>
+            <ion-label position="floating" color="primary"><ion-icon name="book"></ion-icon> Nombre de la asignatura *</ion-label>
+            <ion-input [(ngModel)]="newSubjects.Name" placeholder="Asignatura" required></ion-input>
           </ion-item></ion-card-subtitle>
         <ion-card-subtitle><ion-item fill="outline">
-            <ion-label position="floating" color="primary"><ion-icon name="person-circle"></ion-icon> Nombre del profesor</ion-label>
+            <ion-label position="floating" color="primary"><ion-icon name="person-circle"></ion-icon> Nombre del profesor * </ion-label>
             <ion-input [(ngModel)]="newSubjects.Teacher" placeholder="Profesor"></ion-input>
           </ion-item></ion-card-subtitle>
         <ion-card-subtitle><ion-item fill="outline">
@@ -48,18 +48,18 @@
 
     <ion-card style="margin-top: -30px;">
       <ion-card-header>
-        <ion-card-title color="primary"><ion-icon name="medical"></ion-icon> Notas</ion-card-title>
+        <ion-card-title color="primary"><ion-icon name="information-circle"></ion-icon> Notas</ion-card-title>
         <ion-grid [fixed]="true">
           <ion-row *ngFor="let nota of notas; let i = index;">
             <ion-col size="6">
              Notas
-              <ion-input placeholder="Ingrese Nota" class="custom" type="number" [(ngModel)]="nota.nota" [(ngModel)]="newSubjects.Notes.Note">
+              <ion-input placeholder="Ingrese Nota" class="custom" color="primary" type="number" [(ngModel)]="nota.nota" [(ngModel)]="newSubjects.Notes.Note">
                 <ion-icon name="create-outline"></ion-icon>
               </ion-input>
             </ion-col>
             <ion-col size="6">
               Porcentaje %
-              <ion-input placeholder="Ingrese porcentaje" class="custom" type="number" min="0" max="100" [(ngModel)]="nota.porcentaje" [(ngModel)]="newSubjects.Notes.Porcent">
+              <ion-input placeholder="Ingrese porcentaje" class="custom" type="number" color="primary" min="0" max="100" [(ngModel)]="nota.porcentaje" [(ngModel)]="newSubjects.Notes.Porcent">
                 <ion-icon name="calculator-outline"></ion-icon>
               </ion-input>
             </ion-col>
