@@ -60,7 +60,7 @@
             <ion-col size="6">
               Porcentaje %
               <ion-input placeholder="Ingrese porcentaje" class="custom" type="number" color="primary" min="0" max="100" 
-               [(ngModel)]="Porcent">
+               [(ngModel)]="Notes.Porcent">
                 <ion-icon name="calculator-outline"></ion-icon>
               </ion-input>
             </ion-col>
@@ -75,7 +75,7 @@
   </ion-content>
 </body>
 
-<ion-toolbar color="primary" class="my-content">
+<ion-toolbar color="primary" class="my-content" position="bottom">
   
   <div class="wrapper" slot="end" (click)="guardarAsig()">
     <div class="ion-activatable ripple-parent rounded-rectangle">
@@ -83,14 +83,7 @@
       <ion-ripple-effect></ion-ripple-effect>
     </div>
   </div>
-  <ion-title style="text-align: center;"> Nueva asignatura </ion-title>
-
-  <div class="wrapper" slot="start">
-    <div class="ion-activatable ripple-parent rounded-rectangles">
-      <ion-icon name="trash" style="color: brown;"></ion-icon>
-      <ion-ripple-effect></ion-ripple-effect>
-    </div>
-  </div>
+  <ion-title style="text-align: center;"> Actualizar asignatura </ion-title>
 </ion-toolbar>
 
 
