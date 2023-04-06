@@ -3,6 +3,10 @@ import { Google, Subjects, User } from '../models';
 import { AngularFireAuth } from '@angular/fire/compat/auth'; 
 import { FirestoreService } from '../services/firestore.service'; 
 import firebase from 'firebase/compat/app'; 
+import { AlertController, LoadingController, NavController, ToastController } from '@ionic/angular';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { EditarPage } from '../editar/editar.page';
 
 
 @Component({ 
@@ -16,9 +20,14 @@ export class AsignaturaPage implements OnInit {
   Subjects: Subjects[] = []; 
   private path = '/Subjects'; 
 
+  loading:any 
   constructor( 
     public firestorageSerive:FirestoreService, 
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    public alertController:AlertController,
+    public loadingController:LoadingController,
+    public toastController:ToastController,
+    public navegacion: NavController
   ) { } 
 
   ngOnInit() { 
@@ -31,6 +40,11 @@ export class AsignaturaPage implements OnInit {
       } 
     }); 
   
+  } 
+
+  editarSubjects(){ 
+    this.navegacion.navigateRoot('editar');
+    this.firestorageSerive.updateDoc
   } 
 
   getSubjects(){ 
@@ -68,4 +82,55 @@ export class AsignaturaPage implements OnInit {
       }); 
     } 
   } 
+
+  async deleteSubject(id: string, path: string) {
+    const Subjects =  this.Subjects.find(s => s.id === id);
+    const alert = await this.alertController.create({
+      header: 'Confirmar',
+      message: `¿Está seguro que desea eliminar la asignatura <strong>"${Subjects.Name}</strong>"?`,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Cancelar');
+          }
+        }, {
+          text: 'Eliminar',
+          handler: () => {
+            this.firestorageSerive.deleteDoc(path, id)
+              .then(() => {
+                this.presentToast('Asignatura eliminada exitosamente');
+              }).catch((error) => {
+                console.log('Error al eliminar asignatura', error);
+                this.presentToast('Error al eliminar la asignatura');
+              });
+          }
+        }
+      ]
+    });
+  
+    await alert.present();
+  }
+  
+
+  async presentLoading(){
+    this.loading = await this.loadingController.create({
+      cssClass:'normal',
+      message:'Guardando'
+    });
+    await this.loading.present();
+  }
+
+  async presentToast(msg: string){
+    const toast = await this.toastController.create({
+      message:msg,
+      cssClass:'normal',
+      duration:2000,
+      color:"secondary"
+    });
+    toast.present();
+  }
+
 }

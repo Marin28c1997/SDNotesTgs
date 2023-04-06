@@ -27,11 +27,21 @@ sadksandskadnsa
               <ion-label>Profesor: 
                 <ion-span style="color: #E6413A;">{{Subjects.Teacher}}</ion-span>
               </ion-label>
-              <ion-label>Salon: 
+              <ion-label>Salón: 
                 <ion-span style="color: #E6413A;">{{Subjects.Room}}</ion-span>
               </ion-label>
+              <ion-label>Nota: 
+                <ion-span style="color: #E6413A;">{{Subjects.Notes.Note ? Subjects.Notes.Note : 0}}</ion-span>
+              </ion-label>
+              
+            <!-- <ion-button slot="end">Hola</ion-button>
+            <ion-button slot="end">Hola</ion-button> -->
             </ion-card-content>
-            <ion-icon name="bookmark" slot="end" style="color: #E6413A;"></ion-icon>
+            <ion-button slot="end" [routerLink]="['/editar', Subjects.id, Subjects.Name, Subjects.Central, Subjects.Teacher, Subjects.Room, Subjects.Credits, Subjects.Notes.Note, Subjects.Notes.Porcent]"> 
+              <ion-icon name="create-outline"></ion-icon> Editar
+            </ion-button>       
+            <ion-button slot="end" (click)="deleteSubject(Subjects.id, path)"> <ion-icon name="trash-outline"></ion-icon>
+            </ion-button>
           </ion-item>           
         </ion-list>
       </ion-card-content>

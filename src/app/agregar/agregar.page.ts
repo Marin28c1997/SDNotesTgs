@@ -31,7 +31,8 @@ export class AgregarPage implements OnInit {
     },
     Room: null,
     Teacher: '',
-    userId: null 
+    userId: null,
+    id:this.firestorageService.getId(),
   };
 
   private path = '/Subjects';
@@ -79,7 +80,7 @@ export class AgregarPage implements OnInit {
       if (user) {
         const id = this.firestorageService.getId();
         this.newSubjects.userId = user.uid; // establecer campo userId
-        this.firestorageService.creatDoc(this.newSubjects, 'Subjects', id)
+        this.firestorageService.creatDoc(this.newSubjects, this.path, this.newSubjects.id)
           .then(() => {
             this.presentAlertConfirm('Agregar más', '¿Desea agregar más asignaturas?', 'Sí', 'No');
             this.presentAlert('Éxito', 'La asignatura se ha guardado correctamente.');
@@ -130,9 +131,11 @@ export class AgregarPage implements OnInit {
                         },
                         Room: null,
                         Teacher: '',
-                        userId: null 
+                        userId: null,
+                        id:this.firestorageService.getId(),
                         // Continuar con los campos restantes
                     };
+                    this.guardarAsig(); 
                 }
             }
         ]

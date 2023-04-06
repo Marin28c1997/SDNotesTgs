@@ -8,15 +8,17 @@
     <ion-content>
       <ion-list >
         <ion-item lines="none">
-          <ion-avatar class="ion-margin-auto">
-            <img [src]="userPhotoURL || 'assets/icon/logo.png'" width="100" height="100" />
+          <ion-avatar *ngIf="user && user.providerData[0].providerId === 'google.com'">
+            <img [src]="userPhotoURL" width="100" height="100" />
+          </ion-avatar>
+          <ion-avatar *ngIf="!user || user.providerData[0].providerId !== 'google.com'">
+            <img [src]="'assets/icon/logo.png'" width="100" height="100" />
           </ion-avatar>
           <ion-label class="ion-text-center">Usuario:</ion-label>
-
         </ion-item>
-        <ion-item lines="none" >
-        <ion-label class="ion-text-center" color="primary">{{ user?.displayName || userName}}</ion-label>
-      </ion-item>
+        <ion-item lines="none">
+          <ion-label class="ion-text-center" color="primary">{{ user?.displayName || userName}}</ion-label>
+        </ion-item>
         <ion-button routerLink="/agregar" expand="block">
           <ion-icon name="person-circle"></ion-icon>
         <span>Configuración de la cuenta</span>
