@@ -2,13 +2,14 @@
   <ion-grid class="my-content ion-text-center ion-justify-content-center ion-align-items-center">
     <div class="ion-padding">
       <ion-calendar [(ngModel)]="dateMulti"
+          (change)="OnChange($event)"
           [options]="optionsMulti"
           [type]="type"
           [format]="'YYYY-MM-DD'">
       </ion-calendar>      
     </div>
     <ion-item>
-      <ion-button (click)="AgregarFecha()" class="iniciar">Agregar fecha</ion-button>
+      <ion-button (click)="AgregarFecha($event)" class="iniciar">Agregar fecha</ion-button>
     </ion-item>
   </ion-grid>
 </ion-content>
