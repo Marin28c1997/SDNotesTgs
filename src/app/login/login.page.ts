@@ -6,10 +6,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
-import { User } from '../models';
+import { Google, User } from '../models';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 import { FirebaseauthService } from '../services/firebaseauth.service';
+import { FirestoreService } from '../services/firestore.service';
 
 @Component({
   selector: 'app-login',
@@ -18,13 +19,16 @@ import { FirebaseauthService } from '../services/firebaseauth.service';
 })
 export class LoginPage implements OnInit {
   formularioLogin: FormGroup;
-
+  uid: string;
   email: string;
   password: string;
+  photoURL:string;
+  usuario:string;
 
 
   constructor( private afAuth: AngularFireAuth, private   firebaseauthService: FirebaseauthService,
-    public navegacion: NavController, public alertController:AlertController) {
+    public navegacion: NavController, public alertController:AlertController,
+    public firestoreService:FirestoreService) {
       
     }
 
@@ -44,6 +48,14 @@ async loginGoogles() {
     
     // Verifica si el usuario está autenticado y si su correo electrónico termina en "correounivalle.edu.co"
     if (currentUser && (await currentUser).email.endsWith('correounivalle.edu.co')) {
+      
+         const user: Google = {
+          uid: (await currentUser).uid,
+          email: (await currentUser).email,
+          usuario: (await currentUser).displayName,
+          photoURL: (await currentUser).photoURL
+        };
+        await this.firestoreService.creatDoc(user, 'Users', user.uid);
       this.navegacion.navigateRoot('tabs');
     } else {
       await this.firebaseauthService.logout();

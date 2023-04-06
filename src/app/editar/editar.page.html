@@ -19,29 +19,28 @@
         </ion-card-title>
         <ion-card-subtitle><ion-item fill="outline">
             <ion-label position="floating" color="primary"><ion-icon name="book"></ion-icon> Nombre de la asignatura *</ion-label>
-            <ion-input [(ngModel)]="newSubjects.Name" placeholder="Asignatura" required></ion-input>
+            <ion-input value={{Name}}  [(ngModel)]="Name"placeholder="Asignatura" required></ion-input>
           </ion-item></ion-card-subtitle>
         <ion-card-subtitle><ion-item fill="outline">
             <ion-label position="floating" color="primary"><ion-icon name="person-circle"></ion-icon> Nombre del profesor * </ion-label>
-            <ion-input [(ngModel)]="newSubjects.Teacher" placeholder="Profesor"></ion-input>
+            <ion-input value={{Teacher}}  [(ngModel)]="Teacher"placeholder="Profesor"></ion-input>
           </ion-item></ion-card-subtitle>
         <ion-card-subtitle><ion-item fill="outline">
             <ion-label position="floating" color="primary"><ion-icon name="home"></ion-icon> Salón de clase</ion-label>
-            <ion-input [(ngModel)]="newSubjects.Room" placeholder="Salón" type="number"></ion-input>
+            <ion-input value={{Room}}  [(ngModel)]="Room"placeholder="Salón" type="number"></ion-input>
           </ion-item></ion-card-subtitle>
         <ion-card-subtitle><ion-item fill="outline">
             <ion-label position="floating" color="primary"><ion-icon name="location"></ion-icon> Sede</ion-label>
-            <ion-select placeholder="Selecciona una sede" [(ngModel)]="newSubjects.Central">
+            <ion-select placeholder="Selecciona una sede" value={{Central}} [(ngModel)]="Central">
               <ion-select-option value="Villa">Villa</ion-select-option>
               <ion-select-option value="Príncipe">Príncipe</ion-select-option>
               <ion-select-option value="Victoria">Victoria</ion-select-option>
             </ion-select>
           </ion-item></ion-card-subtitle>
-      
-      <ion-card-subtitle><ion-item fill="outline">
-          <ion-label position="floating" color="primary"><ion-icon name="time"></ion-icon> Créditos</ion-label>
-          <ion-input [(ngModel)]="newSubjects.Credits" placeholder="Créditos/Intensidad horaria" type="number"></ion-input>
-        </ion-item></ion-card-subtitle>
+          <ion-card-subtitle><ion-item fill="outline">
+            <ion-label position="floating" color="primary"><ion-icon name="time"></ion-icon> Créditos</ion-label>
+            <ion-input value={{Credits}}  [(ngModel)]="Credits"placeholder="Créditos/Intensidad horaria" type="number"></ion-input>
+          </ion-item></ion-card-subtitle>
 
       </ion-card-header>
     </ion-card>
@@ -53,13 +52,15 @@
           <ion-row *ngFor="let nota of notas; let i = index;">
             <ion-col size="6">
              Notas
-              <ion-input placeholder="Ingrese Nota" class="custom" color="primary" type="number" [(ngModel)]="nota.nota" [(ngModel)]="newSubjects.Notes.Note">
+              <ion-input placeholder="Ingrese Nota" class="custom" color="primary" type="number" 
+              [(ngModel)]="Notes.Note">
                 <ion-icon name="create-outline"></ion-icon>
               </ion-input>
             </ion-col>
             <ion-col size="6">
               Porcentaje %
-              <ion-input placeholder="Ingrese porcentaje" class="custom" type="number" color="primary" min="0" max="100" [(ngModel)]="nota.porcentaje" [(ngModel)]="newSubjects.Notes.Porcent">
+              <ion-input placeholder="Ingrese porcentaje" class="custom" type="number" color="primary" min="0" max="100" 
+               [(ngModel)]="Porcent">
                 <ion-icon name="calculator-outline"></ion-icon>
               </ion-input>
             </ion-col>
@@ -72,8 +73,8 @@
     </ion-card>
 
   </ion-content>
-
 </body>
+
 <ion-toolbar color="primary" class="my-content">
   
   <div class="wrapper" slot="end" (click)="guardarAsig()">

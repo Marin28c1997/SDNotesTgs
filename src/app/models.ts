@@ -7,6 +7,14 @@ export interface User {
 }
 
 
+export interface Google {
+  uid: string;
+  email: string;
+  photoURL:string,
+  usuario:string
+}
+
+
 export interface Subjects {
   Central: string;
   Credits: number;
@@ -17,4 +25,6 @@ export interface Subjects {
   };
   Room: number;
   Teacher: string;
+  userId: string;
+  id:string
 }
