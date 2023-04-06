@@ -16,10 +16,9 @@ export class EditarPage implements OnInit {
   Room: string;
   Credits:string;
   Notes:{
-    Note: string,
-    Porcent:string
+    Note: null,
+    Porcent:null
   };
-
   private path = '/Subjects'; 
 
   constructor(private route: ActivatedRoute,
@@ -30,18 +29,14 @@ export class EditarPage implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.firestoreService.getDoc(this.path, this.id).subscribe(res => {
       if (res) {
-        const params = this.route.snapshot.params;
         this.Name = res['Name'];
         this.Central = res['Central'];
         this.Teacher = res['Teacher'];
         this.Room = res['Room'];
         this.Credits = res['Credits'];
-        this.Notes.Note= res['Note'];
-        this.Notes.Porcent =res['Porcent'];
-        console.log("AquieA",params['Notes.Note']);
+        this.Notes = res['Notes'];
       }
     });
-    this.guardarAsig()
   }
 
   notas = [
@@ -60,10 +55,7 @@ export class EditarPage implements OnInit {
       Teacher: this.Teacher,
       Room: this.Room,
       Credits: this.Credits,
-      Notes: {
-        Note:this.Notes.Note,
-        Porcent: this.Notes.Porcent
-      }
+      Notes: this.Notes
     };
     this.firestoreService.updateDoc(data, this.path, this.id)
       .then(() => {
