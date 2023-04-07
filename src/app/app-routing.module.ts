@@ -33,7 +33,7 @@ const routes: Routes = [
     loadChildren: () => import('./contrasena/contrasena.module').then( m => m.ContrasenaPageModule)
   },
   {
-    path: 'editar/:id/:Name/:Central/:Teacher/:Room/:Credits/:Semester/:Note/:Porcent',
+    path: 'editar/:id/:Name/:Central/:Teacher/:Room/:Credits/:Semester',
     loadChildren: () => import('./editar/editar.module').then( m => m.EditarPageModule)
   },
 

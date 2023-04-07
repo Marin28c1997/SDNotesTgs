@@ -11,20 +11,15 @@ ion-card {
 .boton-superpuesto {
   position: absolute;
   top: 1.2%;
-  right: 1%;
+  margin-top: 8%;
+  right: 2%;
   z-index: 1;
-}
-ion-item{
-  --border-width: 0;
-  --border-style: none;
-  --margin-top: -1%;
-  --background: none;
 }
   
     // para dispositivos móviles
 @media only screen and (max-width: 767px) {
   .my-content {
-    margin-top: 3%; // ajuste según sea necesario
+    margin-top: 14%; // ajuste según sea necesario
     background: #E6413A; 
     border-radius: 5px; 
     margin-bottom: 2%;
@@ -35,7 +30,7 @@ ion-item{
 // para tabletas
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .my-content {
-    margin-top: 4%; // ajuste según sea necesario
+    margin-top: 14%; // ajuste según sea necesario
     background: #E6413A; 
     border-radius: 5px;
     margin-bottom: 2%;
@@ -46,7 +41,7 @@ ion-item{
 // para pantallas más grandes (PC)
 @media only screen and (min-width: 992px) {
   .my-content {
-    margin-top: 1%; // ajuste según sea necesario
+    margin-top: 14%; // ajuste según sea necesario
     background: #E6413A; 
     border-radius: 5px;
     margin-bottom: 2%;

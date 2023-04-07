@@ -16,8 +16,8 @@ export class EditarPage implements OnInit {
   Teacher: string;
   Room: string;
   Credits:string;
-  Note:any[];
-  Porcent:any[];
+  Note:number[];
+  Porcent:number[];
   Semester:string
   private path = '/Subjects'; 
 
@@ -35,8 +35,10 @@ export class EditarPage implements OnInit {
         this.Teacher = res['Teacher'];
         this.Room = res['Room'];
         this.Credits = res['Credits'];
-        this.Note = res['Notes'];
+        this.Note = res['Note'];
         this.Porcent = res['Porcent'];
+        console.log("hey",this.Note)
+        console.log("hey",this.Porcent)
         this.Semester = res['Semester'];
       }
     });
@@ -66,9 +68,21 @@ export class EditarPage implements OnInit {
     await alert.present();
   }
 
+  
   agregarNota() {
 
     this.notas.push({ nota: "", porcentaje: "" });
+  }
+  guardarNotas() {
+    this.Note = [];
+    this.Porcent = [];
+  
+    this.notas.forEach(nota => {
+      if (nota.nota !== null && nota.porcentaje !== null) {
+        this.Note.push(nota.nota);
+        this.Porcent.push(nota.porcentaje);
+      }
+    });
   }
 
   guardarAsig() {
@@ -78,9 +92,9 @@ export class EditarPage implements OnInit {
       Teacher: this.Teacher,
       Room: this.Room,
       Credits: this.Credits,
-      Note: this.Note,
-      Porcent: this.Porcent,
-      Semester: this.Semester
+      Semester: this.Semester,
+      Note:this.Note,
+      Porcent:this.Porcent
     };
     this.firestoreService.updateDoc(data, this.path, this.id)
       .then(() => {

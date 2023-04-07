@@ -12,6 +12,7 @@ sadksandskadnsa
   <ion-item fill="outline" class="semestre">
     <ion-label position="floating" color="primary"><ion-icon name="bookmarks"></ion-icon> Semestre</ion-label>
     <ion-select placeholder="Todas las asignaturas" [(ngModel)]="selectedSemester" (ionChange)="getSubjectsForSemester(selectedSemester)">
+      <ion-select-option value="">Todas</ion-select-option>
       <ion-select-option value="1">1</ion-select-option>
       <ion-select-option value="2">2</ion-select-option>
       <ion-select-option value="3">3</ion-select-option>
@@ -57,7 +58,7 @@ sadksandskadnsa
               </ion-label>
               
             </ion-card-content>
-            <ion-button slot="end" routerLink="['/editar', Subjects.id, Subjects.Name, Subjects.Central, Subjects.Teacher, Subjects.Room, Subjects.Credits,Subjects.Semester, Subjects.Note, Subjects.Porcent]"> 
+            <ion-button slot="end" [routerLink]="['/editar', Subjects.id, Subjects.Name, Subjects.Central, Subjects.Teacher, Subjects.Room, Subjects.Credits,Subjects.Semester]"> 
               <ion-icon name="create-outline"></ion-icon> Editar
             </ion-button>       
             <ion-button slot="end" (click)="deleteSubject(Subjects.id, path)"> <ion-icon name="trash-outline"></ion-icon> Eliminar

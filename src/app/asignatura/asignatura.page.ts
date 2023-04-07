@@ -22,6 +22,8 @@ export class AsignaturaPage implements OnInit {
   Subjects: Subjects[] = []; 
   private path = '/Subjects'; 
 
+
+  
   loading:any 
   constructor( 
     public firestorageSerive:FirestoreService, 
@@ -45,6 +47,7 @@ export class AsignaturaPage implements OnInit {
   
   } 
 
+  
 
   getSubjects(){ 
     this.firestorageSerive.getCollection<Subjects>(this.path, ref => ref.where('userId', '==', this.userId)).subscribe(res => { 
