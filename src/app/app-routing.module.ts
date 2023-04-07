@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes, CanActivate } from '@angular/router';
 import { NoIngresadoGuard } from './no-ingresado.guard';
 import { IngresadoGuard } from './ingresado.guard';
-import { EditarPage } from './editar/editar.page';
+
 
 const routes: Routes = [
   {
@@ -34,7 +34,7 @@ const routes: Routes = [
   },
   {
     path: 'editar/:id/:Name/:Central/:Teacher/:Room/:Credits/:Semester/:Notes.Note/:Notes.Porcent',
-    component: EditarPage,
+
     loadChildren: () => import('./editar/editar.module').then( m => m.EditarPageModule)
   },
 

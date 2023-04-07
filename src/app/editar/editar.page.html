@@ -12,9 +12,14 @@
 
 
 <body>
+ 
   <ion-content class="my-content">
+        <ion-button (click)="guardarAsig()" class="boton-superpuesto">
+          Actualizar
+          <ion-icon name="save" style="size: 80px;"></ion-icon> </ion-button>
+
     <ion-card >
-      <ion-card-header>
+      <ion-card-header >
         <ion-card-title color="primary"><ion-icon name="information-circle"></ion-icon> Información general
         </ion-card-title>
         <ion-card-subtitle><ion-item fill="outline">
@@ -60,8 +65,8 @@
       </ion-card-header>
     </ion-card>
 
-    <ion-card style="margin-top: -30px;">
-      <ion-card-header>
+    <ion-card >
+      <ion-card-header style="margin-bottom: 2%;">
         <ion-card-title color="primary"><ion-icon name="information-circle"></ion-icon> Notas</ion-card-title>
         <ion-grid [fixed]="true">
           <ion-row *ngFor="let nota of notas; let i = index;">
@@ -87,24 +92,10 @@
       </ion-card-header>
     </ion-card>
 
-
+    
   </ion-content>
 
-  
+ 
 </body>
 
-
-
-
-<ion-footer position="bottom" sticky>
-  <ion-toolbar color="primary">
-    
-    <div class="wrapper" slot="end" (click)="guardarAsig()">
-      <div class="ion-activatable ripple-parent rounded-rectangle">
-        <ion-icon name="save" style="color: rgb(2, 42, 2);"></ion-icon>
-        <ion-ripple-effect></ion-ripple-effect>
-      </div>
-    </div>
-    <ion-title style="text-align: center;"> Actualizar asignatura </ion-title>
-  </ion-toolbar>
-  </ion-footer>
+ 

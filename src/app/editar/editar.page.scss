@@ -6,67 +6,50 @@ ion-img {
   
   /* iOS places the subtitle above the title */
 ion-card {
-    margin: 8%;
-    margin-bottom: 70px;
+    margin: 2%;
 }
-
-
-  .wrapper {
-    flex-wrap: wrap;
-    width: 400px;
-  }
+.boton-superpuesto {
+  position: absolute;
+  top: 1.2%;
+  right: 1%;
+  z-index: 1;
+}
+ion-item{
+  --border-width: 0;
+  --border-style: none;
+  --margin-top: -1%;
+  --background: none;
+}
   
-
-  
-  .ripple-parent {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid #ddd;
-    user-select: none;
-  }
-  
-  .rounded-rectangles{
-    width: 350px;
-    height: 50px;
-    border-radius: 8px;
-    margin-left: 45px;
-    background: rgb(255, 125, 125);
-  }
-  
-  .rounded-rectangle{
-    width: 350px;
-    height: 50px;
-    border-radius: 8px;
-    background: rgb(142, 223, 142);
-  }
-
     // para dispositivos móviles
 @media only screen and (max-width: 767px) {
   .my-content {
-    margin-top: 14%; // ajuste según sea necesario
+    margin-top: 3%; // ajuste según sea necesario
     background: #E6413A; 
     border-radius: 5px; 
+    margin-bottom: 2%;
+
   }
 }
 
 // para tabletas
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .my-content {
-    margin-top: 7%; // ajuste según sea necesario
+    margin-top: 4%; // ajuste según sea necesario
     background: #E6413A; 
     border-radius: 5px;
+    margin-bottom: 2%;
+
   }
 }
 
 // para pantallas más grandes (PC)
 @media only screen and (min-width: 992px) {
   .my-content {
-    margin-top: 7%; // ajuste según sea necesario
+    margin-top: 1%; // ajuste según sea necesario
     background: #E6413A; 
     border-radius: 5px;
+    margin-bottom: 2%;
   }
 }
 

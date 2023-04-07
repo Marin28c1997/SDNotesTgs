@@ -9,6 +9,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { EditarPage } from '../editar/editar.page';
 
 
+
+
 @Component({ 
   selector: 'app-asignatura', 
   templateUrl: 'asignatura.page.html', 
@@ -27,7 +29,6 @@ export class AsignaturaPage implements OnInit {
     public alertController:AlertController,
     public loadingController:LoadingController,
     public toastController:ToastController,
-    public navegacion: NavController
   ) { } 
 
   ngOnInit() { 
@@ -43,10 +44,6 @@ export class AsignaturaPage implements OnInit {
   
   } 
 
-  editarSubjects(){ 
-    this.navegacion.navigateRoot('editar');
-    this.firestorageSerive.updateDoc
-  } 
 
   getSubjects(){ 
     this.firestorageSerive.getCollection<Subjects>(this.path, ref => ref.where('userId', '==', this.userId)).subscribe(res => { 
@@ -54,6 +51,7 @@ export class AsignaturaPage implements OnInit {
     }) 
   } 
 
+  
   getSubjectsForSemester(selectedSemester: string) {
     if (selectedSemester !== '') {
       this.firestorageSerive.getCollection<Subjects>(
