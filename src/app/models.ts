@@ -16,15 +16,13 @@ export interface Google {
 
 
 export interface Subjects {
+  Notes: { Note: any[]; Porcent: any[]; };
   Central: string;
   Credits: number;
   Name: string;
-  Notes:{
-    Note: number,
-    Porcent: number
-  };
   Room: number;
   Teacher: string;
   userId: string;
   id:string
+  Semester:string
 }

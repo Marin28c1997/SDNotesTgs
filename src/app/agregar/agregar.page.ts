@@ -24,15 +24,16 @@ export class AgregarPage implements OnInit {
   newSubjects : Subjects = {
     Central: '',
     Credits: null,
-    Name: '',
-    Notes:{
-      Note: null,
-      Porcent:null
-    },
     Room: null,
+    Name: '',
     Teacher: '',
     userId: null,
-    id:this.firestorageService.getId(),
+    Semester: null,
+    id: this.firestorageService.getId(),
+    Notes: {
+      Note: [],
+      Porcent: []
+    }
   };
 
   private path = '/Subjects';
@@ -47,7 +48,7 @@ export class AgregarPage implements OnInit {
   async guardarAsig() {
 
     // Verificar si los campos obligatorios están completos
-    if (!this.newSubjects.Name || !this.newSubjects.Teacher) {
+    if (!this.newSubjects.Name || !this.newSubjects.Teacher || !this.newSubjects.Semester) {
       this.presentAlert('Error', 'Por favor complete todos los campos obligatorios marcados con *.');
       return;
     }
@@ -76,10 +77,22 @@ export class AgregarPage implements OnInit {
       return;
     }
   
+     // Crear objeto para guardar notas y porcentajes
+  let notesObj = { Note: [], Porcent: [] };
+
+  // Recorrer arreglo de notas y porcentajes y guardar en objeto
+  for (let i = 0; i < this.notas.length; i++) {
+    notesObj.Note.push(this.notas[i].nota);
+    notesObj.Porcent.push(this.notas[i].porcentaje);
+  }
+
+  // Asignar objeto de notas y porcentajes a propiedad Notes de newSubjects
+  this.newSubjects.Notes = notesObj;
     this.afAuth.authState.subscribe(user => { // obtener usuario actual
       if (user) {
         const id = this.firestorageService.getId();
         this.newSubjects.userId = user.uid; // establecer campo userId
+        
         this.firestorageService.creatDoc(this.newSubjects, this.path, this.newSubjects.id)
           .then(() => {
             this.presentAlertConfirm('Agregar más', '¿Desea agregar más asignaturas?', 'Sí', 'No');
@@ -113,9 +126,7 @@ export class AgregarPage implements OnInit {
                 role: 'cancel',
                 handler: () => {
                   this.navegacion.navigateRoot('tabs');
-                    // Redirigir a la página de inicio
-                    // Puedes reemplazar esta línea con la lógica que desees para manejar la opción "No"
-                }
+                  }
             },
             {
                 text: yesText,
@@ -125,14 +136,15 @@ export class AgregarPage implements OnInit {
                         Central: '',
                         Credits: null,
                         Name: '',
-                        Notes: {
-                            Note: null,
-                            Porcent: null
-                        },
                         Room: null,
                         Teacher: '',
                         userId: null,
-                        id:this.firestorageService.getId(),
+                        Semester:null,
+                        id:this.firestorageService.getId(),  
+                        Notes: {
+                          Note: [],
+                          Porcent: []
+                        }
                         // Continuar con los campos restantes
                     };
                     this.guardarAsig(); 
@@ -143,9 +155,5 @@ export class AgregarPage implements OnInit {
 
     await alert.present();
 }
-  
-  
 
-
-  
 }

@@ -17,8 +17,9 @@ export class EditarPage implements OnInit {
   Credits:string;
   Notes:{
     Note: null,
-    Porcent:null
+    Porcent:null,
   };
+  Semester:string
   private path = '/Subjects'; 
 
   constructor(private route: ActivatedRoute,
@@ -35,6 +36,7 @@ export class EditarPage implements OnInit {
         this.Room = res['Room'];
         this.Credits = res['Credits'];
         this.Notes = res['Notes'];
+        this.Semester = res['Semester'];
       }
     });
   }
@@ -55,7 +57,8 @@ export class EditarPage implements OnInit {
       Teacher: this.Teacher,
       Room: this.Room,
       Credits: this.Credits,
-      Notes: this.Notes
+      Notes: this.Notes,
+      Semester: this.Semester
     };
     this.firestoreService.updateDoc(data, this.path, this.id)
       .then(() => {

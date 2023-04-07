@@ -37,6 +37,7 @@ export class AsignaturaPage implements OnInit {
         this.userName = user.displayName;
         this.getSubjects(); 
         this.getUserInfo(user); 
+        this.getSubjectsForSemester("Semester");
       } 
     }); 
   
@@ -52,6 +53,25 @@ export class AsignaturaPage implements OnInit {
       this.Subjects=res; 
     }) 
   } 
+
+  getSubjectsForSemester(selectedSemester: string) {
+    if (selectedSemester !== '') {
+      this.firestorageSerive.getCollection<Subjects>(
+        this.path,
+        (ref) =>
+          ref.where('userId', '==', this.userId).where('Semester', '==', selectedSemester),
+      ).subscribe((res) => {
+        if (res.length === 0) {
+          this.presentToast('No hay materias registradas para este semestre.');
+          this.Subjects = []; 
+        } else {
+          this.Subjects = res.sort((a, b) => a.Semester.localeCompare(b.Semester));
+        }
+      });
+    } else {
+      this.getSubjects();
+    }
+  }
 
   isGoogleUser = false; 
 

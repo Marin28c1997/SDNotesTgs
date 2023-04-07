@@ -13,10 +13,25 @@
 
 <body>
   <ion-content class="my-content">
-    <ion-card style="margin-top: 100px;">
+    <ion-card >
       <ion-card-header>
         <ion-card-title color="primary"><ion-icon name="information-circle"></ion-icon> Información general
         </ion-card-title>
+        <ion-card-subtitle><ion-item fill="outline">
+          <ion-label position="floating" color="primary"><ion-icon name="bookmarks"></ion-icon> Semestre</ion-label>
+          <ion-select placeholder="Selecciona un semestre" value={{Semester}}  [(ngModel)]="Semester">
+            <ion-select-option value="1">1</ion-select-option>
+            <ion-select-option value="2">2</ion-select-option>
+            <ion-select-option value="3">3</ion-select-option>
+            <ion-select-option value="4">4</ion-select-option>
+            <ion-select-option value="5">5</ion-select-option>
+            <ion-select-option value="6">6</ion-select-option>
+            <ion-select-option value="7">7</ion-select-option>
+            <ion-select-option value="8">8</ion-select-option>
+            <ion-select-option value="9">9</ion-select-option>
+            <ion-select-option value="10">10</ion-select-option>
+          </ion-select>
+        </ion-item></ion-card-subtitle>
         <ion-card-subtitle><ion-item fill="outline">
             <ion-label position="floating" color="primary"><ion-icon name="book"></ion-icon> Nombre de la asignatura *</ion-label>
             <ion-input value={{Name}}  [(ngModel)]="Name"placeholder="Asignatura" required></ion-input>
@@ -72,18 +87,24 @@
       </ion-card-header>
     </ion-card>
 
+
   </ion-content>
+
+  
 </body>
 
-<ion-toolbar color="primary" class="my-content" position="bottom">
-  
-  <div class="wrapper" slot="end" (click)="guardarAsig()">
-    <div class="ion-activatable ripple-parent rounded-rectangle">
-      <ion-icon name="save" style="color: rgb(2, 42, 2);"></ion-icon>
-      <ion-ripple-effect></ion-ripple-effect>
+
+
+
+<ion-footer position="bottom" sticky>
+  <ion-toolbar color="primary">
+    
+    <div class="wrapper" slot="end" (click)="guardarAsig()">
+      <div class="ion-activatable ripple-parent rounded-rectangle">
+        <ion-icon name="save" style="color: rgb(2, 42, 2);"></ion-icon>
+        <ion-ripple-effect></ion-ripple-effect>
+      </div>
     </div>
-  </div>
-  <ion-title style="text-align: center;"> Actualizar asignatura </ion-title>
-</ion-toolbar>
-
-
+    <ion-title style="text-align: center;"> Actualizar asignatura </ion-title>
+  </ion-toolbar>
+  </ion-footer>
