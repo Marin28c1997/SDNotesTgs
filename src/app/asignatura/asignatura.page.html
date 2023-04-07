@@ -53,11 +53,11 @@ sadksandskadnsa
                 <ion-span style="color: #E6413A;">{{Subjects.Room}}</ion-span>
               </ion-label>
               <ion-label>Nota: 
-                <ion-span style="color: #E6413A;">{{Subjects.Notes.Note ? Subjects.Notes.Note : 0}}</ion-span>
+                <ion-span style="color: #E6413A;">{{Subjects.Note ? Subjects.Note : 0}}</ion-span>
               </ion-label>
               
             </ion-card-content>
-            <ion-button slot="end" [routerLink]="['/editar', Subjects.id, Subjects.Name, Subjects.Central, Subjects.Teacher, Subjects.Room, Subjects.Credits,Subjects.Semester, Subjects.Notes.Note, Subjects.Notes.Porcent]"> 
+            <ion-button slot="end" routerLink="['/editar', Subjects.id, Subjects.Name, Subjects.Central, Subjects.Teacher, Subjects.Room, Subjects.Credits,Subjects.Semester, Subjects.Note, Subjects.Porcent]"> 
               <ion-icon name="create-outline"></ion-icon> Editar
             </ion-button>       
             <ion-button slot="end" (click)="deleteSubject(Subjects.id, path)"> <ion-icon name="trash-outline"></ion-icon> Eliminar

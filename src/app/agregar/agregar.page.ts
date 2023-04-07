@@ -16,6 +16,28 @@ export class AgregarPage implements OnInit {
     { nota: null, porcentaje: null }
   ];
 
+
+  async eliminarNota(i: number) {
+    const alert = await this.alertController.create({
+      header: 'Eliminar nota',
+      message: '¿Está seguro que desea eliminar esta nota?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary'
+        }, {
+          text: 'Eliminar',
+          handler: () => {
+            this.notas.splice(i, 1);
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  
   agregarNota() {
 
     this.notas.push({ nota: "", porcentaje: "" });
@@ -30,14 +52,11 @@ export class AgregarPage implements OnInit {
     userId: null,
     Semester: null,
     id: this.firestorageService.getId(),
-    Notes: {
-      Note: [],
-      Porcent: []
-    }
+    Note: [],
+    Porcent:[]
   };
 
   private path = '/Subjects';
-
 
   constructor(public firestorageService: FirestoreService,
     private afAuth: AngularFireAuth,
@@ -45,6 +64,20 @@ export class AgregarPage implements OnInit {
 
   ngOnInit() {}
 
+
+  guardarNotas() {
+    this.newSubjects.Note = [];
+    this.newSubjects.Porcent = [];
+  
+    this.notas.forEach(nota => {
+      if (nota.nota !== null && nota.porcentaje !== null) {
+        this.newSubjects.Note.push(nota.nota);
+        this.newSubjects.Porcent.push(nota.porcentaje);
+      }
+    });
+  }
+
+  
   async guardarAsig() {
 
     // Verificar si los campos obligatorios están completos
@@ -77,17 +110,7 @@ export class AgregarPage implements OnInit {
       return;
     }
   
-     // Crear objeto para guardar notas y porcentajes
-  let notesObj = { Note: [], Porcent: [] };
-
-  // Recorrer arreglo de notas y porcentajes y guardar en objeto
-  for (let i = 0; i < this.notas.length; i++) {
-    notesObj.Note.push(this.notas[i].nota);
-    notesObj.Porcent.push(this.notas[i].porcentaje);
-  }
-
-  // Asignar objeto de notas y porcentajes a propiedad Notes de newSubjects
-  this.newSubjects.Notes = notesObj;
+    this.guardarNotas();
     this.afAuth.authState.subscribe(user => { // obtener usuario actual
       if (user) {
         const id = this.firestorageService.getId();
@@ -141,10 +164,8 @@ export class AgregarPage implements OnInit {
                         userId: null,
                         Semester:null,
                         id:this.firestorageService.getId(),  
-                        Notes: {
-                          Note: [],
-                          Porcent: []
-                        }
+                        Note: [],
+                        Porcent: []
                         // Continuar con los campos restantes
                     };
                     this.guardarAsig(); 

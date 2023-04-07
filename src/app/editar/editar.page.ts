@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from '../services/firestore.service'; 
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-editar',
@@ -15,16 +16,15 @@ export class EditarPage implements OnInit {
   Teacher: string;
   Room: string;
   Credits:string;
-  Notes:{
-    Note: null,
-    Porcent:null,
-  };
+  Note:any[];
+  Porcent:any[];
   Semester:string
   private path = '/Subjects'; 
 
   constructor(private route: ActivatedRoute,
   private firestore: AngularFirestore,
-  public firestoreService:FirestoreService) { }
+  public firestoreService:FirestoreService,
+  private alertController: AlertController, public navegacion: NavController) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -35,7 +35,8 @@ export class EditarPage implements OnInit {
         this.Teacher = res['Teacher'];
         this.Room = res['Room'];
         this.Credits = res['Credits'];
-        this.Notes = res['Notes'];
+        this.Note = res['Notes'];
+        this.Porcent = res['Porcent'];
         this.Semester = res['Semester'];
       }
     });
@@ -44,6 +45,26 @@ export class EditarPage implements OnInit {
   notas = [
     { nota: null, porcentaje: null }
   ];
+
+  async eliminarNota(i: number) {
+    const alert = await this.alertController.create({
+      header: 'Eliminar nota',
+      message: '¿Está seguro que desea eliminar esta nota?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary'
+        }, {
+          text: 'Eliminar',
+          handler: () => {
+            this.notas.splice(i, 1);
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 
   agregarNota() {
 
@@ -57,7 +78,8 @@ export class EditarPage implements OnInit {
       Teacher: this.Teacher,
       Room: this.Room,
       Credits: this.Credits,
-      Notes: this.Notes,
+      Note: this.Note,
+      Porcent: this.Porcent,
       Semester: this.Semester
     };
     this.firestoreService.updateDoc(data, this.path, this.id)

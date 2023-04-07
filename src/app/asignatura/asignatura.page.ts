@@ -29,6 +29,7 @@ export class AsignaturaPage implements OnInit {
     public alertController:AlertController,
     public loadingController:LoadingController,
     public toastController:ToastController,
+    private navController: NavController
   ) { } 
 
   ngOnInit() { 

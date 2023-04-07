@@ -16,7 +16,8 @@ export interface Google {
 
 
 export interface Subjects {
-  Notes: { Note: any[]; Porcent: any[]; };
+  Note: any[]; 
+  Porcent: any[]; 
   Central: string;
   Credits: number;
   Name: string;
