@@ -16,6 +16,28 @@ export class AgregarPage implements OnInit {
     { nota: null, porcentaje: null }
   ];
 
+
+  async eliminarNota(i: number) {
+    const alert = await this.alertController.create({
+      header: 'Eliminar nota',
+      message: '¿Está seguro que desea eliminar esta nota?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary'
+        }, {
+          text: 'Eliminar',
+          handler: () => {
+            this.notas.splice(i, 1);
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  
   agregarNota() {
 
     this.notas.push({ nota: "", porcentaje: "" });
@@ -24,19 +46,17 @@ export class AgregarPage implements OnInit {
   newSubjects : Subjects = {
     Central: '',
     Credits: null,
-    Name: '',
-    Notes:{
-      Note: null,
-      Porcent:null
-    },
     Room: null,
+    Name: '',
     Teacher: '',
     userId: null,
-    id:this.firestorageService.getId(),
+    Semester: null,
+    id: this.firestorageService.getId(),
+    Note: [],
+    Porcent:[]
   };
 
   private path = '/Subjects';
-
 
   constructor(public firestorageService: FirestoreService,
     private afAuth: AngularFireAuth,
@@ -44,10 +64,24 @@ export class AgregarPage implements OnInit {
 
   ngOnInit() {}
 
+
+  guardarNotas() {
+    this.newSubjects.Note = [];
+    this.newSubjects.Porcent = [];
+  
+    this.notas.forEach(nota => {
+      if (nota.nota !== null && nota.porcentaje !== null) {
+        this.newSubjects.Note.push(nota.nota);
+        this.newSubjects.Porcent.push(nota.porcentaje);
+      }
+    });
+  }
+
+  
   async guardarAsig() {
 
     // Verificar si los campos obligatorios están completos
-    if (!this.newSubjects.Name || !this.newSubjects.Teacher) {
+    if (!this.newSubjects.Name || !this.newSubjects.Teacher || !this.newSubjects.Semester) {
       this.presentAlert('Error', 'Por favor complete todos los campos obligatorios marcados con *.');
       return;
     }
@@ -76,10 +110,12 @@ export class AgregarPage implements OnInit {
       return;
     }
   
+    this.guardarNotas();
     this.afAuth.authState.subscribe(user => { // obtener usuario actual
       if (user) {
         const id = this.firestorageService.getId();
         this.newSubjects.userId = user.uid; // establecer campo userId
+        
         this.firestorageService.creatDoc(this.newSubjects, this.path, this.newSubjects.id)
           .then(() => {
             this.presentAlertConfirm('Agregar más', '¿Desea agregar más asignaturas?', 'Sí', 'No');
@@ -113,9 +149,7 @@ export class AgregarPage implements OnInit {
                 role: 'cancel',
                 handler: () => {
                   this.navegacion.navigateRoot('tabs');
-                    // Redirigir a la página de inicio
-                    // Puedes reemplazar esta línea con la lógica que desees para manejar la opción "No"
-                }
+                  }
             },
             {
                 text: yesText,
@@ -125,14 +159,13 @@ export class AgregarPage implements OnInit {
                         Central: '',
                         Credits: null,
                         Name: '',
-                        Notes: {
-                            Note: null,
-                            Porcent: null
-                        },
                         Room: null,
                         Teacher: '',
                         userId: null,
-                        id:this.firestorageService.getId(),
+                        Semester:null,
+                        id:this.firestorageService.getId(),  
+                        Note: [],
+                        Porcent: []
                         // Continuar con los campos restantes
                     };
                     this.guardarAsig(); 
@@ -143,9 +176,5 @@ export class AgregarPage implements OnInit {
 
     await alert.present();
 }
-  
-  
 
-
-  
 }

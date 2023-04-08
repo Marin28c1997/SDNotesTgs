@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-inicio',
@@ -17,6 +18,26 @@ export class InicioPage {
   agregarNota() {
     this.notas.push({ nota: "", porcentaje: "" });
   }
+  async eliminarNota(i: number) {
+    const alert = await this.alertController.create({
+      header: 'Eliminar nota',
+      message: '¿Está seguro que desea eliminar esta nota?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary'
+        }, {
+          text: 'Eliminar',
+          handler: () => {
+            this.notas.splice(i, 1);
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
 
   calcularNota() {
     let suma = 0;
@@ -39,7 +60,8 @@ export class InicioPage {
   }
   
 
-  constructor() {
+  constructor(private alertController: AlertController, 
+    public navegacion: NavController) {
 
   }
 

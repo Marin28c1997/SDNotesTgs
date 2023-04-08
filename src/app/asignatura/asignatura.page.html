@@ -9,14 +9,37 @@ sadksandskadnsa
  dsandsaind
 </p>
   </div>
-    <ion-card class="card-no-border">
+  <ion-item fill="outline" class="semestre">
+    <ion-label position="floating" color="primary"><ion-icon name="bookmarks"></ion-icon> Semestre</ion-label>
+    <ion-select placeholder="Todas las asignaturas" [(ngModel)]="selectedSemester" (ionChange)="getSubjectsForSemester(selectedSemester)">
+      <ion-select-option value="">Todas</ion-select-option>
+      <ion-select-option value="1">1</ion-select-option>
+      <ion-select-option value="2">2</ion-select-option>
+      <ion-select-option value="3">3</ion-select-option>
+      <ion-select-option value="4">4</ion-select-option>
+      <ion-select-option value="5">5</ion-select-option>
+      <ion-select-option value="6">6</ion-select-option>
+      <ion-select-option value="7">7</ion-select-option>
+      <ion-select-option value="8">8</ion-select-option>
+      <ion-select-option value="9">9</ion-select-option>
+      <ion-select-option value="10">10</ion-select-option>
+    </ion-select>
+    
+  </ion-item>
+  <ion-fab horizontal="end">
+    <ion-fab-button routerLink="/agregar">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+    <ion-card class="card-no-border" >
       <ion-card-content>
         <ion-list>
           <ion-item *ngFor="let Subjects of Subjects">
             <ion-thumbnail slot="start">
               <img alt="Univalle" src="assets/icon/logo.png" />
             </ion-thumbnail>
-
+       
             <ion-card-content>
               <ion-label>Asignatura: 
                 <ion-span style="color: #E6413A;">{{Subjects.Name}}</ion-span>
@@ -31,13 +54,11 @@ sadksandskadnsa
                 <ion-span style="color: #E6413A;">{{Subjects.Room}}</ion-span>
               </ion-label>
               <ion-label>Nota: 
-                <ion-span style="color: #E6413A;">{{Subjects.Notes.Note ? Subjects.Notes.Note : 0}}</ion-span>
+                <ion-span style="color: #E6413A;">{{Subjects.Note ? Subjects.Note : 0}}</ion-span>
               </ion-label>
               
-            <!-- <ion-button slot="end">Hola</ion-button>
-            <ion-button slot="end">Hola</ion-button> -->
             </ion-card-content>
-            <ion-button slot="end" [routerLink]="['/editar', Subjects.id, Subjects.Name, Subjects.Central, Subjects.Teacher, Subjects.Room, Subjects.Credits, Subjects.Notes.Note, Subjects.Notes.Porcent]"> 
+            <ion-button slot="end" [routerLink]="['/editar', Subjects.id, Subjects.Name, Subjects.Central, Subjects.Teacher, Subjects.Room, Subjects.Credits,Subjects.Semester]"> 
               <ion-icon name="create-outline"></ion-icon> Editar
             </ion-button>       
             <ion-button slot="end" (click)="deleteSubject(Subjects.id, path)"> <ion-icon name="trash-outline"></ion-icon> Eliminar
@@ -46,10 +67,6 @@ sadksandskadnsa
         </ion-list>
       </ion-card-content>
     </ion-card>
-      <ion-fab horizontal="end">
-        <ion-fab-button routerLink="/agregar">
-          <ion-icon name="add"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
+    
 
     </ion-content>

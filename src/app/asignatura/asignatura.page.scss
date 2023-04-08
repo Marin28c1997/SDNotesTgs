@@ -5,15 +5,24 @@ ion-card-header.ios {
   flex-flow: column-reverse;
 }
 
+ion-fab{
+  margin-top: -4%;
+  margin-right: 4%;
+}
 ion-card {
   border: 0;
  box-shadow: none;
   padding: 0;
-  margin-top: -3.5%;
  }
 
  div{
   margin: 4%;
+ }
+
+ .semestre{
+  width: 60%;
+  margin: auto;
+  margin-top: -1.5%;
  }
 
   // para dispositivos móviles
@@ -37,7 +46,7 @@ ion-card {
 // para pantallas más grandes (PC)
 @media only screen and (min-width: 992px) {
   .my-content {
-    margin-top: 7%; // ajuste según sea necesario
+    margin-top: 5%; // ajuste según sea necesario
     background: #E6413A; 
     border-radius: 5px;
   }

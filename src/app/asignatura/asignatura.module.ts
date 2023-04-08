@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AsignaturaPage } from './asignatura.page';
-import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 import { AsignaturaPageRoutingModule } from './asignatura-routing.module';
 
@@ -12,7 +11,6 @@ import { AsignaturaPageRoutingModule } from './asignatura-routing.module';
     IonicModule,
     CommonModule,
     FormsModule,
-    ExploreContainerComponentModule,
     AsignaturaPageRoutingModule
   ],
   declarations: [AsignaturaPage]
