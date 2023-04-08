@@ -12,45 +12,53 @@ export class HorarioPage {
   type: 'string';
   optionsMulti: CalendarComponentOptions = {
     pickMode: 'multi',
-    color: 'danger',
+    color: 'dark',
+    weekdays: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+    monthPickerFormat: ['Ene', 'Feb', 'Mar', 'Abr', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
   };
-  t = ((new Date()).toDateString())
+  AgregarFecha() {
 
-  AgregarFecha(event) {
-    console.log('ev: '+event.format('ddd MMM DD YYYY h:mm:ss a'))
     let n = [((new Date()).toDateString())]
     let a = moment().format('ddd MMM DD YYYY h:mm:ss a')
-    console.log('a: '+a)
-    console.log('Date: '+new Date())
-    console.log('dateM: '+this.dateMulti)
+    console.log('a: ' + a)
+    console.log('Date: ' + new Date())
+    console.log('dateM: ' + this.dateMulti)
     this.dateMulti.map(e => {
-      console.log('e: '+e)
-      console.log('e_d: '+e['_d']);
-      n.push(''+e['_d'])
+      console.log('e: ' + e)
+      console.log('e_d: ' + e['_d']);
+      n.push('' + e['_d'])
     })
     this.dateMulti = n
     console.log(this.dateMulti)
-    
+
   }
 
   OnChange(event) {
-    let nuew = []
     this.dateMulti.map(e => {
-      let a = (moment(e['_d']).format("ddd MMM DD YYYY"));
-      //console.log((moment(e['_d']).format("ddd MMM DD YYYY")));
-      //console.log(a);
-      for (let index = 0; index < 17; index++) {
-        let b = moment(a, "ddd MMM DD YYYY");        
-        b.add((index * 7), 'days');
-        b.format("ddd MMM DD YYYY");
-        console.log(b)
-        nuew.push(b)
-        console.log(nuew)
-      }
-      //console.log(b.format("ddd MMM DD YYYY"))
-      this.dateMulti = nuew;
+      console.log(e)
     })
+    /*let nuew = []
+      this.dateMulti.map(e => {
+        let a = (moment(e['_d']).format("ddd MMM DD YYYY"));
+        //console.log((moment(e['_d']).format("ddd MMM DD YYYY")));
+        //console.log(a);
+        for (let index = 0; index < 17; index++) {
+          let b = moment(a, "ddd MMM DD YYYY");        
+          b.add((index * 7), 'days');
+          b.format("ddd MMM DD YYYY");
+          console.log(b)
+          nuew.push(b)
+          console.log(nuew) 
+        }
+        //console.log(b.format("ddd MMM DD YYYY"))
+        this.dateMulti = nuew;
+      })*/
   }
 
   constructor() { }
 }
+/*
+
+
+
+*/
