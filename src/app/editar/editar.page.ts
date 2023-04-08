@@ -86,6 +86,8 @@ export class EditarPage implements OnInit {
   }
 
   guardarAsig() {
+    this.guardarNotas()
+
     const data = {
       Name: this.Name,
       Central: this.Central,
