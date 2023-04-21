@@ -3,6 +3,7 @@ import { FirestoreService } from '../services/firestore.service';
 import { Subjects } from '../models';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AlertController, NavController } from '@ionic/angular';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-agregar',
@@ -11,7 +12,7 @@ import { AlertController, NavController } from '@ionic/angular';
 })
 export class AgregarPage implements OnInit {
 
-  
+  today: string;
   notas = [
     { nota: null, porcentaje: null }
   ];
@@ -53,14 +54,17 @@ export class AgregarPage implements OnInit {
     Semester: null,
     id: this.firestorageService.getId(),
     Note: [],
-    Porcent:[]
+    Porcent:[],
+    Datat:''
   };
 
   private path = '/Subjects';
 
   constructor(public firestorageService: FirestoreService,
     private afAuth: AngularFireAuth,
-    private alertController: AlertController, public navegacion: NavController) {}
+    private alertController: AlertController, public navegacion: NavController) {
+      this.today = moment().format('YYYY-MM-DD'); 
+    }
 
   ngOnInit() {}
 
@@ -165,7 +169,8 @@ export class AgregarPage implements OnInit {
                         Semester:null,
                         id:this.firestorageService.getId(),  
                         Note: [],
-                        Porcent: []
+                        Porcent: [],
+                        Datat:''
                         // Continuar con los campos restantes
                     };
                     this.guardarAsig(); 

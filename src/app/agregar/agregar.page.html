@@ -13,7 +13,7 @@
 
 <body>
   <ion-content class="my-content">
-    <ion-card style="margin-top: 100px;">
+    <ion-card style="margin-top: 80px;">
       <ion-card-header>
         <ion-card-title color="primary"><ion-icon name="information-circle"></ion-icon> Información general
         </ion-card-title>
@@ -58,6 +58,10 @@
           <ion-input [(ngModel)]="newSubjects.Credits" placeholder="Créditos/Intensidad horaria" type="number"></ion-input>
         </ion-item></ion-card-subtitle>
 
+        <ion-card-subtitle><ion-item fill="outline">
+          <ion-input [(ngModel)]="newSubjects.Datat" type="date" color="primary" [min]="today"></ion-input>
+        </ion-item></ion-card-subtitle>
+
       </ion-card-header>
     </ion-card>
 
@@ -68,20 +72,20 @@
       
             <ion-row *ngFor="let nota of notas; let i = index;">
               <ion-col size="5">
-               <h2> Notas</h2>
+               Notas
                 <ion-input placeholder="Ingrese Nota"color="primary" class="custom" [(ngModel)]="nota.nota"  type="number">
                   <ion-icon name="create-outline"></ion-icon>
                 </ion-input>
               </ion-col>
               <ion-col size="5">
-               <h2> Porcentaje % </h2>
+                Porcentaje % 
                 <ion-input placeholder="Ingrese porcentaje" color="primary"class="custom"  [(ngModel)]="nota.porcentaje"  type="number">
                   <ion-icon name="calculator-outline"></ion-icon>
                 </ion-input>
               </ion-col>
               
         <ion-col size="2">
-          <h2>Eliminar Nota</h2>
+          Eliminar Nota
           <ion-button color="danger" fill="clear" (click)="eliminarNota(i)">
             <ion-icon name="trash-outline"></ion-icon>
           </ion-button>
@@ -98,7 +102,7 @@
   </ion-content>
 
 </body>
-<ion-toolbar color="primary" class="my-content">
+<ion-toolbar color="primary">
   
   <div class="wrapper" slot="end" (click)="guardarAsig()">
     <div class="ion-activatable ripple-parent rounded-rectangle">
@@ -106,9 +110,7 @@
       <ion-ripple-effect></ion-ripple-effect>
     </div>
   </div>
-  <ion-title style="text-align: center;"> Nueva asignatura </ion-title>
-
-
+  <ion-title style="text-align: center;"> Guardar Asignatura</ion-title>
 </ion-toolbar>
 
 

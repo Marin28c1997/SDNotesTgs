@@ -3,12 +3,7 @@ import { Google, Subjects, User } from '../models';
 import { AngularFireAuth } from '@angular/fire/compat/auth'; 
 import { FirestoreService } from '../services/firestore.service'; 
 import firebase from 'firebase/compat/app'; 
-import { AlertController, LoadingController, NavController, ToastController } from '@ionic/angular';
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { EditarPage } from '../editar/editar.page';
-
-
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 
 
 @Component({ 
@@ -31,15 +26,14 @@ export class AsignaturaPage implements OnInit {
     public alertController:AlertController,
     public loadingController:LoadingController,
     public toastController:ToastController,
-    private navController: NavController
   ) { } 
 
   ngOnInit() { 
     this.afAuth.authState.subscribe(user => { 
       if (user) { 
-        this.userId = user.uid; 
         this.userName = user.displayName;
         this.getSubjects(); 
+        this.userId = user.uid; 
         this.getUserInfo(user); 
         this.getSubjectsForSemester("Semester");
       } 
@@ -50,13 +44,16 @@ export class AsignaturaPage implements OnInit {
   
 
   getSubjects(){ 
-    this.firestorageSerive.getCollection<Subjects>(this.path, ref => ref.where('userId', '==', this.userId)).subscribe(res => { 
-      this.Subjects=res; 
-    }) 
+    if (this.userId) { // verifica si this.userId está definido
+      this.firestorageSerive.getCollection<Subjects>(this.path, ref => ref.where('userId', '==', this.userId)).subscribe(res => { 
+        this.Subjects=res; 
+      }); 
+    }
   } 
 
   
-  getSubjectsForSemester(selectedSemester: string) {
+getSubjectsForSemester(selectedSemester: string) {
+  if (this.userId) { // verifica si this.userId está definido
     if (selectedSemester !== '') {
       this.firestorageSerive.getCollection<Subjects>(
         this.path,
@@ -74,6 +71,8 @@ export class AsignaturaPage implements OnInit {
       this.getSubjects();
     }
   }
+}
+
 
   isGoogleUser = false; 
 
@@ -136,15 +135,6 @@ export class AsignaturaPage implements OnInit {
     await alert.present();
   }
   
-
-  async presentLoading(){
-    this.loading = await this.loadingController.create({
-      cssClass:'normal',
-      message:'Guardando'
-    });
-    await this.loading.present();
-  }
-
   async presentToast(msg: string){
     const toast = await this.toastController.create({
       message:msg,
