@@ -171,7 +171,6 @@ export class AgregarPage implements OnInit {
                         Note: [],
                         Porcent: [],
                         Datat:''
-                        // Continuar con los campos restantes
                     };
                     this.guardarAsig(); 
                 }
