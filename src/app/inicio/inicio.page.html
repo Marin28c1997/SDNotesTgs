@@ -4,20 +4,20 @@
       <h2 style="text-align: center;color: #E6413A;">Calculo Rápido</h2>
       <ion-grid [fixed]="true">
         <ion-row *ngFor="let nota of notas; let i = index;">
-          <ion-col size="5">
-           <h2> Notas</h2>
-            <ion-input placeholder="Ingrese Nota" class="custom" [(ngModel)]="nota.nota">
-              <ion-icon name="create-outline"></ion-icon>
+          <ion-col size="4">
+            Notas
+            <ion-input placeholder="Nota" class="custom" [(ngModel)]="nota.nota">
+              <ion-icon name="create-outline" color="primary"></ion-icon>
             </ion-input>
           </ion-col>
-          <ion-col size="5">
-           <h2> Porcentaje % </h2>
-            <ion-input placeholder="Ingrese porcentaje" class="custom" [(ngModel)]="nota.porcentaje">
-              <ion-icon name="calculator-outline"></ion-icon>
+          <ion-col size="4">
+            Porcentaje % 
+            <ion-input placeholder="porcentaje" class="custom" [(ngModel)]="nota.porcentaje">
+              <ion-icon name="calculator-outline" color="primary"></ion-icon>
             </ion-input>
           </ion-col>
-          <ion-col size="2">
-            <h2>Eliminar Nota</h2>
+          <ion-col size="4">
+            Eliminar Nota
             <ion-button color="danger" fill="clear" (click)="eliminarNota(i)">
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>

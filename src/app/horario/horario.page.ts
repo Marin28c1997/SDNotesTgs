@@ -19,21 +19,23 @@ export class HorarioPage {
     weekdays: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
     monthPickerFormat: ['Ene', 'Feb', 'Mar', 'Abr', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
   };
-  AgregarFecha() {
+  t = ((new Date()).toDateString())
 
+  AgregarFecha(event) {
+    console.log('ev: '+event.format('ddd MMM DD YYYY h:mm:ss a'))
     let n = [((new Date()).toDateString())]
     let a = moment().format('ddd MMM DD YYYY h:mm:ss a')
-    console.log('a: ' + a)
-    console.log('Date: ' + new Date())
-    console.log('dateM: ' + this.dateMulti)
+    console.log('a: '+a)
+    console.log('Date: '+new Date())
+    console.log('dateM: '+this.dateMulti)
     this.dateMulti.map(e => {
-      console.log('e: ' + e)
-      console.log('e_d: ' + e['_d']);
-      n.push('' + e['_d'])
+      console.log('e: '+e)
+      console.log('e_d: '+e['_d']);
+      n.push(''+e['_d'])
     })
     this.dateMulti = n
     console.log(this.dateMulti)
-
+    
   }
   clacend() {
     this.tx = '';
@@ -125,8 +127,3 @@ export class HorarioPage {
 
   constructor() { }
 }
-/*
-
-
-
-*/

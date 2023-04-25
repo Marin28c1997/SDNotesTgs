@@ -7,16 +7,16 @@
   /* iOS places the subtitle above the title */
 ion-card {
     margin: 8%;
-    margin-bottom: 70px;
+    margin-bottom: 7%;
 }
 
 
   .wrapper {
     flex-wrap: wrap;
-    width: 400px;
+    width: 150px;
+    margin-right: 100px;
   }
   
-
   
   .ripple-parent {
     display: flex;
@@ -28,18 +28,10 @@ ion-card {
     user-select: none;
   }
   
-  .rounded-rectangles{
-    width: 350px;
-    height: 50px;
-    border-radius: 8px;
-    margin-left: 45px;
-    background: rgb(255, 125, 125);
-  }
-  
   .rounded-rectangle{
-    width: 350px;
-    height: 50px;
-    border-radius: 8px;
+    width: 70%;
+    height: 40px;
+    border-radius: 5px;
     background: rgb(142, 223, 142);
   }
 
@@ -48,8 +40,13 @@ ion-card {
   .my-content {
     margin-top: 14%; // ajuste según sea necesario
     background: #E6413A; 
-    border-radius: 5px; 
   }
+  .wrapper {
+    flex-wrap: wrap;
+    width: 150px;
+    margin-right: -20px;
+  }
+  
 }
 
 // para tabletas
@@ -57,7 +54,6 @@ ion-card {
   .my-content {
     margin-top: 7%; // ajuste según sea necesario
     background: #E6413A; 
-    border-radius: 5px;
   }
 }
 
@@ -66,7 +62,6 @@ ion-card {
   .my-content {
     margin-top: 7%; // ajuste según sea necesario
     background: #E6413A; 
-    border-radius: 5px;
   }
 }
 

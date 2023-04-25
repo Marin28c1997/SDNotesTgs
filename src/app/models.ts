@@ -24,6 +24,8 @@ export interface Subjects {
   Room: number;
   Teacher: string;
   userId: string;
-  id:string
-  Semester:string
+  id:string;
+  Semester:string;
+  Datat:string
 }
+
