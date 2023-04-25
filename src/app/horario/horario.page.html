@@ -21,17 +21,11 @@
       <ion-calendar [(ngModel)]="dateMulti"
           [options]="optionsMulti"
           [type]="type"
-          [format]="'YYYY-MM-DD'">
+          [format]="'YYYY-MM-DD'"
+          (ngModelChange)="OnChange()"
+          [disabled]="true">
       </ion-calendar>      
     </div>
-    <ion-card-content>
-      <ion-label>días de clase restantes: 
-        <ion-span style="color: #E6413A;">{{tx}}</ion-span>
-      </ion-label>       
-    </ion-card-content>
-    <ion-item>
-      <ion-button  class="iniciar">Agregar fecha</ion-button>
-    </ion-item>
   </ion-grid>
 
   <ion-card class="card-no-border" >
@@ -49,19 +43,12 @@
             <ion-label>Sede: 
               <ion-span style="color: #E6413A;">{{Subjects.Central}}</ion-span>
             </ion-label> 
-            <ion-label>Profesor: 
-              <ion-span style="color: #E6413A;">{{Subjects.Teacher}}</ion-span>
-            </ion-label>
             <ion-label>Salón: 
               <ion-span style="color: #E6413A;">{{Subjects.Room}}</ion-span>
             </ion-label>
-            <ion-label>Nota: 
-              <ion-span style="color: #E6413A;">{{(Subjects.Note == null) ? Subjects.Note : 0}}</ion-span>
-            </ion-label>
             <ion-label>Fecha: 
-              <ion-span style="color: #E6413A;" >{{Subjects.Datat}}</ion-span>
-            </ion-label>
-            
+              <ion-span style="color: #E6413A;" >{{Subjects.Datat.split('---')[0]}}</ion-span>
+            </ion-label>            
           </ion-card-content>
       
         </ion-item>           

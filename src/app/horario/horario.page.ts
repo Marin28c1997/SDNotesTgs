@@ -27,8 +27,8 @@ export class HorarioPage implements OnInit{
   };
   t = ((new Date()).toDateString())
 
-  AgregarFecha(event) {
-    console.log('ev: '+event.format('ddd MMM DD YYYY h:mm:ss a'))
+  AgregarFecha() {
+    /*console.log('ev: '+event.format('ddd MMM DD YYYY h:mm:ss a'))
     let n = [((new Date()).toDateString())]
     let a = moment().format('ddd MMM DD YYYY h:mm:ss a')
     console.log('a: '+a)
@@ -40,7 +40,8 @@ export class HorarioPage implements OnInit{
       n.push(''+e['_d'])
     })
     this.dateMulti = n
-    console.log(this.dateMulti)
+    console.log(this.dateMulti)*/
+    this.clacend();
     
   }
   clacend() {
@@ -65,17 +66,32 @@ export class HorarioPage implements OnInit{
       }
     }
     //console.log('||||||||||||||||||||||||')
+    let newdate = [];
     this.wk.map(e => {
       let tt = (moment(e['_d']).format("ddd MMM DD YYYY"));
-      this.dateMulti.map(el => {
-        let te = (moment(el['_d']).format("ddd MMM DD YYYY"));
+      this.Subjects.map(el => {
+        let te = (el.Datat.split('---')[1]);
         if (tt == te) {
+          newdate.push(moment(tt))
           this.tx += '\n' + tt.substring(4, 0) + ' día:' + tt.substring(7, 10)
         }
       })
       //console.log('- '+tt);
       //console.log('-- '+this.tx)
     })
+    this.dateMulti = newdate;
+    let nuew = []
+    this.dateMulti.map(e => {
+      let a = (moment(e['_d']).format("ddd MMM DD YYYY"));
+      for (let index = 0; index < 17; index++) {
+        let b = moment(a, "ddd MMM DD YYYY");        
+        b.add((index * 7), 'days');
+        b.format("ddd MMM DD YYYY");
+        nuew.push(b)
+      }
+    })
+    this.dateMulti = nuew;
+
     //console.log('||||||||||||||||||||||||')
   }
 
@@ -112,18 +128,19 @@ getSubjectsForSemester(selectedSemester: string) {
               userId: mat.userId,
               id: mat.id,
               Semester: mat.Semester,
-              Datat: str,
+              Datat: str + '---' + moment(mat.Datat).format("ddd MMM DD YYYY"),
             })
           })
           this.Subjects = subdata;
-          console.log("as",subdata)
+          this.clacend();
         }
       });
     } 
   }
 }
 
-  OnChange(event) {
+  OnChange() {
+    //console.log('JIR')
     this.clacend();
     /*this.dateMulti.map(e => {
       console.log(e)
