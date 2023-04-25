@@ -53,7 +53,10 @@ sadksandskadnsa
                 <ion-span style="color: #E6413A;">{{Subjects.Room}}</ion-span>
               </ion-label>
               <ion-label>Nota: 
-                <ion-span style="color: #E6413A;">{{Subjects.Note ? Subjects.Note : 0}}</ion-span>
+                <ion-span style="color: #E6413A;">{{(Subjects.Note == null) ? Subjects.Note : 0}}</ion-span>
+              </ion-label>
+              <ion-label>Fecha: 
+                <ion-span style="color: #E6413A;" >{{Subjects.Datat}}</ion-span>
               </ion-label>
               
             </ion-card-content>

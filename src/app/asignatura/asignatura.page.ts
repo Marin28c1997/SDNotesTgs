@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FirestoreService } from '../services/firestore.service'; 
 import firebase from 'firebase/compat/app'; 
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import * as moment from 'moment';
 
 
 @Component({ 
@@ -46,7 +47,8 @@ export class AsignaturaPage implements OnInit {
   getSubjects(){ 
     if (this.userId) { // verifica si this.userId está definido
       this.firestorageSerive.getCollection<Subjects>(this.path, ref => ref.where('userId', '==', this.userId)).subscribe(res => { 
-        this.Subjects=res; 
+        this.Subjects=res;
+        console.log(res)
       }); 
     }
   } 
@@ -65,6 +67,28 @@ getSubjectsForSemester(selectedSemester: string) {
           this.Subjects = []; 
         } else {
           this.Subjects = res.sort((a, b) => a.Semester.localeCompare(b.Semester));
+          console.log(this.Subjects)
+          let subdata = [];
+          this.Subjects.map(mat => {
+            let str = '';
+            let data = mat.Datat;
+            str += (moment(data)['_d']).toLocaleDateString('es-ES', {weekday:"long"}) + ' a las ' + data.split('T')[1]
+            //console.log((moment(data)['_d']).toLocaleDateString('es-ES', {weekday:"long"}))
+            subdata.push({              
+              Note: mat.Note,
+              Porcent: mat.Porcent,
+              Central: mat.Central,
+              Credits: mat.Credits,
+              Name: mat.Name,
+              Room: mat.Room,
+              Teacher: mat.Teacher,
+              userId: mat.userId,
+              id: mat.id,
+              Semester: mat.Semester,
+              Datat: str,
+            })
+          })
+          this.Subjects = subdata;
         }
       });
     } else {
@@ -140,7 +164,7 @@ getSubjectsForSemester(selectedSemester: string) {
       message:msg,
       cssClass:'normal',
       duration:2000,
-      color:"primary"
+      color:"warning"
     });
     toast.present();
   }
