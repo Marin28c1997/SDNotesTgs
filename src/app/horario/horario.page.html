@@ -9,6 +9,11 @@
           [readonly]="false">
       </ion-calendar>      
     </div>
+    <ion-card-content>
+      <ion-label>días de clase restantes: 
+        <ion-span style="color: #E6413A;">{{tx}}</ion-span>
+      </ion-label>       
+    </ion-card-content>
     <ion-item>
       <ion-button (click)="AgregarFecha()" class="iniciar">Agregar fecha</ion-button>
     </ion-item>

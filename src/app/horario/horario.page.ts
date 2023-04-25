@@ -9,10 +9,13 @@ import * as moment from 'moment';
 })
 export class HorarioPage {
   dateMulti: string[];
+  ab = moment().format('ddd MMM DD YYYY');
+  ac = moment((moment(this.ab).endOf('week'))['_d']).format("ddd MMM DD YYYY");
+  wk = [];
+  tx = '';
   type: 'string';
   optionsMulti: CalendarComponentOptions = {
     pickMode: 'multi',
-    color: 'dark',
     weekdays: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
     monthPickerFormat: ['Ene', 'Feb', 'Mar', 'Abr', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
   };
@@ -32,27 +35,92 @@ export class HorarioPage {
     console.log(this.dateMulti)
 
   }
-
-  OnChange(event) {
-    this.dateMulti.map(e => {
-      console.log(e)
-    })
-    /*let nuew = []
-      this.dateMulti.map(e => {
-        let a = (moment(e['_d']).format("ddd MMM DD YYYY"));
-        //console.log((moment(e['_d']).format("ddd MMM DD YYYY")));
-        //console.log(a);
-        for (let index = 0; index < 17; index++) {
-          let b = moment(a, "ddd MMM DD YYYY");        
-          b.add((index * 7), 'days');
-          b.format("ddd MMM DD YYYY");
-          console.log(b)
-          nuew.push(b)
-          console.log(nuew) 
+  clacend() {
+    this.tx = '';
+    this.wk = [];
+    let a = moment(this.ac, "ddd MMM DD YYYY");
+    a.add(1, 'days');
+    let as = (moment(a['_d']).format("ddd MMM DD YYYY"));
+    let au = true;
+    for (let index = 0; index < 7; index++) {
+      let b = moment(this.ab, "ddd MMM DD YYYY");
+      b.add(index, 'days');
+      b.format("ddd MMM DD YYYY");
+      let c = (moment(b['_d']).format("ddd MMM DD YYYY"));
+      if (c == as) {
+        this.wk.push(b);
+        au = false;
+      } else {
+        if (au) {
+          this.wk.push(b);
         }
-        //console.log(b.format("ddd MMM DD YYYY"))
-        this.dateMulti = nuew;
-      })*/
+      }
+    }
+    //console.log('||||||||||||||||||||||||')
+    this.wk.map(e => {
+      let tt = (moment(e['_d']).format("ddd MMM DD YYYY"));
+      this.dateMulti.map(el => {
+        let te = (moment(el['_d']).format("ddd MMM DD YYYY"));
+        if (tt == te) {
+          this.tx += '\n' + tt.substring(4, 0) + ' día:' + tt.substring(7, 10)
+        }
+      })
+      //console.log('- '+tt);
+      //console.log('-- '+this.tx)
+    })
+    //console.log('||||||||||||||||||||||||')
+  }
+  OnChange(event) {
+    this.clacend();
+    /*this.dateMulti.map(e => {
+      console.log(e)
+    })*/
+    /*console.log('.....')
+    console.log(this.ab)
+    console.log(this.ac)
+    console.log('.....')
+    let nuew = [];
+    console.log("///////////////////")
+    this.dateMulti.map(e => {
+      let a = (moment(e['_d']).format("ddd MMM DD YYYY"));
+      //console.log('a: '+ a)
+      //for (let index = 0; index < 7; index++) {
+      let b = moment(a, "ddd MMM DD YYYY");
+      //b.add(index, 'days');
+      let c = (moment(b['_d']).format("ddd MMM DD YYYY"));
+      b.format("ddd MMM DD YYYY");
+      this.wk.map(el => {
+        let d = (moment(el['_d']).format("ddd MMM DD YYYY"));
+        //console.log('a: '+ a)
+        //for (let index = 0; index < 7; index++) {
+        let e = moment(d, "ddd MMM DD YYYY");
+        //b.add(index, 'days');
+        let f = (moment(e['_d']).format("ddd MMM DD YYYY"));
+        if (f==c) {
+          console.log(f);
+        }
+      })
+      //nuew.push(b)
+      //}
+      //console.log(nuew)
+      ///let a = (moment(e['_d']).format("ddd MMM DD YYYY"));
+      //console.log((moment(e['_d']).format("ddd MMM DD YYYY")));
+      //console.log(a);
+      ///console.log(e)
+      ///console.log(e['_d'])
+      ///console.log(moment((moment(a).endOf('week'))['_d']).format("ddd MMM DD YYYY"))
+      /*for (let index = 0; index < 17; index++) {
+        let b = moment(a, "ddd MMM DD YYYY");        
+        b.add((index * 7), 'days');
+        b.format("ddd MMM DD YYYY");
+        console.log(b)
+        nuew.push(b)
+        console.log(nuew) 
+      }*/
+    //console.log(b.format("ddd MMM DD YYYY"))
+    //this.dateMulti = nuew;
+    //})*/
+    //console.log("///////////////////")
   }
 
   constructor() { }
