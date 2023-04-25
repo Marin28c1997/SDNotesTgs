@@ -1,13 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core'; 
 import { CalendarComponentOptions } from 'ion2-calendar';
 import * as moment from 'moment';
+import { Subjects} from '../models'; 
+import { FirestoreService } from '../services/firestore.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-horario',
   templateUrl: './horario.page.html',
   styleUrls: ['./horario.page.scss'],
 })
-export class HorarioPage {
+export class HorarioPage implements OnInit{
+  userId: string; 
+  Subjects: Subjects[] = []; 
+  private path = '/Subjects'; 
   dateMulti: string[];
   ab = moment().format('ddd MMM DD YYYY');
   ac = moment((moment(this.ab).endOf('week'))['_d']).format("ddd MMM DD YYYY");
@@ -72,6 +78,51 @@ export class HorarioPage {
     })
     //console.log('||||||||||||||||||||||||')
   }
+
+
+  
+getSubjectsForSemester(selectedSemester: string) {
+  if (this.userId) { // verifica si this.userId está definido
+    if (selectedSemester !== '') {
+      this.firestorageSerive.getCollection<Subjects>(
+        this.path,
+        (ref) =>
+          ref.where('userId', '==', this.userId).where('Semester', '==', selectedSemester),
+      ).subscribe((res) => {
+        if (res.length === 0) {
+          // this.presentToast('No hay materias registradas para este semestre.');
+          this.Subjects = []; 
+        } else {
+          this.Subjects = res.sort((a, b) => a.Semester.localeCompare(b.Semester));
+          console.log(this.Subjects)
+          let subdata = [];
+          this.Subjects.map(mat => {
+            let str = '';
+            let data = mat.Datat;
+            str += (moment(data)['_d']).toLocaleDateString('es-ES', {weekday:"long"}) + ' a las ' + data.split('T')[1]
+            //console.log((moment(data)['_d']).toLocaleDateString('es-ES', {weekday:"long"}))
+            subdata.push({              
+              Note: mat.Note,
+              Porcent: mat.Porcent,
+              Central: mat.Central,
+              Credits: mat.Credits,
+              Name: mat.Name,
+              Room: mat.Room,
+              Teacher: mat.Teacher,
+              userId: mat.userId,
+              id: mat.id,
+              Semester: mat.Semester,
+              Datat: str,
+            })
+          })
+          this.Subjects = subdata;
+          console.log("as",subdata)
+        }
+      });
+    } 
+  }
+}
+
   OnChange(event) {
     this.clacend();
     /*this.dateMulti.map(e => {
@@ -125,5 +176,18 @@ export class HorarioPage {
     //console.log("///////////////////")
   }
 
-  constructor() { }
+  constructor(
+    public firestorageSerive:FirestoreService,
+    private afAuth: AngularFireAuth,
+  ) { }
+
+  ngOnInit() { 
+    this.afAuth.authState.subscribe(user => { 
+      if (user) { 
+        this.userId = user.uid; 
+        this.getSubjectsForSemester("Semester");
+      } 
+    }); 
+  
+  } 
 }

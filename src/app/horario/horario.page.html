@@ -1,4 +1,21 @@
 <ion-content>
+  <ion-item fill="outline" class="semestre" style="margin-top: 80px;">
+    <ion-label position="floating" color="primary"><ion-icon name="bookmarks"></ion-icon> Semestre</ion-label>
+    <ion-select [(ngModel)]="selectedSemester" (ionChange)="getSubjectsForSemester(selectedSemester)" placeholder="Semestres">
+      <ion-select-option value="1">1</ion-select-option>
+      <ion-select-option value="2">2</ion-select-option>
+      <ion-select-option value="3">3</ion-select-option>
+      <ion-select-option value="4">4</ion-select-option>
+      <ion-select-option value="5">5</ion-select-option>
+      <ion-select-option value="6">6</ion-select-option>
+      <ion-select-option value="7">7</ion-select-option>
+      <ion-select-option value="8">8</ion-select-option>
+      <ion-select-option value="9">9</ion-select-option>
+      <ion-select-option value="10">10</ion-select-option>
+    </ion-select>
+    
+  </ion-item>
+
   <ion-grid class="my-content ion-text-center ion-justify-content-center ion-align-items-center">
     <div class="ion-padding">
       <ion-calendar [(ngModel)]="dateMulti"
@@ -16,6 +33,42 @@
       <ion-button  class="iniciar">Agregar fecha</ion-button>
     </ion-item>
   </ion-grid>
+
+  <ion-card class="card-no-border" >
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let Subjects of Subjects">
+          <ion-thumbnail slot="start">
+            <img alt="Univalle" src="assets/icon/logo.png" />
+          </ion-thumbnail>
+     
+          <ion-card-content>
+            <ion-label>Asignatura: 
+              <ion-span style="color: #E6413A;">{{Subjects.Name}}</ion-span>
+            </ion-label>
+            <ion-label>Sede: 
+              <ion-span style="color: #E6413A;">{{Subjects.Central}}</ion-span>
+            </ion-label> 
+            <ion-label>Profesor: 
+              <ion-span style="color: #E6413A;">{{Subjects.Teacher}}</ion-span>
+            </ion-label>
+            <ion-label>Salón: 
+              <ion-span style="color: #E6413A;">{{Subjects.Room}}</ion-span>
+            </ion-label>
+            <ion-label>Nota: 
+              <ion-span style="color: #E6413A;">{{(Subjects.Note == null) ? Subjects.Note : 0}}</ion-span>
+            </ion-label>
+            <ion-label>Fecha: 
+              <ion-span style="color: #E6413A;" >{{Subjects.Datat}}</ion-span>
+            </ion-label>
+            
+          </ion-card-content>
+      
+        </ion-item>           
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
   
 

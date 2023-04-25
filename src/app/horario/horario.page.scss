@@ -1,4 +1,28 @@
+/* iOS places the subtitle above the title */
+ion-card-header.ios {
+  display: flex;
+  flex-flow: column-reverse;
+}
 
+ion-fab{
+  margin-top: -4%;
+  margin-right: 4%;
+}
+ion-card {
+  border: 0;
+ box-shadow: none;
+  padding: 0;
+ }
+
+ div{
+  margin: 4%;
+ }
+
+ .semestre{
+  width: 60%;
+  margin: auto;
+  margin-top: -1.5%;
+ }
 // para dispositivos móviles
 @media only screen and (max-width: 767px) {
   .my-content {
