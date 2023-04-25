@@ -33,7 +33,7 @@ export class AsignaturaPage implements OnInit {
     this.afAuth.authState.subscribe(user => { 
       if (user) { 
         this.userName = user.displayName;
-        this.getSubjects(); 
+        //this.getSubjects(); 
         this.userId = user.uid; 
         this.getUserInfo(user); 
         this.getSubjectsForSemester("Semester");
@@ -43,16 +43,15 @@ export class AsignaturaPage implements OnInit {
   } 
 
   
-
+/*
   getSubjects(){ 
     if (this.userId) { // verifica si this.userId está definido
       this.firestorageSerive.getCollection<Subjects>(this.path, ref => ref.where('userId', '==', this.userId)).subscribe(res => { 
         this.Subjects=res;
-        console.log(res)
       }); 
     }
   } 
-
+*/
   
 getSubjectsForSemester(selectedSemester: string) {
   if (this.userId) { // verifica si this.userId está definido
@@ -92,7 +91,7 @@ getSubjectsForSemester(selectedSemester: string) {
         }
       });
     } else {
-      this.getSubjects();
+      //this.getSubjects();
     }
   }
 }
