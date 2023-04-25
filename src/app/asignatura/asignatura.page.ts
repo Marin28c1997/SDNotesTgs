@@ -140,7 +140,7 @@ getSubjectsForSemester(selectedSemester: string) {
       message:msg,
       cssClass:'normal',
       duration:2000,
-      color:"secondary"
+      color:"primary"
     });
     toast.present();
   }
