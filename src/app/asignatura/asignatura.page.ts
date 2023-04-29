@@ -71,7 +71,7 @@ getSubjectsForSemester(selectedSemester: string) {
           this.Subjects.map(mat => {
             let str = '';
             let data = mat.Datat;
-            str += (moment(data)['_d']).toLocaleDateString('es-ES', {weekday:"long"}) + ' a las ' + data.split('T')[1]
+            str += (moment(data)['_d']).toLocaleDateString('es-ES', {weekday:"long", }) + ' a las ' + data.split('T')[1]
             //console.log((moment(data)['_d']).toLocaleDateString('es-ES', {weekday:"long"}))
             subdata.push({              
               Note: mat.Note,

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core'; 
+import { Component, OnInit } from '@angular/core';
 import { CalendarComponentOptions } from 'ion2-calendar';
 import * as moment from 'moment';
-import { Subjects} from '../models'; 
+import { Subjects } from '../models';
 import { FirestoreService } from '../services/firestore.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
@@ -10,15 +10,16 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
   templateUrl: './horario.page.html',
   styleUrls: ['./horario.page.scss'],
 })
-export class HorarioPage implements OnInit{
-  userId: string; 
-  Subjects: Subjects[] = []; 
-  private path = '/Subjects'; 
+export class HorarioPage implements OnInit {
+  userId: string;
+  Subjects: Subjects[] = [];
+  private path = '/Subjects';
   dateMulti: string[];
-  ab = moment().format('ddd MMM DD YYYY');
-  ac = moment((moment(this.ab).endOf('week'))['_d']).format("ddd MMM DD YYYY");
+  fecactual = moment().format('ddd MMM DD YYYY');
+  ac = moment((moment(this.fecactual).endOf('week'))['_d']).format("ddd MMM DD YYYY");
   wk = [];
-  tx = '';
+  show = [];
+  str = '';
   type: 'string';
   optionsMulti: CalendarComponentOptions = {
     pickMode: 'multi',
@@ -42,17 +43,19 @@ export class HorarioPage implements OnInit{
     this.dateMulti = n
     console.log(this.dateMulti)*/
     this.clacend();
-    
+
   }
+
   clacend() {
-    this.tx = '';
+    this.show = [];
+    this.str = '';
     this.wk = [];
     let a = moment(this.ac, "ddd MMM DD YYYY");
     a.add(1, 'days');
     let as = (moment(a['_d']).format("ddd MMM DD YYYY"));
     let au = true;
     for (let index = 0; index < 7; index++) {
-      let b = moment(this.ab, "ddd MMM DD YYYY");
+      let b = moment(this.fecactual, "ddd MMM DD YYYY");
       b.add(index, 'days');
       b.format("ddd MMM DD YYYY");
       let c = (moment(b['_d']).format("ddd MMM DD YYYY"));
@@ -73,71 +76,73 @@ export class HorarioPage implements OnInit{
         let te = (el.Datat.split('---')[1]);
         if (tt == te) {
           newdate.push(moment(tt))
-          this.tx += '\n' + tt.substring(4, 0) + ' día:' + tt.substring(7, 10)
+          this.show.push(el);
+          this.str += '\n' + tt.substring(4, 0) + ' día:' + tt.substring(7, 10)
         }
       })
       //console.log('- '+tt);
-      //console.log('-- '+this.tx)
+      //console.log('-- '+this.str)
     })
+    console.log(this.str)
     this.dateMulti = newdate;
-    let nuew = []
+    /*let nuew = []
     this.dateMulti.map(e => {
       let a = (moment(e['_d']).format("ddd MMM DD YYYY"));
       for (let index = 0; index < 17; index++) {
-        let b = moment(a, "ddd MMM DD YYYY");        
+        let b = moment(a, "ddd MMM DD YYYY");
         b.add((index * 7), 'days');
         b.format("ddd MMM DD YYYY");
         nuew.push(b)
       }
     })
-    this.dateMulti = nuew;
+    this.dateMulti = nuew;*/
 
     //console.log('||||||||||||||||||||||||')
   }
 
 
-  
-getSubjectsForSemester(selectedSemester: string) {
-  if (this.userId) { // verifica si this.userId está definido
-    if (selectedSemester !== '') {
-      this.firestorageSerive.getCollection<Subjects>(
-        this.path,
-        (ref) =>
-          ref.where('userId', '==', this.userId).where('Semester', '==', selectedSemester),
-      ).subscribe((res) => {
-        if (res.length === 0) {
-          // this.presentToast('No hay materias registradas para este semestre.');
-          this.Subjects = []; 
-        } else {
-          this.Subjects = res.sort((a, b) => a.Semester.localeCompare(b.Semester));
-          console.log(this.Subjects)
-          let subdata = [];
-          this.Subjects.map(mat => {
-            let str = '';
-            let data = mat.Datat;
-            str += (moment(data)['_d']).toLocaleDateString('es-ES', {weekday:"long"}) + ' a las ' + data.split('T')[1]
-            //console.log((moment(data)['_d']).toLocaleDateString('es-ES', {weekday:"long"}))
-            subdata.push({              
-              Note: mat.Note,
-              Porcent: mat.Porcent,
-              Central: mat.Central,
-              Credits: mat.Credits,
-              Name: mat.Name,
-              Room: mat.Room,
-              Teacher: mat.Teacher,
-              userId: mat.userId,
-              id: mat.id,
-              Semester: mat.Semester,
-              Datat: str + '---' + moment(mat.Datat).format("ddd MMM DD YYYY"),
+
+  getSubjectsForSemester(selectedSemester: string) {
+    if (this.userId) { // verifica si this.userId está definido
+      if (selectedSemester !== '') {
+        this.firestorageSerive.getCollection<Subjects>(
+          this.path,
+          (ref) =>
+            ref.where('userId', '==', this.userId).where('Semester', '==', selectedSemester),
+        ).subscribe((res) => {
+          if (res.length === 0) {
+            // this.presentToast('No hay materias registradas para este semestre.');
+            this.Subjects = [];
+          } else {
+            this.Subjects = res.sort((a, b) => a.Semester.localeCompare(b.Semester));
+            console.log(this.Subjects)
+            let subdata = [];
+            this.Subjects.map(mat => {
+              let str = '';
+              let data = mat.Datat;
+              str += (moment(data)['_d']).toLocaleDateString('es-ES', { weekday: "long" }) + ' a las ' + data.split('T')[1]
+              //console.log((moment(data)['_d']).toLocaleDateString('es-ES', {weekday:"long"}))
+              subdata.push({
+                Note: mat.Note,
+                Porcent: mat.Porcent,
+                Central: mat.Central,
+                Credits: mat.Credits,
+                Name: mat.Name,
+                Room: mat.Room,
+                Teacher: mat.Teacher,
+                userId: mat.userId,
+                id: mat.id,
+                Semester: mat.Semester,
+                Datat: str + '---' + moment(mat.Datat).format("ddd MMM DD YYYY"),
+              })
             })
-          })
-          this.Subjects = subdata;
-          this.clacend();
-        }
-      });
-    } 
+            this.Subjects = subdata;
+            this.clacend();
+          }
+        });
+      }
+    }
   }
-}
 
   OnChange() {
     //console.log('JIR')
@@ -146,7 +151,7 @@ getSubjectsForSemester(selectedSemester: string) {
       console.log(e)
     })*/
     /*console.log('.....')
-    console.log(this.ab)
+    console.log(this.fecactual)
     console.log(this.ac)
     console.log('.....')
     let nuew = [];
@@ -194,17 +199,17 @@ getSubjectsForSemester(selectedSemester: string) {
   }
 
   constructor(
-    public firestorageSerive:FirestoreService,
+    public firestorageSerive: FirestoreService,
     private afAuth: AngularFireAuth,
   ) { }
 
-  ngOnInit() { 
-    this.afAuth.authState.subscribe(user => { 
-      if (user) { 
-        this.userId = user.uid; 
+  ngOnInit() {
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.userId = user.uid;
         this.getSubjectsForSemester("Semester");
-      } 
-    }); 
-  
-  } 
+      }
+    });
+
+  }
 }
