@@ -8,7 +8,6 @@ import {
 import { AlertController, NavController } from '@ionic/angular';
 import { Google, User } from '../models';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import firebase from 'firebase/compat/app';
 import { FirebaseauthService } from '../services/firebaseauth.service';
 import { FirestoreService } from '../services/firestore.service';
 

@@ -33,7 +33,7 @@ ion-item {
   height: 40%;
   background:transparent; 
   margin-top: 80px;
-  margin-bottom: 5%;
+  margin-bottom: 3%;
   border: 1px solid rgb(159, 159, 159);
   border-radius: 8px;
 }
@@ -46,7 +46,7 @@ ion-item {
   margin: auto;
   border-color: #E6413A;
   border-width: 8px;
-  margin-top: 5%;
+  margin-top: 2.5%;
   border: 1px solid rgb(159, 159, 159);
   border-radius: 5px;
   border-bottom: 1px solid #E6413A;
@@ -54,15 +54,15 @@ ion-item {
 }
 
 .ic{
-  margin-top: 1%;
   color: #E6413A;
 }
 
 .registrar{
   background: transparent;
-  width: 30%;
+  width: 20%;
+  height: 50px;
   margin: auto;
-  margin-top: 2%;
+  margin-top: 4%;
   --border-color: transparent;
   display: flex;
   justify-content: center;

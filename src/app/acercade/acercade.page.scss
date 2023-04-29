@@ -4,84 +4,20 @@ ion-img {
     height: 50px;
   }
   
-  /* iOS places the subtitle above the title */
-ion-card {
-    margin: 8%;
-    margin-bottom: 7%;
-}
-
-
-  .wrapper {
-    flex-wrap: wrap;
-    width: 400px;
-    margin-right: 100px;
-  }
-  
-  
-  .ripple-parent {
+ 
+  ion-content {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid #ddd;
-    user-select: none;
-  }
-  
-  .rounded-rectangle{
-    width: 70%;
-    height: 50px;
-    border-radius: 5px;
-    background: rgb(142, 223, 142);
-  }
-
-    // para dispositivos móviles
-@media only screen and (max-width: 767px) {
-  .my-content {
-    margin-top: 14%; // ajuste según sea necesario
-    background: #E6413A; 
-  }
-  .wrapper {
-    flex-wrap: wrap;
-    width: 150px;
-    margin-right: -20px;
-  }
-  
-  
-  .ripple-parent {
-    display: flex;
     align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid #ddd;
-    user-select: none;
+    height: 100%;
+  }
+ 
+  p{
+    text-align: justify;
+  }
+
+  h1, h2, h3 {
+    margin-bottom: 0;
   }
   
-  .rounded-rectangle{
-    width: 70%;
-    height: 40px;
-    border-radius: 5px;
-    background: rgb(142, 223, 142);
-  }
-  .cardss{
-    margin-bottom: 22%;
-  }
-}
-
-// para tabletas
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  .my-content {
-    margin-top: 7%; // ajuste según sea necesario
-    background: #E6413A; 
-  }
-}
-
-// para pantallas más grandes (PC)
-@media only screen and (min-width: 992px) {
-  .my-content {
-    margin-top: 7%; // ajuste según sea necesario
-    background: #E6413A; 
-  }
-}
-
