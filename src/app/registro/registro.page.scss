@@ -10,6 +10,10 @@ ion-img {
   height: 50px;
 }
 
+ion-toolbar{
+  --background: #E6413A;
+  color: white;
+}
 
 .text1{
   text-align: center;
@@ -32,7 +36,7 @@ ion-item {
   margin: auto;
   height: 40%;
   background:transparent; 
-  margin-top: 80px;
+  margin-top: 2%;
   margin-bottom: 3%;
   border: 1px solid rgb(159, 159, 159);
   border-radius: 8px;
@@ -68,5 +72,19 @@ ion-item {
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-bottom: 5%;
+  margin-bottom: 2%;
 }
+
+@media (prefers-color-scheme: dark) {
+  ion-item {
+    --background: transparent;
+  }
+  .text, .text1{
+    color: #E6413A;
+  }
+  .registrar, ion-toolbar{
+    --background: #E6413A;
+  }
+
+}
+

@@ -26,13 +26,35 @@ ion-menu::part(container) {
     --ion-background-label: #fff;
   }
   
-  .dark ion-label, .dark ion-content, .dark h2, .dark ion-title, .dark ion-icon,.dark ion-input {
-    color:#E6413A;
+  .dark ion-title, .dark ion-label, .dark ion-icon,  .dark ion-content, .dark h2,.dark ion-input{
+    color: #fff;
   }
-  
   .textI{
     margin-right: 70%;
   }
   .textIz{
     margin-right: 55%;
+  }
+
+  ion-button,ion-toolbar, ion-title{
+    --background:#E6413A;
+    color:white
+  }
+  ion-tab-bar, ion-tab-button{
+    background:#E6413A;
+    color: #fff;
+  }
+  
+
+  @media (prefers-color-scheme: dark) {
+    ion-list, ion-card, ion-card-content{
+      --background:red;
+      border-radius: 10px;
+    }
+
+    
+    ion-list, ion-card, ion-card-content{
+      --background:red;
+      border-radius: 10px;
+    }
   }

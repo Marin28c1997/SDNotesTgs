@@ -13,6 +13,14 @@ export class FirebaseauthService {
     this.getUid()
   }
 
+async resetPassword(email:string):Promise<void>{
+  try {
+    return this.auth.sendPasswordResetEmail(email)
+  } catch (error) {
+    alert("Hubo un error")
+  }
+}
+
   async login(email: string, password: string) {
     try {
       await this.auth.signInWithEmailAndPassword(email, password);

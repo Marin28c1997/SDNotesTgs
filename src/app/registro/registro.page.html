@@ -1,5 +1,5 @@
-<ion-header>
-  <ion-toolbar color="primary">
+<ion-header class="head">
+  <ion-toolbar class="head">
     <ion-buttons slot="start">
       <ion-back-button>
       <ion-icon name="back"></ion-icon>
@@ -22,21 +22,21 @@
       <h2 class="ic">____________ Or _____________</h2>
     </ion-label>
   
-    <ion-item class="inp" >
+    <ion-item class="inp" fill="outline">
     <ion-label position="floating">
       Nombre de usuario:
     </ion-label>
     <ion-input [(ngModel)]="login.usuario"  class="normal" type=" text"  inputmode=" text" placeholder=" Usuario o correo electrónico"> <ion-icon name="person"></ion-icon></ion-input>
   </ion-item>
 
-  <ion-item class="inp">
+  <ion-item class="inp" fill="outline">
     <ion-label  position="floating">
       Correo Electrónico:
     </ion-label>
     <ion-input [(ngModel)]="login.email" class="normal" type="email" inputmode=" text"  placeholder=" Correo electrónico"> <ion-icon name="mail"></ion-icon></ion-input>
   </ion-item>
 
-  <ion-item class="inp">
+  <ion-item class="inp" fill="outline">
     <ion-label  position="floating">
       Contraseña:
     </ion-label>
@@ -45,7 +45,7 @@
     ></ion-icon>
   </ion-item>
 
-  <ion-item class="inp" >
+  <ion-item class="inp" fill="outline">
     <ion-label  position="floating">
       Confirmar contraseña:
     </ion-label>

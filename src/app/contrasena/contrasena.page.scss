@@ -50,3 +50,11 @@
   @media only screen and (min-width: 992px) {
   }
   
+  @media (prefers-color-scheme: dark) {
+    ion-item {
+      --background: transparent;
+    }
+    .text, .text1{
+      color: #E6413A;
+    }
+  }

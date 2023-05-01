@@ -19,3 +19,11 @@
     }
   }
   
+
+  @media (prefers-color-scheme: dark) {
+    ion-button, ion-icon{
+      --background:#E6413A;
+      border-radius: 10px;
+    }
+
+  }
