@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "71405197754",
+    "firebase_url": "https://sdnotesi-default-rtdb.firebaseio.com",
+    "project_id": "sdnotesi",
+    "storage_bucket": "sdnotesi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71405197754:android:698529d364a328dfb6a583",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71405197754-h569scocea9q3s9mk34spsugr3e8ko20.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAhywS937VF0-jDVhv_0ELptxHj_n5i8M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71405197754-1jg5bcjvqq7ovn81v6so0jtkam2fq3nq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -6,6 +6,36 @@ import firebase from 'firebase/compat/app';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 import * as moment from 'moment';
 
+import {
+  ActionPerformed,
+  PushNotificationSchema,
+  PushNotifications,
+  Token,
+} from '@capacitor/push-notifications';
+
+PushNotifications.requestPermissions().then((result) => {
+  if (result.receive === 'granted') {
+     PushNotifications.register();
+   } else {
+     // Show some error
+   }
+});
+
+PushNotifications.addListener('registration', (token: Token) => {
+  // Push Notifications registered successfully.
+  // Send token details to API to keep in DB.
+});
+
+PushNotifications.addListener('registrationError', (error: any) => {
+  // Handle push notification registration error here.
+});
+
+PushNotifications.addListener( 
+  'pushNotificationActionPerformed', 
+  (notification: ActionPerformed ) => { 
+   // Tome las medidas necesarias al tocar la notificación
+   } 
+);
 
 @Component({ 
   selector: 'app-asignatura', 
@@ -33,25 +63,57 @@ export class AsignaturaPage implements OnInit {
     this.afAuth.authState.subscribe(user => { 
       if (user) { 
         this.userName = user.displayName;
-        //this.getSubjects(); 
+        this.getSubjects(); 
         this.userId = user.uid; 
         this.getUserInfo(user); 
         this.getSubjectsForSemester("Semester");
       } 
+       PushNotifications.requestPermissions().then((result) => {
+      if (result.receive === 'granted') {
+        PushNotifications.register();
+      } else {
+        // Show some error
+      }
+    });
+
+    PushNotifications.addListener('registration', (token: Token) => {
+      // Push Notifications registered successfully.
+      // Send token details to API to keep in DB.
+    });
+
+    PushNotifications.addListener('registrationError', (error: any) => {
+      // Handle push notification registration error here.
+    });
+
+    PushNotifications.addListener(
+      'pushNotificationReceived',
+      (notification: PushNotificationSchema) => {
+        // Show the notification payload if the app is open on the device.
+      }
+    );
+
+    PushNotifications.addListener(
+      'pushNotificationActionPerformed',
+      (notification: ActionPerformed) => {
+        // Implement the needed action to take when user tap on a notification.
+      }
+    );
+  
     }); 
   
   } 
 
   
-/*
+
   getSubjects(){ 
     if (this.userId) { // verifica si this.userId está definido
       this.firestorageSerive.getCollection<Subjects>(this.path, ref => ref.where('userId', '==', this.userId)).subscribe(res => { 
         this.Subjects=res;
+        console.log(res)
       }); 
     }
   } 
-*/
+
   
 getSubjectsForSemester(selectedSemester: string) {
   if (this.userId) { // verifica si this.userId está definido
@@ -71,7 +133,7 @@ getSubjectsForSemester(selectedSemester: string) {
           this.Subjects.map(mat => {
             let str = '';
             let data = mat.Datat;
-            str += (moment(data)['_d']).toLocaleDateString('es-ES', {weekday:"long", }) + ' a las ' + data.split('T')[1]
+            str += (moment(data)['_d']).toLocaleDateString('es-ES', {weekday:"long"}) + ' a las ' + data.split('T')[1]
             //console.log((moment(data)['_d']).toLocaleDateString('es-ES', {weekday:"long"}))
             subdata.push({              
               Note: mat.Note,
@@ -91,7 +153,7 @@ getSubjectsForSemester(selectedSemester: string) {
         }
       });
     } else {
-      //this.getSubjects();
+      this.getSubjects();
     }
   }
 }

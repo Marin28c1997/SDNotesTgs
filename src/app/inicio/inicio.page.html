@@ -7,20 +7,20 @@
           <ion-col size="4">
             Notas
             <ion-input placeholder="Nota" class="custom" [(ngModel)]="nota.nota"   type="number">
-              <ion-icon name="create-outline" color="primary"></ion-icon>
+              <ion-icon name="create-outline" style="color: #E6413A;"></ion-icon>
             </ion-input>
           </ion-col>
           <ion-col size="4">
             Porcentaje % 
             <ion-input placeholder="porcentaje" class="custom" [(ngModel)]="nota.porcentaje" pattern="[0-9]{3}" type="text" maxlength="3">
-              <ion-icon name="calculator-outline" color="primary"></ion-icon>
+              <ion-icon name="calculator-outline" style="color: #E6413A;"></ion-icon>
              
             </ion-input>
           </ion-col>
           <ion-col size="4">
-            Eliminar Nota
-            <ion-button color="danger" fill="clear" (click)="eliminarNota(i)">
-              <ion-icon name="trash-outline"></ion-icon>
+            Eliminar Nota <br>
+            <ion-button  fill="clear" (click)="eliminarNota(i)">
+              <ion-icon name="trash-outline" style="color: #E6413A;"></ion-icon>
             </ion-button>
           </ion-col>
         </ion-row>

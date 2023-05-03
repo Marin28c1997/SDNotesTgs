@@ -1,16 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
+
 } from '@angular/forms';
-import { async } from '@firebase/util';
 import { AlertController, NavController } from '@ionic/angular';
-import { User } from '../models';
 import { FirebaseauthService } from '../services/firebaseauth.service';
 import { FirestoreService } from '../services/firestore.service';
-import Swal from 'sweetalert2';
+import { Google, User } from '../models';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
 @Component({
@@ -38,6 +35,7 @@ export class RegistroPage implements OnInit {
     public navegacion: NavController,
     public firebaseauthService: FirebaseauthService,
     public firestoreService: FirestoreService,
+    private afAuth: AngularFireAuth
   ) {
    
   }
@@ -55,8 +53,7 @@ export class RegistroPage implements OnInit {
       password: this.login.password,
     };
 
-    if ((this.login.email && this.login.password && this.login.usuario && this.login.confirpassword
-    )=== '') {
+    if (this.login.email.trim() === '' || this.login.password.trim() === '' || this.login.usuario.trim() === '' || this.login.confirpassword.trim() === '') {
       const alert = await this.alertController.create({
         header: 'Error',
         message: 'Debe llenar todos los campos',
@@ -98,7 +95,17 @@ export class RegistroPage implements OnInit {
         return;
       }
 
-
+      const emailExistente = await this.firebaseauthService.verificarEmailExistente(credenciales.email);
+      if (emailExistente) {
+        const alert = await this.alertController.create({
+          header: 'Error de correo',
+          message: 'Este correo electrónico ya está registrado',
+          buttons: ['OK']
+        });
+        await alert.present();
+        return;
+      }
+    
     const res = await this.firebaseauthService
       .registrar(credenciales.email, credenciales.password)
       .catch((err) => {
@@ -113,14 +120,24 @@ export class RegistroPage implements OnInit {
     const alerts = await this.alertController.create({
       header: 'Felicidades',
       message: 'Usuario creado exitosamente',
-      buttons: ['OK']
+      buttons: [{
+        text: 'OK',
+        handler: () => {
+          this.navegacion.navigateRoot('/tabs'); // Reemplaza "/tabs" con la ruta de tu página de inicio
+        }
+      }]
     });
+
+    
     await alerts.present();
     this.login.uid= '';
     this.login.email= '';
     this.login.password= '';
     this.login.confirpassword= '';
     this.login.usuario= '';
+    
+     // Reemplaza "/home" con la ruta de tu página de inicio
+    
   }
 
   async guardarUser() {
@@ -130,7 +147,6 @@ export class RegistroPage implements OnInit {
     this.firestoreService.creatDoc(this.login, path, this.login.uid)
       // .creatDoc(this.login, path, this.uid)
       .then((res) => {
-        console.log('guardado');
       })
       .catch((error) => { });
   }
@@ -156,4 +172,46 @@ export class RegistroPage implements OnInit {
       this.passwordToggleIcon = 'eye';
     }
   }
+
+
+  async loginGoogles() {
+    try{
+      await this.firebaseauthService.loginGoogle();
+      
+      // Obtiene la instancia de FirebaseAuth
+      const auth = this.afAuth;
+      
+      // Obtiene información sobre el usuario actualmente autenticado
+      const currentUser = auth.currentUser;
+      
+      // Verifica si el usuario está autenticado y si su correo electrónico termina en "correounivalle.edu.co"
+      if (currentUser && (await currentUser).email.endsWith('correounivalle.edu.co')) {
+        
+           const user: Google = {
+            uid: (await currentUser).uid,
+            email: (await currentUser).email,
+            usuario: (await currentUser).displayName,
+            photoURL: (await currentUser).photoURL
+          };
+          await this.firestoreService.creatDoc(user, 'Users', user.uid);
+        this.navegacion.navigateRoot('tabs');
+      } else {
+        await this.firebaseauthService.logout();
+        const alert = await this.alertController.create({
+          header: 'Error',
+          message: 'Solo se permiten usuarios con correo de correounivalle.edu.co',
+          buttons: ['OK']
+        });
+        await alert.present();
+      }
+    } catch(error) {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'No se pudo iniciar sesión con Google',
+        buttons: ['OK']
+      });
+      await alert.present();
+    }
+  }
+
 }

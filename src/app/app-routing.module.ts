@@ -35,7 +35,11 @@ const routes: Routes = [
   {
     path: 'editar/:id/:Name/:Central/:Teacher/:Room/:Credits/:Semester',
     loadChildren: () => import('./editar/editar.module').then( m => m.EditarPageModule)
+  },  {
+    path: 'acercade',
+    loadChildren: () => import('./acercade/acercade.module').then( m => m.AcercadePageModule)
   },
+
 
 
 ];

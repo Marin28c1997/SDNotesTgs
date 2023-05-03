@@ -1,10 +1,13 @@
-
-ion-content {
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
+.my-content {
+  border-radius: 5px;
+  margin-top: 20%;
 }
-
+ion-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 /* iOS places the subtitle above the title */
 ion-card-header.ios {
   display: flex;
@@ -21,6 +24,7 @@ ion-img {
 ion-item {
   --border-width: 0;
   --border-style: none;
+  background-color: transparent;
 }
 
 .text, .text1{
@@ -34,7 +38,7 @@ ion-item {
   height: 45%;
   margin: auto;
   border-color: #E6413A;
-  border-width: 8px;
+  border-width: 80px;
   border: 1px solid rgb(159, 159, 159);
   border-radius: 5px;
   border-bottom: 1px solid #E6413A;
@@ -123,5 +127,15 @@ ion-item {
 @media only screen and (min-width: 992px) {
   .my-content {
     border-radius: 5px;
+    margin-top: 2.5%;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  ion-item {
+    --background: transparent;
+  }
+  .text, .text1{
+    color: #E6413A;
   }
 }

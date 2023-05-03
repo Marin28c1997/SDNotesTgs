@@ -13,6 +13,14 @@ export class FirebaseauthService {
     this.getUid()
   }
 
+async resetPassword(email:string):Promise<void>{
+  try {
+    return this.auth.sendPasswordResetEmail(email)
+  } catch (error) {
+    alert("Hubo un error")
+  }
+}
+
   async login(email: string, password: string) {
     try {
       await this.auth.signInWithEmailAndPassword(email, password);
@@ -67,57 +75,25 @@ export class FirebaseauthService {
   stateAuth() {
     return this.auth.authState;
   }
+
+
+  async verificarEmailExistente(email: string) {
+    try {
+      const result = await this.auth.fetchSignInMethodsForEmail(email);
+      if (result.length > 0) {
+        // El correo electrónico ya está registrado en Firebase
+        return true;
+      } else {
+        // El correo electrónico no está registrado en Firebase
+        return false;
+      }
+    } catch (error) {
+      console.log(error);
+      return false; // return false en caso de error
+    }
+  }
+  
 }
 
 
-
-// import { Injectable } from '@angular/core';
-// import { AngularFireAuth } from '@angular/fire/compat/auth';
-
-// import firebase from 'firebase/compat/app';
-// import 'firebase/compat/auth';
-// import 'firebase/compat/database';
-
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class FirebaseauthService {
-//   constructor(public auth: AngularFireAuth, ) {
-//     this.getUid();
-//   }
-
-//   login(email: string, password: string) {
-//     return this.auth.signInWithEmailAndPassword(email, password);
-//   }
-//   logout() {
-//     return this.auth.signOut();
-//   }
-
-//   registrar(email: string, password: string) {
-//     return this.auth.createUserWithEmailAndPassword(email, password);
-//   }
-
-//   async loginGoogle() {
-//     try {
-//       return this.auth.signInWithPopup(
-//         new firebase.auth.GoogleAuthProvider()
-//       );
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
-
-//   async getUid() {
-//     const user = await this.auth.currentUser;
-//     if (user === null) {
-//       return null;
-//     } else {
-//       return user.uid;
-//     }
-//   }
-
-//   stateAuth() {
-//     return this.auth.authState;
-//   }
-// }
 

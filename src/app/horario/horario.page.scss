@@ -63,3 +63,11 @@ ion-card {
     padding: 20px 15px;
   }
 }
+
+
+@media (prefers-color-scheme: dark) {
+  ion-list, ion-card, ion-card-content{
+    background:transparent;
+    border-radius: 10px;
+  }
+}

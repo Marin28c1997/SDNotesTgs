@@ -1,7 +1,7 @@
 <ion-content [class]="isDarkMode ? 'dark' : ''">
   <ion-menu contentId="main-content">
     <ion-header [class]="isDarkMode ? 'dark' : ''">
-      <ion-toolbar color="primary">
+      <ion-toolbar>
         <ion-title>Menu Content</ion-title>
       </ion-toolbar>
     </ion-header>
@@ -19,11 +19,7 @@
         <ion-item lines="none">
           <ion-label class="ion-text-center" color="primary">{{ user?.displayName || userName}}</ion-label>
         </ion-item>
-        <ion-button routerLink="/login" expand="block">
-          <ion-icon name="share-social"></ion-icon>
-          <span class="textIz">Compartir</span>
-        </ion-button>
-        <ion-button routerLink="/registro" expand="block">
+        <ion-button routerLink="/acercade" expand="block">
           <ion-icon name="information-circle" slot="start"></ion-icon>
           <span class="textIz">Acerca de</span>
         </ion-button>
@@ -44,7 +40,7 @@
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
       <ion-title color="primary">SDNotes</ion-title>
-      <ion-icon slot="end" name="moon-sharp" color="primary"></ion-icon>
+      <ion-icon slot="end" name="moon-sharp"></ion-icon>
       <ion-toggle slot="end" [(ngModel)]="isDarkMode" (ionChange)="toggleDarkMode()"></ion-toggle>
     </ion-toolbar>
   </ion-header>
@@ -52,7 +48,7 @@
 
 
   <ion-tabs>
-    <ion-tab-bar slot="bottom" color="primary">
+    <ion-tab-bar slot="bottom">
 
       <ion-tab-button tab="asignatura">
         <ion-icon name="school"></ion-icon>

@@ -4,6 +4,7 @@
 
     <ion-label class="text">
       <h1><b> Studen Daily Notes</b></h1>
+      <br>
     </ion-label>
     <ion-label class="text1">
       <h2>¡Bienvenidos!</h2>
@@ -25,32 +26,28 @@
 
     </ion-item>
 
-    <ion-item>
-      <ion-button class="btnOlv" fill="clear" [routerLink]="['/contrasena']">Olvidé contraseña</ion-button>
-    </ion-item>
+      <ion-item>
+        <ion-button class="btnOlv" fill="clear" [routerLink]="['/contrasena']">Olvidé contraseña</ion-button>
+      </ion-item>
 
-    <ion-item>
-      <ion-button (click)="iniciarSesion()" class="iniciar">Iniciar sesion</ion-button>
-    </ion-item>
-    <ion-label class="text1">
-      <h2>O conectate usando</h2>
-    </ion-label>
-    <ion-item>
-      <ion-button (click)="loginGoogles()" class="goo" fill="clear">
-        <ion-img class="google" src="assets/icon/google.png " alt="logo"> </ion-img> Sign in with Google
-      </ion-button>
-    </ion-item>
-
-
-    <ion-item>
-      <label class="registro">¿Aún no tiene cuenta?<ion-button [routerLink]="['/registro']" fill="clear"
-          class="btnOlvs">
-          Registrarse</ion-button> </label>
-
-    </ion-item>
+      <ion-item>
+        <ion-button (click)="iniciarSesion()" class="iniciar">Iniciar sesion</ion-button>
+      </ion-item>
+      <ion-label class="text1">
+        <h2>O conectate usando</h2>
+      </ion-label>
+      <ion-item>
+        <ion-button (click)="loginGoogles()" class="goo" fill="clear">
+          <ion-img class="google" src="assets/icon/google.png " alt="logo"> </ion-img> Sign in with Google
+        </ion-button>
+      </ion-item>
 
 
+      <ion-item>
+        <label class="registro">¿Aún no tiene cuenta?<ion-button [routerLink]="['/registro']" fill="clear"
+            class="btnOlvs">
+            Registrarse</ion-button> </label>
 
-
+      </ion-item>
   </div>
 </ion-content>
