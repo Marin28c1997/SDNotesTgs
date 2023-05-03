@@ -17,8 +17,22 @@ ion-card {
  div{
   margin: 4%;
  }
+ 
+ 
+// .calen {
+  // color: green !important;
+  // background: rgb(230, 65, 58,0.1);
+  // margin-top: -40px;
+  // border-radius: 20px;
+// }
 
- .semestre{
+.calen {
+    background: rgb(230, 65, 58,0.1);
+    margin-top: -40px;
+    border-radius: 20px;
+}
+
+.semestre{
   width: 60%;
   margin: auto;
   margin-top: -1.5%;
