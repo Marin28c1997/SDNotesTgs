@@ -19,7 +19,7 @@
         </ion-card-title>
         <ion-card-subtitle><ion-item fill="outline">
           <ion-label position="floating" color="primary"><ion-icon name="bookmarks"></ion-icon> Semestre *</ion-label>
-          <ion-select placeholder="Selecciona un semestre" [(ngModel)]="newSubjects.Semester">
+          <ion-select placeholder="Selecciona un semestre" [(ngModel)]="newSubjects.Semester" color="primary">
             <ion-select-option value="1">1</ion-select-option>
             <ion-select-option value="2">2</ion-select-option>
             <ion-select-option value="3">3</ion-select-option>
@@ -34,19 +34,23 @@
         </ion-item></ion-card-subtitle>
         <ion-card-subtitle><ion-item fill="outline">
             <ion-label position="floating" color="primary"><ion-icon name="book"></ion-icon> Nombre de la asignatura *</ion-label>
-            <ion-input [(ngModel)]="newSubjects.Name" placeholder="Asignatura" required></ion-input>
+            <ion-input [(ngModel)]="newSubjects.Name" placeholder="Asignatura" required color="primary"></ion-input>
           </ion-item></ion-card-subtitle>
         <ion-card-subtitle><ion-item fill="outline">
             <ion-label position="floating" color="primary"><ion-icon name="person-circle"></ion-icon> Nombre del profesor * </ion-label>
-            <ion-input [(ngModel)]="newSubjects.Teacher" placeholder="Profesor"></ion-input>
+            <ion-input [(ngModel)]="newSubjects.Teacher" placeholder="Profesor" color="primary"></ion-input>
           </ion-item></ion-card-subtitle>
+          <ion-card-subtitle><ion-item fill="outline">
+              <ion-label position="floating" color="primary">Ingrese una fecha *</ion-label>
+              <ion-input [(ngModel)]="newSubjects.Datat" type="datetime-local" color="primary" [min]="today" placeholder="Fecha"></ion-input>
+            </ion-item></ion-card-subtitle>
         <ion-card-subtitle><ion-item fill="outline">
             <ion-label position="floating" color="primary"><ion-icon name="home"></ion-icon> Salón de clase</ion-label>
-            <ion-input [(ngModel)]="newSubjects.Room" placeholder="Salón" type="number"></ion-input>
+            <ion-input [(ngModel)]="newSubjects.Room" placeholder="Salón" type="number" color="primary"></ion-input>
           </ion-item></ion-card-subtitle>
-        <ion-card-subtitle><ion-item fill="outline">
+        <ion-card-subtitle><ion-item fill="outline" >
             <ion-label position="floating" color="primary"><ion-icon name="location"></ion-icon> Sede</ion-label>
-            <ion-select placeholder="Selecciona una sede" [(ngModel)]="newSubjects.Central">
+            <ion-select placeholder="Selecciona una sede" [(ngModel)]="newSubjects.Central" color="primary">
               <ion-select-option value="Villa">Villa</ion-select-option>
               <ion-select-option value="Príncipe">Príncipe</ion-select-option>
               <ion-select-option value="Victoria">Victoria</ion-select-option>
@@ -55,11 +59,7 @@
       
       <ion-card-subtitle><ion-item fill="outline">
           <ion-label position="floating" color="primary"><ion-icon name="time"></ion-icon> Créditos</ion-label>
-          <ion-input [(ngModel)]="newSubjects.Credits" placeholder="Créditos/Intensidad horaria" type="number"></ion-input>
-        </ion-item></ion-card-subtitle>
-
-        <ion-card-subtitle><ion-item fill="outline">
-          <ion-input [(ngModel)]="newSubjects.Datat" type="datetime-local" color="primary" [min]="today"></ion-input>
+          <ion-input [(ngModel)]="newSubjects.Credits" color="primary" placeholder="Créditos/Intensidad horaria" type="number"></ion-input>
         </ion-item></ion-card-subtitle>
 
       </ion-card-header>
@@ -85,7 +85,7 @@
               </ion-col>
               
         <ion-col size="2">
-          Eliminar Nota
+          Eliminar Nota<br>
           <ion-button color="danger" fill="clear" (click)="eliminarNota(i)">
             <ion-icon name="trash-outline"></ion-icon>
           </ion-button>

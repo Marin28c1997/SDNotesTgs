@@ -80,7 +80,7 @@ export class AgregarPage implements OnInit {
   async guardarAsig() {
 
     // Verificar si los campos obligatorios están completos
-    if (!this.newSubjects.Name || !this.newSubjects.Teacher || !this.newSubjects.Semester) {
+    if (!this.newSubjects.Name || !this.newSubjects.Teacher || !this.newSubjects.Semester || !this.newSubjects.Datat) {
       this.presentAlert('Error', 'Por favor complete todos los campos obligatorios marcados con *.');
       return;
     }
