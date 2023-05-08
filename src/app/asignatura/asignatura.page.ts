@@ -70,14 +70,14 @@ PushNotifications.addListener(
 export class AsignaturaPage implements OnInit {
 
   //////////////////////
-  eva(){
+  /*eva(){
     this.localNotifications.schedule({
       id: 1,
       title: 'Hello',
       text: 'World',
 
     })
-  }
+  }*/
   /////////////////////
   userId: string;
   userName: string
@@ -91,7 +91,7 @@ export class AsignaturaPage implements OnInit {
     public alertController: AlertController,
     public loadingController: LoadingController,
     public toastController: ToastController,
-    private localNotifications: LocalNotifications,
+    //private localNotifications: LocalNotifications,
   ) { }
 
   ngOnInit() {
