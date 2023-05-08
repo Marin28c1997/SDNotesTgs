@@ -18,152 +18,11 @@ import {
   Token,
 } from '@capacitor/push-notifications';
 
-<<<<<<< Updated upstream
 PushNotifications.requestPermissions().then(
   (result) => {
     if (result.receive === 'granted') {
       //PushNotifications.register();
       return (token: Token) =>{return token.value}
-=======
-PushNotifications.requestPermissions().then((result) => {
-  if (result.receive === 'granted') {
-     PushNotifications.register();
-   } else {
-     // Show some error
-   }
-});
-
-PushNotifications.addListener('registration', (token: Token) => {
-  // Push Notifications registered successfully.
-  // Send token details to API to keep in DB.
-});
-
-PushNotifications.addListener('registrationError', (error: any) => {
-  // Handle push notification registration error here.
-});
-
-PushNotifications.addListener( 
-  'pushNotificationActionPerformed', 
-  (notification: ActionPerformed ) => { 
-   // Tome las medidas necesarias al tocar la notificación
-   } 
-);
-
-@Component({ 
-  selector: 'app-asignatura', 
-  templateUrl: 'asignatura.page.html', 
-  styleUrls: ['asignatura.page.scss'] 
-}) 
-export class AsignaturaPage implements OnInit { 
-  userId: string; 
-  userName:string 
-  Subjects: Subjects[] = []; 
-  private path = '/Subjects'; 
-
-
-  
-  loading:any 
-  constructor( 
-    public firestorageSerive:FirestoreService, 
-    private afAuth: AngularFireAuth,
-    public alertController:AlertController,
-    public loadingController:LoadingController,
-    public toastController:ToastController,
-  ) { } 
-
-  ngOnInit() { 
-    this.afAuth.authState.subscribe(user => { 
-      if (user) { 
-        this.userName = user.displayName;
-        this.getSubjects(); 
-        this.userId = user.uid; 
-        this.getUserInfo(user); 
-        this.getSubjectsForSemester("Semester");
-      } 
-       PushNotifications.requestPermissions().then((result) => {
-      if (result.receive === 'granted') {
-        PushNotifications.register();
-      } else {
-        // Show some error
-      }
-    });
-
-    PushNotifications.addListener('registration', (token: Token) => {
-      // Push Notifications registered successfully.
-      // Send token details to API to keep in DB.
-    });
-
-    PushNotifications.addListener('registrationError', (error: any) => {
-      // Handle push notification registration error here.
-    });
-
-    PushNotifications.addListener(
-      'pushNotificationReceived',
-      (notification: PushNotificationSchema) => {
-        // Show the notification payload if the app is open on the device.
-      }
-    );
-
-    PushNotifications.addListener(
-      'pushNotificationActionPerformed',
-      (notification: ActionPerformed) => {
-        // Implement the needed action to take when user tap on a notification.
-      }
-    );
-  
-    }); 
-  
-  } 
-
-  
-
-  getSubjects(){ 
-    if (this.userId) { // verifica si this.userId está definido
-      this.firestorageSerive.getCollection<Subjects>(this.path, ref => ref.where('userId', '==', this.userId)).subscribe(res => { 
-        this.Subjects=res;
-        console.log(res)
-      }); 
-    }
-  } 
-
-  
-getSubjectsForSemester(selectedSemester: string) {
-  if (this.userId) { // verifica si this.userId está definido
-    if (selectedSemester !== '') {
-      this.firestorageSerive.getCollection<Subjects>(
-        this.path,
-        (ref) =>
-          ref.where('userId', '==', this.userId).where('Semester', '==', selectedSemester),
-      ).subscribe((res) => {
-        if (res.length === 0) {
-          this.presentToast('No hay materias registradas para este semestre.');
-          this.Subjects = []; 
-        } else {
-          this.Subjects = res.sort((a, b) => a.Semester.localeCompare(b.Semester));
-          let subdata = [];
-          this.Subjects.map(mat => {
-            let str = '';
-            let data = mat.Datat;
-            str += (moment(data)['_d']).toLocaleDateString('es-ES', {weekday:"long"}) + ' a las ' + data.split('T')[1]
-            //console.log((moment(data)['_d']).toLocaleDateString('es-ES', {weekday:"long"}))
-            subdata.push({              
-              Note: mat.Note,
-              Porcent: mat.Porcent,
-              Central: mat.Central,
-              Credits: mat.Credits,
-              Name: mat.Name,
-              Room: mat.Room,
-              Teacher: mat.Teacher,
-              userId: mat.userId,
-              id: mat.id,
-              Semester: mat.Semester,
-              Datat: str,
-            })
-          })
-          this.Subjects = subdata;
-        }
-      });
->>>>>>> Stashed changes
     } else {
       // Show some error
     }
@@ -208,7 +67,6 @@ PushNotifications.addListener(
   styleUrls: ['asignatura.page.scss']
 })
 
-<<<<<<< Updated upstream
 export class AsignaturaPage implements OnInit {
 
   //////////////////////
@@ -361,29 +219,6 @@ export class AsignaturaPage implements OnInit {
       });
     }
   }
-=======
-  getUserInfo(user: firebase.User) { 
-    if (user.providerData.length > 0 && user.providerData[0].providerId === 'google.com'){ 
-      this.firestorageSerive.getDoc<Google>(`Users/${this.userId}`, this.userId).subscribe(res => { 
-        this.userName = res.usuario; 
-        this.isGoogleUser = true; 
-       
-      }); 
-    } else { 
-      this.firestorageSerive.getDoc<User>(`Users`, this.userId).subscribe(res => { 
-        console.log('got user doc', res) 
-        if (res && res.usuario) { 
-          this.userName = res.usuario; 
-        } else { 
-          this.userName = "Usuario"; 
-        } 
-        console.log("AQUI",this.userName) 
-      }, error => { 
-        console.log('error getting user doc', error) 
-      }); 
-    } 
-  } 
->>>>>>> Stashed changes
 
   async deleteSubject(id: string, path: string) {
     const Subjects = this.Subjects.find(s => s.id === id);
