@@ -65,27 +65,27 @@
       </ion-card-header>
     </ion-card>
 
-    <ion-card style="margin-top: -30px;" class="cardss">
+    <ion-card  class="cardss">
       <ion-card-header>
         <ion-card-title color="primary"><ion-icon name="information-circle"></ion-icon> Notas</ion-card-title>
         <ion-grid [fixed]="true">
       
             <ion-row *ngFor="let nota of notas; let i = index;">
-              <ion-col size="5">
+              <ion-col size="4">
                Notas
                 <ion-input placeholder="Ingrese Nota"color="primary" class="custom" [(ngModel)]="nota.nota"  type="number">
                   <ion-icon name="create-outline"></ion-icon>
                 </ion-input>
               </ion-col>
-              <ion-col size="5">
-                Porcentaje % 
+              <ion-col size="4">
+                Porcentaje <span class="no">%</span> 
                 <ion-input placeholder="Ingrese porcentaje" color="primary"class="custom"  [(ngModel)]="nota.porcentaje"  type="number">
                   <ion-icon name="calculator-outline"></ion-icon>
                 </ion-input>
               </ion-col>
               
-        <ion-col size="2">
-          Eliminar Nota<br>
+        <ion-col size="4">
+          Eliminar <span class="no">Nota</span><br>
           <ion-button color="danger" fill="clear" (click)="eliminarNota(i)">
             <ion-icon name="trash-outline"></ion-icon>
           </ion-button>

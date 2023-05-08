@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import { Subjects } from '../models';
 import { FirestoreService } from '../services/firestore.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-horario',
@@ -27,6 +28,33 @@ export class HorarioPage implements OnInit {
     monthPickerFormat: ['Ene', 'Feb', 'Mar', 'Abr', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
   };
   t = ((new Date()).toDateString())
+
+  ngOnInit() {
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.getSubjects(); 
+        this.userId = user.uid;
+        this.getSubjectsForSemester("Semester");
+      }
+    });
+
+  }
+
+  constructor(
+    public firestorageSerive: FirestoreService,
+    private afAuth: AngularFireAuth,
+    public toastController:ToastController,
+  ) { }
+
+
+
+  getSubjects(){ 
+    if (this.userId) { // verifica si this.userId está definido
+      this.firestorageSerive.getCollection<Subjects>(this.path, ref => ref.where('userId', '==', this.userId)).subscribe(res => { 
+        this.Subjects=res;
+      }); 
+    }
+  } 
 
   AgregarFecha() {
     /*console.log('ev: '+event.format('ddd MMM DD YYYY h:mm:ss a'))
@@ -68,7 +96,6 @@ export class HorarioPage implements OnInit {
         }
       }
     }
-    //console.log('||||||||||||||||||||||||')
     let newdate = [];
     this.wk.map(e => {
       let tt = (moment(e['_d']).format("ddd MMM DD YYYY"));
@@ -85,7 +112,7 @@ export class HorarioPage implements OnInit {
     })
     console.log(this.str)
     this.dateMulti = newdate;
-    /*let nuew = []
+    let nuew = []
     this.dateMulti.map(e => {
       let a = (moment(e['_d']).format("ddd MMM DD YYYY"));
       for (let index = 0; index < 17; index++) {
@@ -95,7 +122,7 @@ export class HorarioPage implements OnInit {
         nuew.push(b)
       }
     })
-    this.dateMulti = nuew;*/
+    this.dateMulti = nuew;
 
     //console.log('||||||||||||||||||||||||')
   }
@@ -111,11 +138,10 @@ export class HorarioPage implements OnInit {
             ref.where('userId', '==', this.userId).where('Semester', '==', selectedSemester),
         ).subscribe((res) => {
           if (res.length === 0) {
-            // this.presentToast('No hay materias registradas para este semestre.');
+            this.presentToast('No hay materias registradas para este semestre.');
             this.Subjects = [];
           } else {
             this.Subjects = res.sort((a, b) => a.Semester.localeCompare(b.Semester));
-            console.log(this.Subjects)
             let subdata = [];
             this.Subjects.map(mat => {
               let str = '';
@@ -140,8 +166,21 @@ export class HorarioPage implements OnInit {
             this.clacend();
           }
         });
+      }else{
+        this.getSubjects();
       }
     }
+  }
+
+
+  async presentToast(msg: string){
+    const toast = await this.toastController.create({
+      message:msg,
+      cssClass:'normal',
+      duration:2000,
+      color:"warning"
+    });
+    toast.present();
   }
 
   OnChange() {
@@ -198,18 +237,6 @@ export class HorarioPage implements OnInit {
     //console.log("///////////////////")
   }
 
-  constructor(
-    public firestorageSerive: FirestoreService,
-    private afAuth: AngularFireAuth,
-  ) { }
 
-  ngOnInit() {
-    this.afAuth.authState.subscribe(user => {
-      if (user) {
-        this.userId = user.uid;
-        this.getSubjectsForSemester("Semester");
-      }
-    });
-
-  }
+ 
 }

@@ -103,9 +103,18 @@ ion-item {
     color:#E6413A;
     text-decoration: underline;
     font-size: 80%;
-    margin-left: 56%;
+    margin-left: 50%;
   }
-  
+  .inp{
+    margin-top: 4%;
+  }
+  ion-img {
+    width: 25%;
+    height: 25%;
+    margin: auto;
+    margin-bottom: 2%;
+    margin-top: 0.5%;
+  }
 }
 
 // para tabletas
