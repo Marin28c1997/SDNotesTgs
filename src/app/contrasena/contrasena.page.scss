@@ -38,7 +38,10 @@
   }
   
     // para dispositivos móviles
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: 800px) {
+    .my-content{
+      margin-top: 20%;
+    }
   }
   
   // para tabletas

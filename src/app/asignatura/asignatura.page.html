@@ -1,7 +1,7 @@
 <ion-content>
   <div class="my-content">
     <p style="margin: 1%; color: #fff; font-family: cursive;">¡Bienvenid@ {{ userName }}, 
-      a nuestra aplicación! Aquí encontrarás una variedad de funciones para ayudarte a administrar tus materias. Podrás ver, modificar, eliminar y crear materias a tu gusto. También podrás consultar los días en que tienes clase y realizar un cálculo rápido de las notas de tus materias.
+      a nuestra aplicación! Aquí encontrarás una variedad de funciones para ayudarte a administrar tus asignaturas. Podrás ver, modificar, eliminar y crear materias a tu gusto.<span class="no"> También podrás consultar los días en que tienes clase y realizar un cálculo rápido de las notas de tus materias.</span>
 
     </p>
   </div>
@@ -59,10 +59,10 @@
           </ion-card-content>
           <ion-button slot="end" class="btn1"
             [routerLink]="['/editar', Subjects.id, Subjects.Name, Subjects.Central, Subjects.Teacher, Subjects.Room, Subjects.Credits,Subjects.Semester]">
-            <ion-icon name="create-outline"></ion-icon> Editar
+            <ion-icon name="reload-sharp"></ion-icon> <span class="no">Editar</span>
           </ion-button>
           <ion-button slot="end" class="btn2" (click)="deleteSubject(Subjects.id, path)"> <ion-icon
-              name="trash-outline"></ion-icon> Eliminar
+              name="trash-outline"></ion-icon> <span class="no">Eliminar</span>
           </ion-button>
         </ion-item>
       </ion-list>

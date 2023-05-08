@@ -53,9 +53,9 @@ export class InicioPage {
     this.sumas = suma / porcentajeTotal
 
     if (this.sumas >= 3) {
-      this.pasar = "Felicidades pasaste con una nota de: " + this.sumas
+      this.pasar = "😊 Pasaste con: " + this.sumas
     } else {
-      this.pasar = "Aún le falta para pasar, echale ganas compa te falta: " + (3 - this.sumas)
+      this.pasar = "😔 Te falta para pasar: " + (3 - this.sumas)
     }
   }
 

@@ -11,16 +11,14 @@
     </ion-label>
 
     <ion-item fill="outline" class="inp">
-      <ion-label position="floating">Usuario</ion-label>
+      <ion-label position="floating"><ion-icon name="mail"></ion-icon>Correo electrónico</ion-label>
       <ion-input [(ngModel)]="email" placeholder="Correo electrónico">
-        <ion-icon name="mail"></ion-icon>
       </ion-input>
     </ion-item>
     <ion-item fill="outline" class="inp">
-      <ion-label position="floating">Contraseña</ion-label>
+      <ion-label position="floating"><ion-icon name="lock-closed"></ion-icon> Contraseña</ion-label>
       <ion-input [(ngModel)]="password" class="normal" [type]="showPassword ? 'text' : 'password'"
         inputmode="password" placeholder="Contraseña">
-        <ion-icon name="lock-closed"></ion-icon>
       </ion-input>
       <ion-icon [name]="passwordToggleIcon" slot="end" size="large" class="ic" (click)="togglePassword()"></ion-icon>
 

@@ -4,6 +4,7 @@ import * as moment from 'moment';
 import { Subjects } from '../models';
 import { FirestoreService } from '../services/firestore.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-horario',
@@ -30,6 +31,20 @@ export class HorarioPage implements OnInit {
     weekStart: 1
 
   };
+
+  constructor(
+    public firestorageSerive: FirestoreService,
+    private afAuth: AngularFireAuth,
+    public toastController: ToastController,
+  ) { }
+
+  getSubjects() {
+    if (this.userId) { // verifica si this.userId está definido
+      this.firestorageSerive.getCollection<Subjects>(this.path, ref => ref.where('userId', '==', this.userId)).subscribe(res => {
+        this.Subjects = res;
+      });
+    }
+  }
 
   clacend() {
     this.show = [];
@@ -91,17 +106,15 @@ export class HorarioPage implements OnInit {
             ref.where('userId', '==', this.userId).where('Semester', '==', selectedSemester),
         ).subscribe((res) => {
           if (res.length === 0) {
-            // this.presentToast('No hay materias registradas para este semestre.');
+            this.presentToast('No hay materias registradas para este semestre.');
             this.Subjects = [];
           } else {
             this.Subjects = res.sort((a, b) => a.Semester.localeCompare(b.Semester));
-            //console.log(this.Subjects)
             let subdata = [];
             this.Subjects.map(mat => {
               let str = '';
               let data = mat.Datat;
               str += (moment(data)['_d']).toLocaleDateString('es-ES', { weekday: "long" }) + ' a las ' + data.split('T')[1]
-              //console.log((moment(data)['_d']).toLocaleDateString('es-ES', {weekday:"long"}))
               subdata.push({
                 Note: mat.Note,
                 Porcent: mat.Porcent,
@@ -120,18 +133,26 @@ export class HorarioPage implements OnInit {
             this.clacend();
           }
         });
+      } else {
+        this.getSubjects();
       }
     }
+  }
+
+
+  async presentToast(msg: string) {
+    const toast = await this.toastController.create({
+      message: msg,
+      cssClass: 'normal',
+      duration: 2000,
+      color: "warning"
+    });
+    toast.present();
   }
 
   OnChange() {
     this.clacend();
   }
-
-  constructor(
-    public firestorageSerive: FirestoreService,
-    private afAuth: AngularFireAuth,
-  ) { }
 
   ngOnInit() {
     this.afAuth.authState.subscribe(user => {
