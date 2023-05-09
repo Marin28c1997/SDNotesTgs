@@ -7,7 +7,7 @@ import { AlertController, LoadingController, ToastController } from '@ionic/angu
 import * as moment from 'moment';
 
 ///////////////////////
-import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+// import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 ///////////////////////
 
