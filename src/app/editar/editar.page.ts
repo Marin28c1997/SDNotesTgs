@@ -101,7 +101,8 @@ export class EditarPage implements OnInit {
     if (
       !this.Name ||
       !this.Teacher ||
-      !this.Semester
+      !this.Semester ||
+      !this.Datat
     ) {
       this.presentAlert(
         'Error',
