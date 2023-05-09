@@ -1,1 +1,23 @@
-{}
+{
+  "database": {
+    "rules": "n"
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "n"
+  },
+  "hosting": {
+    "public": "www",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

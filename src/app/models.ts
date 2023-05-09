@@ -26,6 +26,9 @@ export interface Subjects {
   userId: string;
   id:string;
   Semester:string;
-  Datat:string
+  Datat:string;
+  Nt:string;
+  pos:string;
+  Nts:string;
 }
 

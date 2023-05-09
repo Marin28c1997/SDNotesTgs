@@ -10,13 +10,9 @@ import * as moment from 'moment';
   templateUrl: './agregar.page.html',
   styleUrls: ['./agregar.page.scss'],
 })
-
 export class AgregarPage implements OnInit {
-
   today: string;
-  notas = [
-    { nota: null, porcentaje: null }
-  ];
+  notas = [{ nota: null, porcentaje: null }];
 
   async eliminarNota(i: number) {
     const alert = await this.alertController.create({
@@ -26,20 +22,21 @@ export class AgregarPage implements OnInit {
         {
           text: 'Cancelar',
           role: 'cancel',
-          cssClass: 'secondary'
-        }, {
+          cssClass: 'secondary',
+        },
+        {
           text: 'Eliminar',
           handler: () => {
             this.notas.splice(i, 1);
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
     await alert.present();
   }
 
   agregarNota() {
-    this.notas.push({ nota: "", porcentaje: "" });
+    this.notas.push({ nota: '', porcentaje: '' });
   }
 
   newSubjects: Subjects = {
@@ -53,23 +50,29 @@ export class AgregarPage implements OnInit {
     id: this.firestorageService.getId(),
     Note: [],
     Porcent: [],
-    Datat: ''
+    Datat: '',
+    pos: '',
+    Nts: '',
+    Nt:''
   };
 
   private path = '/Subjects';
 
-  constructor(public firestorageService: FirestoreService,
+  constructor(
+    public firestorageService: FirestoreService,
     private afAuth: AngularFireAuth,
-    private alertController: AlertController, public navegacion: NavController) {
+    private alertController: AlertController,
+    public navegacion: NavController
+  ) {
     this.today = moment().format('YYYY-MM-DD');
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   guardarNotas() {
     this.newSubjects.Note = [];
     this.newSubjects.Porcent = [];
-    this.notas.forEach(nota => {
+    this.notas.forEach((nota) => {
       if (nota.nota !== null && nota.porcentaje !== null) {
         this.newSubjects.Note.push(nota.nota);
         this.newSubjects.Porcent.push(nota.porcentaje);
@@ -78,50 +81,84 @@ export class AgregarPage implements OnInit {
   }
 
   async guardarAsig() {
-
     // Verificar si los campos obligatorios están completos
-    if (!this.newSubjects.Name || !this.newSubjects.Teacher || !this.newSubjects.Semester || !this.newSubjects.Datat) {
-      this.presentAlert('Error', 'Por favor complete todos los campos obligatorios marcados con *.');
+    if (
+      !this.newSubjects.Name ||
+      !this.newSubjects.Teacher ||
+      !this.newSubjects.Semester ||
+      !this.newSubjects.Datat
+    ) {
+      this.presentAlert(
+        'Error',
+        'Por favor complete todos los campos obligatorios marcados con *.'
+      );
       return;
     }
 
     // Validar que el porcentaje no sea mayor a 100 si se ha ingresado
-    if (this.notas[this.notas.length - 1].porcentaje !== null && (this.notas[this.notas.length - 1].porcentaje > 100 || this.notas[this.notas.length - 1].porcentaje < 1)) {
+    if (
+      this.notas[this.notas.length - 1].porcentaje !== null &&
+      (this.notas[this.notas.length - 1].porcentaje > 100 ||
+        this.notas[this.notas.length - 1].porcentaje < 1)
+    ) {
       this.presentAlert('Error', 'El porcentaje debe estar entre 1 y 100');
       return;
     }
 
     // Validar que la nota no sea mayor a 5 ni menor a 1 si se ha ingresado
-    if (this.notas[this.notas.length - 1].nota !== null && (this.notas[this.notas.length - 1].nota > 5 || this.notas[this.notas.length - 1].nota < 1)) {
+    if (
+      this.notas[this.notas.length - 1].nota !== null &&
+      (this.notas[this.notas.length - 1].nota > 5 ||
+        this.notas[this.notas.length - 1].nota < 1)
+    ) {
       this.presentAlert('Error', 'La nota debe estar entre 1 y 5');
       return;
     }
 
     // Validar que los créditos estén entre 1 y 7 si se han ingresado
-    if (this.newSubjects.Credits !== null && (this.newSubjects.Credits > 7 || this.newSubjects.Credits < 1)) {
+    if (
+      this.newSubjects.Credits !== null &&
+      (this.newSubjects.Credits > 7 || this.newSubjects.Credits < 1)
+    ) {
       this.presentAlert('Error', 'Los créditos deben estar entre 1 y 7');
       return;
     }
 
     // Validar que el salón esté entre 1 y 17 si se ha ingresado
-    if (this.newSubjects.Room !== null && (this.newSubjects.Room > 17 || this.newSubjects.Room < 1)) {
+    if (
+      this.newSubjects.Room !== null &&
+      (this.newSubjects.Room > 17 || this.newSubjects.Room < 1)
+    ) {
       this.presentAlert('Error', 'El salón debe estar entre 1 y 17');
       return;
     }
 
     this.guardarNotas();
-    this.afAuth.authState.subscribe(user => { // obtener usuario actual
+    this.afAuth.authState.subscribe((user) => {
+      // obtener usuario actual
       if (user) {
         const id = this.firestorageService.getId();
         this.newSubjects.userId = user.uid; // establecer campo userId
 
-        this.firestorageService.creatDoc(this.newSubjects, this.path, this.newSubjects.id)
+        this.firestorageService
+          .creatDoc(this.newSubjects, this.path, this.newSubjects.id)
           .then(() => {
-            this.presentAlertConfirm('Agregar más', '¿Desea agregar más asignaturas?', 'Sí', 'No');
-            this.presentAlert('Éxito', 'La asignatura se ha guardado correctamente.');
+            this.presentAlertConfirm(
+              'Agregar más',
+              '¿Desea agregar más asignaturas?',
+              'Sí',
+              'No'
+            );
+            this.presentAlert(
+              'Éxito',
+              'La asignatura se ha guardado correctamente.'
+            );
           })
-          .catch(error => {
-            this.presentAlert('Error', 'Ha ocurrido un error al guardar la asignatura: ' + error);
+          .catch((error) => {
+            this.presentAlert(
+              'Error',
+              'Ha ocurrido un error al guardar la asignatura: ' + error
+            );
           });
       }
     });
@@ -131,13 +168,18 @@ export class AgregarPage implements OnInit {
     const alert = await this.alertController.create({
       header: header,
       message: message,
-      buttons: ['Aceptar']
+      buttons: ['Aceptar'],
     });
 
     await alert.present();
   }
 
-  async presentAlertConfirm(header: string, message: string, yesText: string, noText: string) {
+  async presentAlertConfirm(
+    header: string,
+    message: string,
+    yesText: string,
+    noText: string
+  ) {
     const alert = await this.alertController.create({
       header: header,
       message: message,
@@ -147,7 +189,7 @@ export class AgregarPage implements OnInit {
           role: 'cancel',
           handler: () => {
             this.navegacion.navigateRoot('tabs');
-          }
+          },
         },
         {
           text: yesText,
@@ -164,15 +206,18 @@ export class AgregarPage implements OnInit {
               id: this.firestorageService.getId(),
               Note: [],
               Porcent: [],
-              Datat: ''
+              Datat: '',
+              pos: '',
+              Nts: '',
+              Nt:''
+
             };
             this.guardarAsig();
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
 
     await alert.present();
   }
-
 }
