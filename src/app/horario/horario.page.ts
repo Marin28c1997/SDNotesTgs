@@ -29,6 +29,7 @@ export class HorarioPage implements OnInit {
     weekdays: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
     monthPickerFormat: ['Ene', 'Feb', 'Mar', 'Abr', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
     weekStart: 1
+
   };
 
   constructor(
@@ -137,6 +138,7 @@ export class HorarioPage implements OnInit {
       }
     }
   }
+
 
   async presentToast(msg: string) {
     const toast = await this.toastController.create({
