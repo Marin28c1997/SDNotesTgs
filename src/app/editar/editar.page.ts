@@ -55,6 +55,14 @@ export class EditarPage implements OnInit {
         console.log('hey', this.Porcent);
         this.Semester = res['Semester'];
         this.Datat = res['Datat'];
+        let i = 0;
+        this.Note.map(nt =>{
+          this.notas.push({
+            nota: nt,
+            porcentaje: this.Porcent[i]
+          })
+          i++
+        })
       }
     });
   }

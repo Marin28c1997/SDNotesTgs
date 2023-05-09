@@ -45,17 +45,16 @@ export class InicioPage {
 
     for (let nota of this.notas) {
       let valorNota = parseFloat(nota.nota || "0");
-      let valorPorcentaje = parseFloat(nota.porcentaje || "0");
+      let valorPorcentaje = (parseFloat(nota.porcentaje || "0")/100);
       suma += valorNota * valorPorcentaje;
-      porcentajeTotal += valorPorcentaje;
     }
 
-    this.sumas = suma / porcentajeTotal
+    this.sumas = suma
 
     if (this.sumas >= 3) {
-      this.pasar = "😊 Pasaste con: " + this.sumas
+      this.pasar = "😊 Pasaste con: " + (this.sumas+'').substr(0,4)
     } else {
-      this.pasar = "😔 Te falta para pasar: " + (3 - this.sumas)
+      this.pasar = "😔 Te falta para pasar: " + ((3 - this.sumas)+'').substr(0,4)
     }
   }
 
