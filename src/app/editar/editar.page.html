@@ -14,6 +14,7 @@
 <body>
  
   <ion-content>
+    <div class="container">
         <ion-button (click)="guardarAsig()" class="boton-superpuesto">
           Actualizar
           <ion-icon name="save" style="size: 80px;"></ion-icon> </ion-button>
@@ -45,6 +46,10 @@
             <ion-label position="floating" color="primary"><ion-icon name="person-circle"></ion-icon> Nombre del profesor * </ion-label>
             <ion-input value={{Teacher}}  [(ngModel)]="Teacher"placeholder="Profesor"></ion-input>
           </ion-item></ion-card-subtitle>
+          <ion-card-subtitle><ion-item fill="outline">
+            <ion-label position="floating" color="primary">Ingrese una fecha *</ion-label>
+            <ion-input value={{Datat}} [(ngModel)]="Datat" type="datetime-local" color="primary" [min]="today" placeholder="Fecha"></ion-input>
+          </ion-item></ion-card-subtitle>
         <ion-card-subtitle><ion-item fill="outline">
             <ion-label position="floating" color="primary"><ion-icon name="home"></ion-icon> Salón de clase</ion-label>
             <ion-input value={{Room}}  [(ngModel)]="Room"placeholder="Salón" type="number"></ion-input>
@@ -62,10 +67,6 @@
             <ion-input value={{Credits}}  [(ngModel)]="Credits"placeholder="Créditos/Intensidad horaria" type="number"></ion-input>
           </ion-item></ion-card-subtitle>
 
-          <ion-card-subtitle><ion-item fill="outline">
-            <ion-input value={{Datat}} [(ngModel)]="Datat" type="date" color="primary"></ion-input>
-          </ion-item></ion-card-subtitle>
-
       </ion-card-header>
     </ion-card>
 
@@ -74,22 +75,22 @@
         <ion-card-title color="primary"><ion-icon name="information-circle"></ion-icon> Notas</ion-card-title>
         <ion-grid [fixed]="true">
           <ion-row *ngFor="let note of Note; let i = index;">
-            <ion-col size="5">
+            <ion-col size="4">
              Notas
               <ion-input placeholder="Ingrese Nota" class="custom" color="primary" type="number" 
               value={{Note[i]}} [(ngModel)]="Note[i]"  >
                 <ion-icon name="create-outline"></ion-icon>
               </ion-input>
             </ion-col>
-            <ion-col size="5">
+            <ion-col size="4">
               Porcentaje %
               <ion-input placeholder="Ingrese porcentaje" class="custom" type="number" color="primary" 
               value ={{Porcent[i]}} [(ngModel)]="Porcent[i]" >
                 <ion-icon name="calculator-outline"></ion-icon>
               </ion-input>
             </ion-col>
-            <ion-col size="2">
-              Eliminar Nota
+            <ion-col size="4">
+              Eliminar <br>
               <ion-button color="danger" fill="clear" (click)="eliminarNota(i)">
                 <ion-icon name="trash-outline"></ion-icon>
               </ion-button>
@@ -99,21 +100,21 @@
         <ion-grid [fixed]="true">
       
           <ion-row *ngFor="let nota of notas; let i = index;">
-            <ion-col size="5">
+            <ion-col size="4">
              Notas
               <ion-input placeholder="Ingrese Nota"color="primary" class="custom" [(ngModel)]="nota.nota"  type="number">
                 <ion-icon name="create-outline"></ion-icon>
               </ion-input>
             </ion-col>
-            <ion-col size="5">
+            <ion-col size="4">
              Porcentaje % 
               <ion-input placeholder="Ingrese porcentaje" color="primary"class="custom"  [(ngModel)]="nota.porcentaje"  type="number">
                 <ion-icon name="calculator-outline"></ion-icon>
               </ion-input>
             </ion-col>
             
-      <ion-col size="2">
-        Eliminar Nota
+      <ion-col size="4">
+        Eliminar <br>
         <ion-button color="danger" fill="clear" (click)="eliminarNota(i)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-button>
@@ -126,7 +127,7 @@
       </ion-card-header>
     </ion-card>
 
-    
+  </div>
   </ion-content>
 
  
