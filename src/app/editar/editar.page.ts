@@ -15,6 +15,7 @@ import {
   styleUrls: ['./editar.page.scss'],
 })
 export class EditarPage implements OnInit {
+  today: string = new Date().toISOString();
   id: string;
   Name: string;
   Central: string;

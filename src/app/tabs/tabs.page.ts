@@ -14,6 +14,13 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
+
+  isDarkMode: boolean = false;
+
+  toggleDarkMode() {
+    // Lógica para cambiar el modo oscuro o claro
+  }
+
   userPhotoURL: string;
   user: firebase.User;
   userId: string; 

@@ -40,23 +40,23 @@
 
           <ion-card-content class="card2">
             <ion-label>Asignatura:
-              <ion-span style="color: #E6413A;">{{Subjects.Name}}</ion-span>
+              <span style="color: #E6413A;">{{Subjects.Name}}</span>
             </ion-label>
             <ion-label>Sede:
-              <ion-span style="color: #E6413A;">{{Subjects.Central}}</ion-span>
+              <span style="color: #E6413A;">{{Subjects.Central}}</span>
             </ion-label>
             <ion-label>Profesor:
-              <ion-span style="color: #E6413A;">{{Subjects.Teacher}}</ion-span>
+              <span style="color: #E6413A;">{{Subjects.Teacher}}</span>
             </ion-label>
             <ion-label>Salón:
-              <ion-span style="color: #E6413A;">{{Subjects.Room}}</ion-span>
+              <span style="color: #E6413A;">{{Subjects.Room}}</span>
             </ion-label>
             <ion-label>Fecha:
-              <ion-span style="color: #E6413A;">{{Subjects.Datat}}</ion-span>
+              <span style="color: #E6413A;">{{Subjects.Datat}}</span>
             </ion-label>
             <ion-item class="notes">
               Nota:  
-              <ion-span style="color: #E6413A;"> {{Subjects.Nt.substr(0,4)}} </ion-span>
+              <span style="color: #E6413A;"> {{Subjects.Nt.substr(0,4)}} </span>
               <ion-toggle (ionChange)="changenote($event, Subjects.pos)">
               </ion-toggle>
             </ion-item>
@@ -64,7 +64,7 @@
               <ion-label>
                 Notas: </ion-label>                
               <ion-card *ngFor="let Sb of Subjects.Nts">
-                <ion-span style="color: #E6413A;"> {{Sb['N']+' X '+Sb['P']+'% = '+(Sb['N']*(Sb['P']/100))}}</ion-span>
+                <span style="color: #E6413A;"> {{Sb['N']+' X '+Sb['P']+'% = '+(Sb['N']*(Sb['P']/100))}}</span>
               </ion-card>
             </ion-card> 
 

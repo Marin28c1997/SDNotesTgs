@@ -12,6 +12,7 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./horario.page.scss'],
 })
 export class HorarioPage implements OnInit {
+  selectedSemester: string = '';
   userId: string;
   Subjects: Subjects[] = [];
   private path = '/Subjects';

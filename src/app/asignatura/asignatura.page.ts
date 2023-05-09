@@ -79,11 +79,12 @@ export class AsignaturaPage implements OnInit {
     })
   }*/
   /////////////////////
+  selectedSemester: string = '';
   userId: string;
   userName: string
   Subjects: Subjects[] = [];
   Nt: boolean[] = [];
-  private path = '/Subjects';
+  public path = '/Subjects';
 
   loading: any
   constructor(
