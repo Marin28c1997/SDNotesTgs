@@ -82,6 +82,7 @@ export class AsignaturaPage implements OnInit {
   userId: string;
   userName: string
   Subjects: Subjects[] = [];
+  Nt: boolean[] = [];
   private path = '/Subjects';
 
   loading: any
@@ -162,11 +163,25 @@ export class AsignaturaPage implements OnInit {
             this.Subjects = res.sort((a, b) => a.Semester.localeCompare(b.Semester));
             console.log(this.Subjects)
             let subdata = [];
+            let i = 0;
             this.Subjects.map(mat => {
               let str = '';
               let data = mat.Datat;
               str += (moment(data)['_d']).toLocaleDateString('es-ES', { weekday: "long" }) + ' a las ' + data.split('T')[1]
               //console.log((moment(data)['_d']).toLocaleDateString('es-ES', {weekday:"long"}))
+              //console.log(mat.Note)
+              //console.log(mat.Porcent)
+              let Nt = this.calnt(mat.Note, mat.Porcent)
+              let Nts = [];
+              let j= 0;
+              mat.Note.map(nt => {
+                Nts.push({
+                  N: (nt != null || nt != '')? nt : 0,
+                  P: (mat.Porcent[j] != null || mat.Porcent[j] != '')? mat.Porcent[j] : 0,
+                })
+                j++
+              })
+              //console.log('nt'+Nt)
               subdata.push({
                 Note: mat.Note,
                 Porcent: mat.Porcent,
@@ -179,9 +194,15 @@ export class AsignaturaPage implements OnInit {
                 id: mat.id,
                 Semester: mat.Semester,
                 Datat: str,
+                pos: i,
+                Nt: Nt,
+                Nts: Nts,
               })
+              i += 1;
+              this.Nt.push(false)
             })
             this.Subjects = subdata;
+            //console.log(this.Subjects)
           }
         });
       } else {
@@ -189,7 +210,26 @@ export class AsignaturaPage implements OnInit {
       }
     }
   }
+  changenote($event, id){
+    this.Nt[id] = !this.Nt[id]
 
+  }
+  calnt(nts, pts){
+    let ttl = 0;
+    let aux = 0;
+    if(
+      nts != null || nts != '' ||
+      pts != null || pts != ''
+    ){
+      nts.map(nt =>{
+        ttl += nt*(pts[aux]/100);
+        //console.log(nt+'*'+(pts[aux]/100)+'= '+nt*(pts[aux]/100))
+        aux+=1;
+      })
+    }
+    //console.log('ttl'+ttl)
+    return (''+ttl);
+  }
   isGoogleUser = false;
 
   getUserInfo(user: firebase.User) {
