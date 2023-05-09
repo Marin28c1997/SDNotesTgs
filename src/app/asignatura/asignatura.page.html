@@ -1,7 +1,9 @@
 <ion-content>
   <div class="my-content">
-    <p style="margin: 1%; color: #fff; font-family: cursive;">¡Bienvenid@ {{ userName }}, 
-      a nuestra aplicación! Aquí encontrarás una variedad de funciones para ayudarte a administrar tus asignaturas. Podrás ver, modificar, eliminar y crear materias a tu gusto.<span class="no"> También podrás consultar los días en que tienes clase y realizar un cálculo rápido de las notas de tus materias.</span>
+    <p style="margin: 1%; color: #fff; font-family: cursive;">¡Bienvenid@ {{ userName }},
+      a nuestra aplicación! Aquí encontrarás una variedad de funciones para ayudarte a administrar tus asignaturas.
+      Podrás ver, modificar, eliminar y crear materias a tu gusto.<span class="no"> También podrás consultar los días en
+        que tienes clase y realizar un cálculo rápido de las notas de tus materias.</span>
 
     </p>
   </div>
@@ -49,12 +51,22 @@
             <ion-label>Salón:
               <ion-span style="color: #E6413A;">{{Subjects.Room}}</ion-span>
             </ion-label>
-            <ion-label>Nota:
-              <ion-span style="color: #E6413A;">{{(Subjects.Note == null) ? Subjects.Note : 0}}</ion-span>
-            </ion-label>
             <ion-label>Fecha:
               <ion-span style="color: #E6413A;">{{Subjects.Datat}}</ion-span>
             </ion-label>
+            <ion-item>
+              Nota: 
+              <ion-span style="color: #E6413A;"> {{Subjects.Nt.substr(0,4)}} </ion-span>
+              <ion-toggle slot="end"  (ionChange)="changenote($event, Subjects.pos)">
+              </ion-toggle>
+            </ion-item>
+            <ion-card *ngIf="Nt[Subjects.pos]">
+              <ion-label>
+                Notas:</ion-label>                
+              <ion-card *ngFor="let Sb of Subjects.Nts">
+                <ion-span style="color: #E6413A;"> {{Sb['N']+' X '+Sb['P']+'% = '+(Sb['N']*(Sb['P']/100))}}</ion-span>
+              </ion-card>
+            </ion-card> 
 
           </ion-card-content>
           <ion-button slot="end" class="btn1"
