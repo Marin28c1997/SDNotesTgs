@@ -54,7 +54,7 @@ export class InicioPage {
     if (this.sumas >= 3) {
       this.pasar = "😊 Pasaste con: " + (this.sumas+'').substr(0,4)
     } else {
-      this.pasar = "😔 Te falta para pasar: " + ((3 - this.sumas)+'').substr(0,4)
+      this.pasar = "😔 Necesitas un: " + ((3 - this.sumas)+'').substr(0,4)
     }
   }
 

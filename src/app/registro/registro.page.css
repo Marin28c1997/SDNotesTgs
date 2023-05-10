@@ -1,0 +1,117 @@
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+ion-img {
+  width: 50px;
+  height: 50px;
+}
+
+ion-toolbar {
+  --background: #E6413A;
+  color: white;
+}
+
+.text1 {
+  text-align: center;
+}
+
+ion-item {
+  --border-width: 0;
+  --border-style: none;
+}
+
+.google {
+  height: 100%;
+  margin: auto;
+  padding-right: 5px;
+}
+
+.goo {
+  color: gray;
+  font-size: 20px;
+  margin: auto;
+  height: 40%;
+  background: transparent;
+  margin-top: 4%;
+  border: 1px solid #9f9f9f;
+  border-radius: 8px;
+  margin-bottom: 2%;
+}
+
+.inp {
+  margin-top: 0;
+  color: #E6413A;
+  width: 80%;
+  height: 11.5%;
+  margin: auto;
+  border-color: #E6413A;
+  border-width: 8px;
+  margin-top: 2.5%;
+  border: 1px solid #9f9f9f;
+  border-radius: 5px;
+  border-bottom: 1px solid #E6413A;
+  font-size: 20px;
+}
+
+.ic {
+  color: #E6413A;
+}
+
+.registrar {
+  background: transparent;
+  width: 20%;
+  height: 50px;
+  margin: auto;
+  margin-top: 4%;
+  --border-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  margin-bottom: 2%;
+}
+
+@media (prefers-color-scheme: dark) {
+  ion-item {
+    --background: transparent;
+  }
+  .text, .text1 {
+    color: #E6413A;
+  }
+  .registrar, ion-toolbar {
+    --background: #E6413A;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .registrar {
+    width: 50%;
+    margin-top: 8%;
+  }
+  .inp {
+    margin-top: 8%;
+    height: 70px;
+    width: 70%;
+  }
+  .goo {
+    height: 80%;
+    margin-top: 8%;
+    margin-bottom: 6%;
+  }
+}
+/*# sourceMappingURL=registro.page.css.map */

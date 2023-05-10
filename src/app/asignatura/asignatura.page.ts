@@ -10,7 +10,7 @@ import * as moment from 'moment';
 // import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 ///////////////////////
-
+/*
 import {
   ActionPerformed,
   PushNotificationSchema,
@@ -59,7 +59,7 @@ PushNotifications.addListener(
   (notification: ActionPerformed) => {
     // Tome las medidas necesarias al tocar la notificación
   }
-);
+);*/
 
 @Component({
   selector: 'app-asignatura',
@@ -105,6 +105,7 @@ export class AsignaturaPage implements OnInit {
         this.getUserInfo(user);
         this.getSubjectsForSemester("Semester");
       }
+      /*
       PushNotifications.requestPermissions().then((result) => {
         if (result.receive === 'granted') {
           PushNotifications.register();
@@ -134,7 +135,7 @@ export class AsignaturaPage implements OnInit {
         (notification: ActionPerformed) => {
           // Implement the needed action to take when user tap on a notification.
         }
-      );
+      );*/
 
     });
 

@@ -52,15 +52,17 @@ async resetPassword(email:string):Promise<void>{
   }
 
   async loginGoogle() {
-    try {
-      await this.auth.signInWithPopup(
+    //try {
+      const prov = new firebase.auth.GoogleAuthProvider();
+      const res = await this.auth.signInWithPopup(prov)
+      /*await this.auth.signInWithPopup(
         new firebase.auth.GoogleAuthProvider()
       );
       return true; // return true if login successful
     } catch (error) {
       console.log(error);
       return false; // return false if login failed
-    }
+    }*/
   }
 
   async getUid() {

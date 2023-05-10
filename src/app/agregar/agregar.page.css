@@ -1,0 +1,101 @@
+ion-img {
+  width: 50px;
+  height: 50px;
+}
+
+/* iOS places the subtitle above the title */
+ion-card {
+  margin: 8%;
+  margin-bottom: 7%;
+}
+
+.wrapper {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 400px;
+  margin-right: 100px;
+}
+
+.ripple-parent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.rounded-rectangle {
+  width: 70%;
+  height: 50px;
+  border-radius: 5px;
+  background: #8edf8e;
+}
+
+@media only screen and (max-width: 767px) {
+  .my-content {
+    margin-top: 14%;
+    background: #e6413a;
+  }
+  .wrapper {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 150px;
+    margin-right: -20px;
+  }
+  .ripple-parent {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+  }
+  .rounded-rectangle {
+    width: 70%;
+    height: 40px;
+    border-radius: 5px;
+    background: #8edf8e;
+  }
+  .cardss {
+    margin-bottom: 22%;
+  }
+  .no {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .my-content {
+    margin-top: 7%;
+    background: #e6413a;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .my-content {
+    margin-top: 7%;
+    background: #e6413a;
+  }
+}
+/*# sourceMappingURL=agregar.page.css.map */

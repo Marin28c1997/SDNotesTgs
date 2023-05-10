@@ -1,0 +1,45 @@
+ion-img {
+  width: 50px;
+  height: 50px;
+}
+
+/* iOS places the subtitle above the title */
+ion-card {
+  margin: 2%;
+}
+
+.boton-superpuesto {
+  position: absolute;
+  top: 1.2%;
+  margin-top: 8%;
+  right: 2%;
+  z-index: 1;
+}
+
+@media only screen and (max-width: 900px) {
+  .container {
+    margin-top: 18%;
+  }
+  .boton-superpuesto {
+    margin-top: 14%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .my-content {
+    margin-top: 14%;
+    background: #E6413A;
+    border-radius: 5px;
+    margin-bottom: 2%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .my-content {
+    margin-top: 14%;
+    background: #E6413A;
+    border-radius: 5px;
+    margin-bottom: 2%;
+  }
+}
+/*# sourceMappingURL=editar.page.css.map */

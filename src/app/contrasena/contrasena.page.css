@@ -1,0 +1,52 @@
+ion-img {
+  width: 10%;
+  height: 10%;
+  margin: auto;
+  margin-top: 3%;
+  margin-bottom: 1%;
+}
+
+.text {
+  text-align: center;
+}
+
+ion-item {
+  --border-width: 0;
+  --border-style: none;
+}
+
+.inp {
+  color: #E6413A;
+  width: 85%;
+  margin: auto;
+  border-color: #E6413A;
+  border-width: 8px;
+  border: 1px solid #9f9f9f;
+  border-radius: 5px;
+  border-bottom: 1px solid #E6413A;
+  margin-bottom: 3%;
+}
+
+.iniciar {
+  --background:#E6413A ;
+  color: white;
+  font-size: 100%;
+  margin: auto;
+  height: 80%;
+}
+
+@media only screen and (max-width: 800px) {
+  .my-content {
+    margin-top: 20%;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  ion-item {
+    --background: transparent;
+  }
+  .text, .text1 {
+    color: #E6413A;
+  }
+}
+/*# sourceMappingURL=contrasena.page.css.map */

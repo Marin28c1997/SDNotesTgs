@@ -1,0 +1,160 @@
+.my-content {
+  border-radius: 5px;
+  margin-top: 20%;
+}
+
+ion-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+}
+
+/* iOS places the subtitle above the title */
+ion-card-header.ios {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-flow: column-reverse;
+          flex-flow: column-reverse;
+}
+
+ion-img {
+  width: 10%;
+  height: 10%;
+  margin: auto;
+  margin-top: 0.5%;
+}
+
+ion-item {
+  --border-width: 0;
+  --border-style: none;
+  background-color: transparent;
+}
+
+.text, .text1 {
+  text-align: center;
+}
+
+.inp {
+  color: #E6413A;
+  width: 85%;
+  height: 45%;
+  margin: auto;
+  border-color: #E6413A;
+  border-width: 80px;
+  border: 1px solid #9f9f9f;
+  border-radius: 5px;
+  border-bottom: 1px solid #E6413A;
+  font-size: 100%;
+  margin-bottom: 1%;
+}
+
+.ic {
+  margin-top: 1.5%;
+  color: #E6413A;
+}
+
+.btnOlv {
+  --background: none;
+  color: #E6413A;
+  text-decoration: underline;
+  font-size: 80%;
+  margin-left: 77%;
+}
+
+.iniciar {
+  --background:#E6413A ;
+  color: white;
+  font-size: 100%;
+  margin: auto;
+  height: 60%;
+}
+
+.google {
+  height: 100%;
+  margin: auto;
+  padding-right: 5px;
+}
+
+.goo {
+  color: gray;
+  font-size: 15px;
+  margin: auto;
+  background: transparent;
+}
+
+.registro {
+  margin: auto;
+}
+
+.btnOlvs {
+  --background: none;
+  color: #E6413A;
+  text-decoration: underline;
+  margin-top: -4%;
+  text-align: center;
+}
+
+@media only screen and (max-width: 767px) {
+  .ic {
+    margin-top: 8%;
+    color: #E6413A;
+  }
+  .btnOlv {
+    --background: none;
+    color: #E6413A;
+    text-decoration: underline;
+    font-size: 80%;
+    margin-left: 50%;
+  }
+  .inp {
+    margin-top: 4%;
+  }
+  ion-img {
+    width: 25%;
+    height: 25%;
+    margin: auto;
+    margin-bottom: 2%;
+    margin-top: 0.5%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .ic {
+    margin-top: 4%;
+    color: #E6413A;
+  }
+  .btnOlv {
+    --background: none;
+    color: #E6413A;
+    text-decoration: underline;
+    font-size: 80%;
+    margin-left: 77%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .my-content {
+    border-radius: 5px;
+    margin-top: 2.5%;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  ion-item {
+    --background: transparent;
+  }
+  .text, .text1 {
+    color: #E6413A;
+  }
+}
+/*# sourceMappingURL=login.page.css.map */

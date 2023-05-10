@@ -1,0 +1,25 @@
+@media only screen and (max-width: 896px) {
+  .my-content {
+    margin-top: 20%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .my-content {
+    margin-top: 6%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .my-content {
+    margin-top: 6%;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  ion-button, ion-icon {
+    --background:#E6413A;
+    border-radius: 10px;
+  }
+}
+/*# sourceMappingURL=inicio.page.css.map */
