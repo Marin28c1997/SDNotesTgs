@@ -3,7 +3,7 @@ import { Google, Subjects, User } from '../models';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FirestoreService } from '../services/firestore.service';
 import firebase from 'firebase/compat/app';
-import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController, NavController } from '@ionic/angular';
 import * as moment from 'moment';
 
 ///////////////////////
@@ -93,6 +93,7 @@ export class AsignaturaPage implements OnInit {
     public alertController: AlertController,
     public loadingController: LoadingController,
     public toastController: ToastController,
+    public navegacion: NavController, 
     //private localNotifications: LocalNotifications,
   ) { }
 
@@ -104,6 +105,8 @@ export class AsignaturaPage implements OnInit {
         this.userId = user.uid;
         this.getUserInfo(user);
         this.getSubjectsForSemester("Semester");
+      }else{        
+        this.navegacion.navigateRoot('login');
       }
       /*
       PushNotifications.requestPermissions().then((result) => {

@@ -4,7 +4,7 @@ import * as moment from 'moment';
 import { Subjects } from '../models';
 import { FirestoreService } from '../services/firestore.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { ToastController } from '@ionic/angular';
+import { ToastController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-horario',
@@ -36,6 +36,7 @@ export class HorarioPage implements OnInit {
     public firestorageSerive: FirestoreService,
     private afAuth: AngularFireAuth,
     public toastController: ToastController,
+    public navegacion: NavController, 
   ) { }
 
   getSubjects() {
@@ -158,6 +159,8 @@ export class HorarioPage implements OnInit {
       if (user) {
         this.userId = user.uid;
         this.getSubjectsForSemester("Semester");
+      }else{        
+        this.navegacion.navigateRoot('login');
       }
     });
   }
