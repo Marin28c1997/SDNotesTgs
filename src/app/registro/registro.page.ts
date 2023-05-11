@@ -3,11 +3,12 @@ import {
   FormBuilder,
 
 } from '@angular/forms';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, NavController, Platform } from '@ionic/angular';
 import { FirebaseauthService } from '../services/firebaseauth.service';
 import { FirestoreService } from '../services/firestore.service';
 import { Google, User } from '../models';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 
 @Component({
@@ -35,7 +36,9 @@ export class RegistroPage implements OnInit {
     public navegacion: NavController,
     public firebaseauthService: FirebaseauthService,
     public firestoreService: FirestoreService,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private platform: Platform,
+    private googlePlus: GooglePlus
   ) {
    
   }
@@ -173,6 +176,63 @@ export class RegistroPage implements OnInit {
     }
   }
 
+
+  loginGoogle() {
+    if (this.platform.is('android')) {
+      this.loginGoogleAndroid();
+    } else {
+      this.loginGoogles();
+    }
+  }
+
+
+  async loginGoogleAndroid() {
+    try {
+      const { webClientId } = await this.googlePlus.getSigningCertificateFingerprint();
+      const result = await this.googlePlus.login({
+        'webClientId': webClientId,
+        'offline': true
+      });
+  
+      const user = result;
+      const email = user.email;
+  
+      if (email.endsWith('correounivalle.edu.co')) {
+        const uid = user.userId;
+        const usuario = user.displayName;
+        const photoURL = user.imageUrl;
+  
+        const userObj: Google = {
+          uid: uid,
+          email: email,
+          usuario: usuario,
+          photoURL: photoURL
+        };
+  
+        await this.firestoreService.creatDoc(userObj, 'Users', userObj.uid);
+        alert('Ingresando...')
+        this.navegacion.navigateRoot('tabs');
+      } else {
+        await this.firebaseauthService.logout();
+  
+        const alert = await this.alertController.create({
+          header: 'Error',
+          message: 'Solo se permiten usuarios con correo de correounivalle.edu.co',
+          buttons: ['OK']
+        });
+  
+        await alert.present();
+      }
+    } catch (error) {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'No se pudo iniciar sesión con Google',
+        buttons: ['OK']
+      });
+  
+      await alert.present();
+    }
+  }
 
   async loginGoogles() {
     try{

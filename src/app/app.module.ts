@@ -8,11 +8,10 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
-import { FirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
 /////////////////////////////////////////
 //import { FCM } from '@ionic-native/fcm'
 
@@ -31,8 +30,10 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     IonicModule.forRoot(),
     CalendarModule,
     HttpClientModule,
+    AngularFireModule,//Modulo 1 a importa
+    AngularFireAuthModule // Modulo 2 a importar
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, GooglePlus],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

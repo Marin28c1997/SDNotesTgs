@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "71405197754-7kjjq4inpbs2hao5aknp3u1on6tcosru.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.starter",
+            "certificate_hash": "095511fbd800428e0f9064bd64c545fb5875b574"
+          }
+        },
+        {
           "client_id": "71405197754-h569scocea9q3s9mk34spsugr3e8ko20.apps.googleusercontent.com",
           "client_type": 3
         }

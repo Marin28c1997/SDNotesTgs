@@ -1,4 +1,3 @@
-
 /* iOS places the subtitle above the title */
 
 ion-card-header.ios {
@@ -6,100 +5,113 @@ ion-card-header.ios {
   flex-flow: column-reverse;
 }
 
-ion-fab{
+ion-fab {
   margin-top: -4%;
   margin-right: 4%;
 }
 ion-card {
   border: 0;
- box-shadow: none;
+  box-shadow: none;
   padding: 0;
- }
+}
 
- div{
+div {
   margin: 4%;
- }
+}
 
- .semestre{
+.semestre {
   width: 60%;
   margin: auto;
   margin-top: -1.5%;
- }
+}
 
-  // para dispositivos móviles
+// para dispositivos móviles
 @media only screen and (min-width: 360px) and (max-width: 896px) {
   .my-content {
     margin-top: 18%; // ajuste según sea necesario
-    background: #E6413A; 
-    border-radius: 5px; 
+    background: #e6413a;
+    border-radius: 5px;
   }
-  ion-fab{
+  ion-fab {
     margin-top: -13.5%;
     margin-right: 1%;
   }
 
-  .btn1{
+  .btn1 {
     margin-top: -26px;
     margin-right: -128px;
     margin-bottom: 5px;
-   }
+  }
 
- .btn2{
-  margin-top: 50px;
-  margin-right: -14px;
- }
- img{
-  width: 100%;
-  height: 100%;
- }
- ion-card-content{
-  margin-left: -4%;
- }
+  .btn2 {
+    margin-top: 50px;
+    margin-right: -14px;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  ion-card-content {
+    margin-left: -4%;
+  }
 }
 
-ion-thumbnail  {
+ion-thumbnail {
   width: 5%;
   height: 5%;
-
 }
 
 @media only screen and (min-width: 360px) and (max-width: 740px) {
-  ion-fab{
+  ion-fab {
     margin-top: -14%;
     margin-right: 0.5%;
   }
-  ion-thumbnail  {
+  ion-thumbnail {
     width: 10%;
     height: 10%;
-  
   }
-  .notes{
+  .notes {
     margin-left: -7%;
     width: 100%;
   }
-  
+}
+.tooltips {
+  position: absolute;
+  background-color: rgb(51, 51, 51, 0.8);
+  color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  bottom: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 4;
+}
+
+ion-fab:hover .tooltips {
+  opacity: 1;
 }
 
 // para tabletas
 @media only screen and (min-width: 700px) and (max-width: 1024px) {
   .my-content {
     margin-top: 9%; // ajuste según sea necesario
-    background: #E6413A; 
+    background: #e6413a;
     border-radius: 5px;
   }
-  ion-fab{
+  ion-fab {
     margin-top: -7%;
     margin-right: 10%;
   }
-  
 }
-
 
 // para pantallas más grandes (PC)
 @media only screen and (min-width: 992px) {
   .my-content {
     margin-top: 6%; // ajuste según sea necesario
-    background:#E6413A; 
+    background: #e6413a;
     border-radius: 5px;
   }
 }
@@ -108,28 +120,28 @@ ion-thumbnail  {
   .no {
     display: none;
   }
-  .btn1{
+  .btn1 {
     margin-top: -26px;
     margin-right: -62px;
     margin-bottom: 5px;
-   }
+  }
+
+  ion-fab:hover .tooltips {
+    opacity: 1;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
-  
-  ion-fab-button, ion-label, ion-button{
-    --background: #E6413A;
+  ion-fab-button,
+  ion-label,
+  ion-button {
+    --background: #e6413a;
     color: #fff;
   }
-  ion-list, ion-card, ion-card-content{
-    background:transparent;
+  ion-list,
+  ion-card,
+  ion-card-content {
+    background: transparent;
     border-radius: 10px;
   }
 }
-
-
-
-
-
-
-
