@@ -74,30 +74,6 @@
       <ion-card-header style="margin-bottom: 2%;">
         <ion-card-title color="primary"><ion-icon name="information-circle"></ion-icon> Notas</ion-card-title>
         <ion-grid [fixed]="true">
-          <ion-row *ngFor="let note of Note; let i = index;">
-            <ion-col size="4">
-             Notas
-              <ion-input placeholder="Ingrese Nota" class="custom" color="primary" type="number" 
-              value={{Note[i]}} [(ngModel)]="Note[i]"  >
-                <ion-icon name="create-outline"></ion-icon>
-              </ion-input>
-            </ion-col>
-            <ion-col size="4">
-              Porcentaje %
-              <ion-input placeholder="Ingrese porcentaje" class="custom" type="number" color="primary" 
-              value ={{Porcent[i]}} [(ngModel)]="Porcent[i]" >
-                <ion-icon name="calculator-outline"></ion-icon>
-              </ion-input>
-            </ion-col>
-            <ion-col size="4">
-              Eliminar <br>
-              <ion-button color="danger" fill="clear" (click)="eliminarNota(i)">
-                <ion-icon name="trash-outline"></ion-icon>
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-        <ion-grid [fixed]="true">
       
           <ion-row *ngFor="let nota of notas; let i = index;">
             <ion-col size="4">

@@ -30,6 +30,7 @@ export class EditarPage implements OnInit {
   private path = '/Subjects';
   loading: any;
 
+  notas = [{ nota: null, porcentaje: null }];
   constructor(
     private route: ActivatedRoute,
     private firestore: AngularFirestore,
@@ -56,6 +57,7 @@ export class EditarPage implements OnInit {
         this.Semester = res['Semester'];
         this.Datat = res['Datat'];
         let i = 0;
+        this.notas = []
         this.Note.map(nt =>{
           this.notas.push({
             nota: nt,
@@ -67,7 +69,6 @@ export class EditarPage implements OnInit {
     });
   }
 
-  notas = [{ nota: null, porcentaje: null }];
 
   async eliminarNota(i: number) {
     const alert = await this.alertController.create({
@@ -91,7 +92,7 @@ export class EditarPage implements OnInit {
   }
 
   agregarNota() {
-    this.notas.push({ nota: '', porcentaje: '' });
+    this.notas.push({ nota: null, porcentaje: null });
   }
   guardarNotas() {
     this.Note = [];
