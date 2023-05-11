@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
 import { Google, User } from '../models';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FirebaseauthService } from '../services/firebaseauth.service';
 import { FirestoreService } from '../services/firestore.service';
+import * as firebase from 'firebase/app';
+import { Platform } from '@ionic/angular';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 @Component({
   selector: 'app-login',
@@ -27,13 +25,69 @@ export class LoginPage implements OnInit {
 
   constructor( private afAuth: AngularFireAuth, private   firebaseauthService: FirebaseauthService,
     public navegacion: NavController, public alertController:AlertController,
-    public firestoreService:FirestoreService) {
+    public firestoreService:FirestoreService,
+    private platform: Platform,
+    private googlePlus: GooglePlus) {
       
     }
 
   ngOnInit() {}
 
+  loginGoogle() {
+    if (this.platform.is('android')) {
+      this.loginGoogleAndroid();
+    } else {
+      this.loginGoogles();
+    }
+  }
 
+
+  async loginGoogleAndroid() {
+    try {
+      const { webClientId } = await this.googlePlus.getSigningCertificateFingerprint();
+      const result = await this.googlePlus.login({
+        'webClientId': webClientId,
+        'offline': true
+      });
+  
+      const user = result;
+      const email = user.email;
+  
+      if (email.endsWith('correounivalle.edu.co')) {
+        const uid = user.userId;
+        const usuario = user.displayName;
+        const photoURL = user.imageUrl;
+  
+        const userObj: Google = {
+          uid: uid,
+          email: email,
+          usuario: usuario,
+          photoURL: photoURL
+        };
+  
+        await this.firestoreService.creatDoc(userObj, 'Users', userObj.uid);
+        alert('Ingresando...')
+        this.navegacion.navigateRoot('tabs');
+      } else {  
+        const alert = await this.alertController.create({
+          header: 'Error',
+          message: 'Solo se permiten usuarios con correo de correounivalle.edu.co',
+          buttons: ['OK']
+        });
+  
+        await alert.present();
+      }
+    } catch (error) {
+      const alert = await this.alertController.create({
+        header: 'Error',
+        message: 'No se pudo iniciar sesión con Google',
+        buttons: ['OK']
+      });
+  
+      await alert.present();
+    }
+  }
+  
 
 async loginGoogles() {
   try{
@@ -106,7 +160,7 @@ async loginGoogles() {
     } else {
       const alert = await this.alertController.create({
         header: 'Error',
-        message: 'Usuario no registrado.',
+        message: 'Error de contraseña o usuario no registrado.',
         buttons: ['OK']
 
         

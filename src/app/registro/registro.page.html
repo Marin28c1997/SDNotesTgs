@@ -14,7 +14,7 @@
 
   <ion-content>
     <ion-item >
-      <ion-button class="olvi" (click)="loginGoogles()" class="goo" fill="clear"> <ion-img  class="google" src="assets/icon/google.png " alt="logo" > </ion-img> Sign in with Google </ion-button>
+      <ion-button class="olvi" (click)="loginGoogle()" class="goo" fill="clear"> <ion-img  class="google" src="assets/icon/google.png " alt="logo" > </ion-img> Sign in with Google </ion-button>
     </ion-item>
     
  
@@ -24,16 +24,16 @@
   
     <ion-item class="inp" fill="outline">
     <ion-label position="floating">
-      Nombre de usuario:
+      <ion-icon name="person"></ion-icon> Nombre de usuario:
     </ion-label>
-    <ion-input [(ngModel)]="login.usuario"  class="normal" type=" text"  inputmode=" text" placeholder=" Usuario o correo electrónico"> <ion-icon name="person"></ion-icon></ion-input>
+    <ion-input [(ngModel)]="login.usuario"  class="normal" type=" text"  inputmode=" text" placeholder=" Usuario o correo electrónico"> </ion-input>
   </ion-item>
 
   <ion-item class="inp" fill="outline">
     <ion-label  position="floating">
-      Correo Electrónico:
+      <ion-icon name="mail"></ion-icon> Correo Electrónico:
     </ion-label>
-    <ion-input [(ngModel)]="login.email" class="normal" type="email" inputmode=" text"  placeholder=" Correo electrónico"> <ion-icon name="mail"></ion-icon></ion-input>
+    <ion-input [(ngModel)]="login.email" class="normal" type="email" inputmode=" text"  placeholder=" Correo electrónico"> </ion-input>
   </ion-item>
 
   <ion-item class="inp" fill="outline">

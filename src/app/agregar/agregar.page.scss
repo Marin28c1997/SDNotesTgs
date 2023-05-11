@@ -9,6 +9,9 @@ ion-card {
   margin-bottom: 7%;
 }
 
+ion-item, ion-card-title, ion-input{
+  color:#E6413A ;
+}
 .wrapper {
   flex-wrap: wrap;
   width: 400px;
@@ -82,4 +85,18 @@ ion-card {
     margin-top: 7%; // ajuste según sea necesario
     background: #e6413a;
   }
+}
+
+
+@media (prefers-color-scheme: dark) {
+  ion-toolbar, ion-title{
+    background:#E6413A;
+    color:white
+  }
+  
+}
+
+ion-button,ion-toolbar{
+  --background:#E6413A;
+  color:white
 }
