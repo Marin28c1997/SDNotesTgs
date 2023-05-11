@@ -235,27 +235,18 @@ export class AsignaturaPage implements OnInit {
   isGoogleUser = false;
 
   getUserInfo(user: firebase.User) {
-    console.log("hola", user)
     if (user.providerData.length > 0 && user.providerData[0].providerId === 'google.com') {
-      console.log("hol", user)
       this.firestorageSerive.getDoc<Google>(`Users/${this.userId}`, this.userId).subscribe(res => {
-        console.log("holass", user)
         this.userName = res.usuario;
         this.isGoogleUser = true;
-        console.log("AQUI", this.userName)
-        console.log(this.userId)
-        console.log("hola")
       });
     } else {
-      console.log('not a google user')
       this.firestorageSerive.getDoc<User>(`Users`, this.userId).subscribe(res => {
-        console.log('got user doc', res)
         if (res && res.usuario) {
           this.userName = res.usuario;
         } else {
           this.userName = "Usuario";
         }
-        console.log("AQUI", this.userName)
       }, error => {
         console.log('error getting user doc', error)
       });

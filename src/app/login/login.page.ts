@@ -33,7 +33,9 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {}
 
-  loginGoogle() {
+
+
+  loginGoo() {
     if (this.platform.is('android')) {
       this.loginGoogleAndroid();
     } else {
@@ -68,7 +70,9 @@ export class LoginPage implements OnInit {
         await this.firestoreService.creatDoc(userObj, 'Users', userObj.uid);
         alert('Ingresando...')
         this.navegacion.navigateRoot('tabs');
-      } else {  
+      } else {
+        await this.firebaseauthService.logout();
+  
         const alert = await this.alertController.create({
           header: 'Error',
           message: 'Solo se permiten usuarios con correo de correounivalle.edu.co',

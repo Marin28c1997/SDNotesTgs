@@ -177,62 +177,62 @@ export class RegistroPage implements OnInit {
   }
 
 
-  loginGoogle() {
-    if (this.platform.is('android')) {
-      this.loginGoogleAndroid();
-    } else {
-      this.loginGoogles();
-    }
-  }
+  // loginGoogle() {
+  //   if (this.platform.is('android')) {
+  //     this.loginGoogleAndroid();
+  //   } else {
+  //     this.loginGoogles();
+  //   }
+  // }
 
 
-  async loginGoogleAndroid() {
-    try {
-      const { webClientId } = await this.googlePlus.getSigningCertificateFingerprint();
-      const result = await this.googlePlus.login({
-        'webClientId': webClientId,
-        'offline': true
-      });
+  // async loginGoogleAndroid() {
+  //   try {
+  //     const { webClientId } = await this.googlePlus.getSigningCertificateFingerprint();
+  //     const result = await this.googlePlus.login({
+  //       'webClientId': webClientId,
+  //       'offline': true
+  //     });
   
-      const user = result;
-      const email = user.email;
+  //     const user = result;
+  //     const email = user.email;
   
-      if (email.endsWith('correounivalle.edu.co')) {
-        const uid = user.userId;
-        const usuario = user.displayName;
-        const photoURL = user.imageUrl;
+  //     if (email.endsWith('correounivalle.edu.co')) {
+  //       const uid = user.userId;
+  //       const usuario = user.displayName;
+  //       const photoURL = user.imageUrl;
   
-        const userObj: Google = {
-          uid: uid,
-          email: email,
-          usuario: usuario,
-          photoURL: photoURL
-        };
+  //       const userObj: Google = {
+  //         uid: uid,
+  //         email: email,
+  //         usuario: usuario,
+  //         photoURL: photoURL
+  //       };
   
-        await this.firestoreService.creatDoc(userObj, 'Users', userObj.uid);
-        alert('Ingresando...')
-        this.navegacion.navigateRoot('tabs');
-      } else {
-        await this.firebaseauthService.logout();
+  //       await this.firestoreService.creatDoc(userObj, 'Users', userObj.uid);
+  //       alert('Ingresando...')
+  //       this.navegacion.navigateRoot('tabs');
+  //     } else {
+  //       await this.firebaseauthService.logout();
   
-        const alert = await this.alertController.create({
-          header: 'Error',
-          message: 'Solo se permiten usuarios con correo de correounivalle.edu.co',
-          buttons: ['OK']
-        });
+  //       const alert = await this.alertController.create({
+  //         header: 'Error',
+  //         message: 'Solo se permiten usuarios con correo de correounivalle.edu.co',
+  //         buttons: ['OK']
+  //       });
   
-        await alert.present();
-      }
-    } catch (error) {
-      const alert = await this.alertController.create({
-        header: 'Error',
-        message: 'No se pudo iniciar sesión con Google',
-        buttons: ['OK']
-      });
+  //       await alert.present();
+  //     }
+  //   } catch (error) {
+  //     const alert = await this.alertController.create({
+  //       header: 'Error',
+  //       message: 'No se pudo iniciar sesión con Google',
+  //       buttons: ['OK']
+  //     });
   
-      await alert.present();
-    }
-  }
+  //     await alert.present();
+  //   }
+  // }
 
   async loginGoogles() {
     try{

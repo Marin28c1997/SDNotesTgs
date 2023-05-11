@@ -1,9 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">SDNotes</string>
-    <string name="title_activity_main">SDNotes</string>
+    <string name="app_name">Proyecto</string>
+    <string name="title_activity_main">Proyecto</string>
     <string name="package_name">io.ionic.starter</string>
     <string name="custom_url_scheme">io.ionic.starter</string>
-    <string name="serve_client_id">71405197754-7kjjq4inpbs2hao5aknp3u1on6tcosru.apps.googleusercontent.com
-    </string>
 </resources>
