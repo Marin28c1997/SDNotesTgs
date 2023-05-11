@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertController, NavController } from '@ionic/angular';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-inicio',
@@ -38,7 +39,12 @@ export class InicioPage {
     await alert.present();
   }
 
-
+  ngOnInit() {
+    this.afAuth.authState.subscribe(user => {
+      if (!user) {        
+        this.navegacion.navigateRoot('login');
+      }})
+  }
   calcularNota() {
     let suma = 0;
     let porcentajeTotal = 0;
@@ -59,7 +65,8 @@ export class InicioPage {
   }
 
   constructor(private alertController: AlertController,
-    public navegacion: NavController) {
+    public navegacion: NavController,
+    private afAuth: AngularFireAuth,) {
 
   }
 

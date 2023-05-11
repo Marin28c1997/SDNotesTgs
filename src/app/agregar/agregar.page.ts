@@ -67,7 +67,13 @@ export class AgregarPage implements OnInit {
     this.today = moment().format('YYYY-MM-DD');
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.afAuth.authState.subscribe(user => {
+      if (!user) {        
+        this.navegacion.navigateRoot('login');
+      }
+    })
+  }
 
   guardarNotas() {
     this.newSubjects.Note = [];

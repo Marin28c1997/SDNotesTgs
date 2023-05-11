@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from '../services/firestore.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+
 import {
   AlertController,
   LoadingController,
@@ -35,6 +37,7 @@ export class EditarPage implements OnInit {
     private route: ActivatedRoute,
     private firestore: AngularFirestore,
     public firestoreService: FirestoreService,
+    private afAuth: AngularFireAuth,
     private alertController: AlertController,
     public navegacion: NavController,
     public toastController: ToastController,
@@ -42,31 +45,36 @@ export class EditarPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
-    this.firestoreService.getDoc(this.path, this.id).subscribe((res) => {
-      if (res) {
-        this.Name = res['Name'];
-        this.Central = res['Central'];
-        this.Teacher = res['Teacher'];
-        this.Room = res['Room'];
-        this.Credits = res['Credits'];
-        this.Note = res['Note'];
-        this.Porcent = res['Porcent'];
-        console.log('hey', this.Note);
-        console.log('hey', this.Porcent);
-        this.Semester = res['Semester'];
-        this.Datat = res['Datat'];
-        let i = 0;
-        this.notas = []
-        this.Note.map(nt =>{
-          this.notas.push({
-            nota: nt,
-            porcentaje: this.Porcent[i]
+    this.afAuth.authState.subscribe(user => {
+    if (user) {
+      this.id = this.route.snapshot.params['id'];
+      this.firestoreService.getDoc(this.path, this.id).subscribe((res) => {
+        if (res) {
+          this.Name = res['Name'];
+          this.Central = res['Central'];
+          this.Teacher = res['Teacher'];
+          this.Room = res['Room'];
+          this.Credits = res['Credits'];
+          this.Note = res['Note'];
+          this.Porcent = res['Porcent'];
+          console.log('hey', this.Note);
+          console.log('hey', this.Porcent);
+          this.Semester = res['Semester'];
+          this.Datat = res['Datat'];
+          let i = 0;
+          this.notas = []
+          this.Note.map(nt =>{
+            this.notas.push({
+              nota: nt,
+              porcentaje: this.Porcent[i]
+            })
+            i++
           })
-          i++
-        })
-      }
-    });
+        }
+      });
+    }else{        
+      this.navegacion.navigateRoot('login');
+    }})
   }
 
 
