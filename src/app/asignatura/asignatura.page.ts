@@ -5,6 +5,7 @@ import { FirestoreService } from '../services/firestore.service';
 import firebase from 'firebase/compat/app';
 import { AlertController, LoadingController, ToastController, NavController } from '@ionic/angular';
 import * as moment from 'moment';
+import { error } from 'console';
 
 ///////////////////////
 // import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
@@ -106,7 +107,8 @@ export class AsignaturaPage implements OnInit {
         this.getUserInfo(user);
         this.getSubjectsForSemester("Semester");
       }else{        
-        this.navegacion.navigateRoot('login');
+        // this.navegacion.navigateRoot('login');
+        alert('que pasa')
       }
       /*
       PushNotifications.requestPermissions().then((result) => {

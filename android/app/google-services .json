@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "71405197754",
+    "firebase_url": "https://sdnotesi-default-rtdb.firebaseio.com",
+    "project_id": "sdnotesi",
+    "storage_bucket": "sdnotesi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:71405197754:android:222d236013d54ab7b6a583",
+        "android_client_info": {
+          "package_name": "com.sdnotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "71405197754-r1csvgdgtq75hi1pgquaktrgv9nsp235.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sdnotes",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "71405197754-h569scocea9q3s9mk34spsugr3e8ko20.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAhywS937VF0-jDVhv_0ELptxHj_n5i8M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "71405197754-1jg5bcjvqq7ovn81v6so0jtkam2fq3nq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
