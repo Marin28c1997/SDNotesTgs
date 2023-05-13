@@ -133,9 +133,9 @@ export class AgregarPage implements OnInit {
     // Validar que el salón esté entre 1 y 17 si se ha ingresado
     if (
       this.newSubjects.Room !== null &&
-      (this.newSubjects.Room > 17 || this.newSubjects.Room < 1)
+      (this.newSubjects.Room > 16 || this.newSubjects.Room < 1)
     ) {
-      this.presentAlert('Error', 'El salón debe estar entre 1 y 17');
+      this.presentAlert('Error', 'El salón debe estar entre 1 y 16');
       return;
     }
 

@@ -15,35 +15,43 @@ ion-card {
   right: 2%;
   z-index: 1;
 }
-  
+
     // para dispositivos móviles
 @media only screen and (max-width: 900px) {
   .container{
-    margin-top: 18%;
+    margin-top: 24%;
   }
   .boton-superpuesto{
-    margin-top: 14%;
+    margin-top: 16%;
+  }
+  .no {
+    display: none;
   }
 }
 
 // para tabletas
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-  .my-content {
-    margin-top: 14%; // ajuste según sea necesario
-    background: #E6413A; 
-    border-radius: 5px;
-    margin-bottom: 2%;
-
+@media only screen and (min-width: 600px) and (max-width: 1024px) {
+  .container {
+    margin-top: 2%;
+  }
+  .boton-superpuesto{
+    margin-top: 7%;
   }
 }
 
-// para pantallas más grandes (PC)
-@media only screen and (min-width: 992px) {
-  .my-content {
-    margin-top: 14%; // ajuste según sea necesario
-    background: #E6413A; 
-    border-radius: 5px;
-    margin-bottom: 2%;
+@media (prefers-color-scheme: dark) {
+  ion-toolbar, ion-title{
+    background:#E6413A;
+    color:white
   }
+  .dele{
+    color:#fff;
+    --background: transparent;
+  }
+  
 }
 
+ion-button,ion-toolbar{
+  --background:#E6413A;
+  color:white
+}

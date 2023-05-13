@@ -1,7 +1,7 @@
 <ion-content>
-  <ion-item fill="outline" class="semestre" style="margin-top: 80px;">
-    <ion-label position="floating" color="primary"><ion-icon name="bookmarks"></ion-icon> Semestre</ion-label>
-    <ion-select [(ngModel)]="selectedSemester" (ionChange)="getSubjectsForSemester(selectedSemester)"
+  <ion-item fill="outline" class="semestre" style="margin-top: 80px; color:#E6413A;">
+    <ion-label position="floating" style="color:#E6413A;">Semestre <ion-icon name="bookmarks"></ion-icon> </ion-label>
+    <ion-select [(ngModel)]="selectedSemester" style="color:#E6413A;" (ionChange)="getSubjectsForSemester(selectedSemester)"
       placeholder="Semestres">
       <ion-select-option value="1">1</ion-select-option>
       <ion-select-option value="2">2</ion-select-option>

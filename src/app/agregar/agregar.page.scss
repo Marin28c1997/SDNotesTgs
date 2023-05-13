@@ -9,9 +9,6 @@ ion-card {
   margin-bottom: 7%;
 }
 
-ion-item, ion-card-title, ion-input{
-  color:#E6413A ;
-}
 .wrapper {
   flex-wrap: wrap;
   width: 400px;
@@ -92,6 +89,10 @@ ion-item, ion-card-title, ion-input{
   ion-toolbar, ion-title{
     background:#E6413A;
     color:white
+  }
+  .dele{
+    color:#fff;
+    --background: transparent;
   }
   
 }

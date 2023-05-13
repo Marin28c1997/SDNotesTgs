@@ -1,6 +1,6 @@
 <ion-content >
   <div class="my-content">
-    <p style="margin: 1%; color: #fff; font-family: 'Times New Roman', Times, serif;">¡Bienvenid@ {{ userName }}
+    <p style="margin: 2%; color: #fff; font-family: 'Times New Roman', Times, serif; text-align: justify;">¡Bienvenid@ {{ userName }}
       a nuestra aplicación! Aquí encontrarás una variedad de funciones para ayudarte a administrar tus asignaturas.
       Podrás ver, modificar, eliminar y crear materias a tu gusto.<span class="no"> También podrás consultar los días en
         que tienes clase y realizar un cálculo rápido de las notas de tus materias.</span>
@@ -8,7 +8,7 @@
     </p>
   </div>
   <ion-item fill="outline" class="semestre">
-    <ion-label position="floating" color="primary"><ion-icon name="bookmarks"></ion-icon> Semestre </ion-label>
+    <ion-label position="floating" style="color: #E6413A;"><ion-icon name="bookmarks"></ion-icon> Semestre </ion-label>
     <ion-select [(ngModel)]="selectedSemester" (ionChange)="getSubjectsForSemester(selectedSemester)"
       placeholder="Semestres">
       <ion-select-option value="1">1</ion-select-option>
@@ -56,8 +56,7 @@
               <span style="color: #E6413A;">{{Subjects.Datat}}</span>
             </ion-label>
             <ion-item class="notes">
-              Nota:  
-              <span style="color: #E6413A;"> {{Subjects.Nt.substr(0,4)}} </span>
+              Nota: <span style="color: #E6413A;"> {{Subjects.Nt.substr(0,4)}} </span>
               <ion-toggle (ionChange)="changenote($event, Subjects.pos)">
               </ion-toggle>
             </ion-item> 

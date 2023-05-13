@@ -1,46 +1,43 @@
-<ion-content >
+<ion-content>
 
-    <div class="my-content">
-      <h2 style="text-align: center;color: #E6413A;">Calculo Rápido</h2>
-      <ion-grid [fixed]="true">
-        <ion-row *ngFor="let nota of notas; let i = index;">
-          <ion-col size="4">
-            Notas
-            <ion-input placeholder="Nota" class="custom" [(ngModel)]="nota.nota"   type="number">
-              <ion-icon name="create-outline" style="color: #E6413A;"></ion-icon>
-            </ion-input>
-          </ion-col>
-          <ion-col size="4">
-            Porcentaje % 
-            <ion-input placeholder="porcentaje" class="custom" [(ngModel)]="nota.porcentaje" type="number">
-              <ion-icon name="calculator-outline" style="color: #E6413A;"></ion-icon>
-             
-            </ion-input>
-          </ion-col>
-          <ion-col size="4">
-            Eliminar Nota <br>
-            <ion-button  fill="clear" (click)="eliminarNota(i)">
-              <ion-icon name="trash-outline" style="color: #E6413A;"></ion-icon>
-            </ion-button>
-          </ion-col>
-        </ion-row>
-        <ion-item>
-          <ion-label>Nota Actual:</ion-label>
-          <ion-label style="color: #E6413A;">{{sumas}}</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>Te falta para pasar:</ion-label>
-          <ion-label style="color: #E6413A;">{{pasar}}</ion-label>
-        </ion-item>
-      </ion-grid>
-<div style="text-align: center;">
+  <div class="my-content">
+    <h2 style="text-align: center;color: #E6413A;">Calculo Rápido</h2>
+    <ion-grid [fixed]="true">
+      <ion-row *ngFor="let nota of notas; let i = index;">
+        <ion-col size="4">
+          Notas
+          <ion-input placeholder="Nota" class="custom" [(ngModel)]="nota.nota" type="number">
+            <ion-icon name="create-outline" style="color: #E6413A;"></ion-icon>
+          </ion-input>
+        </ion-col>
+        <ion-col size="4">
+          Porcentaje %
+          <ion-input placeholder="porcentaje" class="custom" [(ngModel)]="nota.porcentaje" type="number">
+            <ion-icon name="calculator-outline" style="color: #E6413A;"></ion-icon>
+
+          </ion-input>
+        </ion-col>
+        <ion-col size="4">
+          Eliminar Nota <br>
+          <ion-button fill="clear" class="dele" (click)="eliminarNota(i)">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-item>
+        <ion-label>Nota Actual:</ion-label>
+        <ion-label style="color: #E6413A;">{{sumas}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Te falta para pasar:</ion-label>
+        <ion-label style="color: #E6413A;">{{pasar}}</ion-label>
+      </ion-item>
+    </ion-grid>
+    <div style="text-align: center;">
       <ion-button (click)="agregarNota()">Agregar Nota</ion-button>
       <br>
       <ion-button (click)="calcularNota()">Calcular Nota</ion-button>
-      <br>
-      <ion-button (click)="calcularNota()" tooltip="as">Calcular Nota</ion-button>
     </div>
   </div>
 
-  </ion-content>
-
+</ion-content>

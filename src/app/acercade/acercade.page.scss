@@ -23,3 +23,11 @@ ion-img {
   }
   
   
+  @media (prefers-color-scheme: dark) {
+    ion-toolbar,
+    ion-label,
+    ion-button {
+      --background: #e6413a;
+      color: #fff;
+    }
+  }

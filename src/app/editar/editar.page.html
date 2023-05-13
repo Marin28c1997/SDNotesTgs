@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button>
         <ion-icon name="back"></ion-icon>
@@ -21,10 +21,10 @@
 
     <ion-card style="margin-top: 10%;">
       <ion-card-header >
-        <ion-card-title color="primary"><ion-icon name="information-circle"></ion-icon> Información general
+        <ion-card-title ><ion-icon name="information-circle"></ion-icon> Información general
         </ion-card-title>
         <ion-card-subtitle><ion-item fill="outline">
-          <ion-label position="floating" color="primary"><ion-icon name="bookmarks"></ion-icon> Semestre *</ion-label>
+          <ion-label position="floating" style="color:#E6413A;"><ion-icon name="bookmarks"></ion-icon> Semestre *</ion-label>
           <ion-select placeholder="Selecciona un semestre" value={{Semester}}  [(ngModel)]="Semester">
             <ion-select-option value="1">1</ion-select-option>
             <ion-select-option value="2">2</ion-select-option>
@@ -39,23 +39,23 @@
           </ion-select>
         </ion-item></ion-card-subtitle>
         <ion-card-subtitle><ion-item fill="outline">
-            <ion-label position="floating" color="primary"><ion-icon name="book"></ion-icon> Nombre de la asignatura *</ion-label>
+            <ion-label position="floating" style="color:#E6413A;"><ion-icon name="book"></ion-icon> Nombre de la asignatura *</ion-label>
             <ion-input value={{Name}}  [(ngModel)]="Name"placeholder="Asignatura" required></ion-input>
           </ion-item></ion-card-subtitle>
         <ion-card-subtitle><ion-item fill="outline">
-            <ion-label position="floating" color="primary"><ion-icon name="person-circle"></ion-icon> Nombre del profesor * </ion-label>
+            <ion-label position="floating" style="color:#E6413A;"><ion-icon name="person-circle"></ion-icon> Nombre del profesor * </ion-label>
             <ion-input value={{Teacher}}  [(ngModel)]="Teacher"placeholder="Profesor"></ion-input>
           </ion-item></ion-card-subtitle>
           <ion-card-subtitle><ion-item fill="outline">
-            <ion-label position="floating" color="primary">Ingrese fecha de clase*</ion-label>
-            <ion-input value={{Datat}} [(ngModel)]="Datat" type="datetime-local" color="primary" [min]="today" placeholder="Fecha"></ion-input>
+            <ion-label position="floating" style="color:#E6413A;">Ingrese fecha de clase*</ion-label>
+            <ion-input value={{Datat}} [(ngModel)]="Datat" type="datetime-local"  [min]="today" placeholder="Fecha"></ion-input>
           </ion-item></ion-card-subtitle>
         <ion-card-subtitle><ion-item fill="outline">
-            <ion-label position="floating" color="primary"><ion-icon name="home"></ion-icon> Salón de clase</ion-label>
+            <ion-label position="floating" style="color:#E6413A;"><ion-icon name="home"></ion-icon> Salón de clase</ion-label>
             <ion-input value={{Room}}  [(ngModel)]="Room"placeholder="Salón" type="number"></ion-input>
           </ion-item></ion-card-subtitle>
         <ion-card-subtitle><ion-item fill="outline">
-            <ion-label position="floating" color="primary"><ion-icon name="location"></ion-icon> Sede</ion-label>
+            <ion-label position="floating" style="color:#E6413A;"><ion-icon name="location"></ion-icon> Sede</ion-label>
             <ion-select placeholder="Selecciona una sede" value={{Central}} [(ngModel)]="Central">
               <ion-select-option value="Villa">Villa</ion-select-option>
               <ion-select-option value="Príncipe">Príncipe</ion-select-option>
@@ -63,7 +63,7 @@
             </ion-select>
           </ion-item></ion-card-subtitle>
           <ion-card-subtitle><ion-item fill="outline">
-            <ion-label position="floating" color="primary"><ion-icon name="time"></ion-icon> Créditos</ion-label>
+            <ion-label position="floating" style="color:#E6413A;"><ion-icon name="time"></ion-icon> Créditos</ion-label>
             <ion-input value={{Credits}}  [(ngModel)]="Credits"placeholder="Créditos/Intensidad horaria" type="number"></ion-input>
           </ion-item></ion-card-subtitle>
 
@@ -72,26 +72,26 @@
 
     <ion-card >
       <ion-card-header style="margin-bottom: 2%;">
-        <ion-card-title color="primary"><ion-icon name="information-circle"></ion-icon> Notas</ion-card-title>
+        <ion-card-title ><ion-icon name="information-circle"></ion-icon> Notas</ion-card-title>
         <ion-grid [fixed]="true">
       
           <ion-row *ngFor="let nota of notas; let i = index;">
-            <ion-col size="4">
+            <ion-col size="4" style="color:#E6413A;">
              Notas
-              <ion-input placeholder="Ingrese Nota"color="primary" class="custom" [(ngModel)]="nota.nota"  type="number">
+              <ion-input placeholder="Ingrese Nota" style="color:#E6413A;"class="custom" [(ngModel)]="nota.nota"  type="number">
                 <ion-icon name="create-outline"></ion-icon>
               </ion-input>
             </ion-col>
-            <ion-col size="4">
+            <ion-col size="4" style="color:#E6413A;">
              Porcentaje % 
-              <ion-input placeholder="Ingrese porcentaje" color="primary"class="custom"  [(ngModel)]="nota.porcentaje"  type="number">
+              <ion-input placeholder="Ingrese porcentaje" style="color:#E6413A;" class="custom"  [(ngModel)]="nota.porcentaje"  type="number">
                 <ion-icon name="calculator-outline"></ion-icon>
               </ion-input>
             </ion-col>
             
-      <ion-col size="4">
-        Eliminar <br>
-        <ion-button color="danger" fill="clear" (click)="eliminarNota(i)">
+      <ion-col size="4" style="color:#E6413A;">
+        Eliminar <span class="no"> Nota</span><br>
+        <ion-button class="dele" fill="clear" style="color:#fff;" (click)="eliminarNota(i)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-button>
       </ion-col>

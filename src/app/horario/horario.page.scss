@@ -29,6 +29,7 @@ ion-card {
   margin: auto;
   margin-top: -1.5%;
  }
+
 // para dispositivos móviles
 @media only screen and (max-width: 767px) {
   .my-content {
@@ -68,6 +69,9 @@ ion-card {
     font-size: 20px;
     padding: 20px 15px;
   }
+  .calen{
+    margin-top: -3%;
+  }
 }
 
 
@@ -76,4 +80,7 @@ ion-card {
     background:transparent;
     border-radius: 10px;
   }
+  .calen {
+    background: rgba(227, 221, 221, 0.951);
+}
 }

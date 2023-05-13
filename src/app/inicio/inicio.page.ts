@@ -10,7 +10,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 export class InicioPage {
 
   notas = [
-    { nota: "", porcentaje: "" }
+    { nota: null, porcentaje: null }
   ]; // Inicializamos la matriz de notas con un objeto vacío
 
   sumas = 0;
@@ -49,6 +49,26 @@ export class InicioPage {
     let suma = 0;
     let porcentajeTotal = 0;
 
+    
+    if (
+      this.notas[this.notas.length - 1].nota !== null &&
+      (this.notas[this.notas.length - 1].nota > 5 ||
+        this.notas[this.notas.length - 1].nota < 1)
+    ) {
+      this.presentAlert('Error', 'La nota debe estar entre 1 y 5');
+      return;
+    }
+    
+    // Validar que el porcentaje no sea mayor a 100 si se ha ingresado
+    if (
+      this.notas[this.notas.length - 1].porcentaje !== null &&
+      (this.notas[this.notas.length - 1].porcentaje > 100 ||
+        this.notas[this.notas.length - 1].porcentaje < 1)
+    ) {
+      this.presentAlert('Error', 'El porcentaje debe estar entre 1 y 100');
+      return;
+    }
+
     for (let nota of this.notas) {
       let valorNota = parseFloat(nota.nota || "0");
       let valorPorcentaje = (parseFloat(nota.porcentaje || "0")/100);
@@ -68,6 +88,16 @@ export class InicioPage {
     public navegacion: NavController,
     private afAuth: AngularFireAuth,) {
 
+  }
+
+  async presentAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: ['Aceptar'],
+    });
+
+    await alert.present();
   }
 
 }

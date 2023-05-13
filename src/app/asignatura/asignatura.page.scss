@@ -22,11 +22,11 @@ div {
 .semestre {
   width: 60%;
   margin: auto;
-  margin-top: -1.5%;
+  margin-top: 3%;
 }
 
 // para dispositivos móviles
-@media only screen and (min-width: 360px) and (max-width: 896px) {
+@media only screen and (min-width: 300px) and (max-width: 896px) {
   .my-content {
     margin-top: 18%; // ajuste según sea necesario
     background: #e6413a;
@@ -54,18 +54,6 @@ div {
   ion-card-content {
     margin-left: -4%;
   }
-}
-
-ion-thumbnail {
-  width: 5%;
-  height: 5%;
-}
-
-@media only screen and (min-width: 360px) and (max-width: 740px) {
-  ion-fab {
-    margin-top: -14%;
-    margin-right: 0.5%;
-  }
   ion-thumbnail {
     width: 10%;
     height: 10%;
@@ -75,6 +63,12 @@ ion-thumbnail {
     width: 100%;
   }
 }
+
+ion-thumbnail {
+  width: 5%;
+  height: 5%;
+}
+
 .tooltips {
   position: absolute;
   background-color: rgb(51, 51, 51, 0.8);
